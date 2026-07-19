@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Solicitar reserva — Partiu Quadra</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/main.css?v=20260727-9">
+  </head>
+  <body data-page="bookingRequest">
+    <a class="skip-link" href="#content">Pular para o conteúdo</a>
+    <header class="app-header">
+      <div class="nav-shell">
+        <a class="brand-mark" href="../inicio/"
+          ><span class="brand-symbol"
+            ><i
+              class="fa-solid fa-location-crosshairs"
+              aria-hidden="true"
+            ></i></span
+          ><span>partiu quadra</span></a
+        ><a class="btn btn-quiet" href="../quadra/"
+          ><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Voltar para
+          a quadra</a
+        >
+      </div>
+    </header>
+    <main id="content" class="page-narrow">
+      <ol class="steps">
+        <li class="step is-active">
+          <span class="step-number">1</span><span>Solicitação</span>
+        </li>
+        <li class="step">
+          <span class="step-number">2</span><span>Aprovação</span>
+        </li>
+        <li class="step">
+          <span class="step-number">3</span><span>Pagamento</span>
+        </li>
+        <li class="step">
+          <span class="step-number">4</span><span>Confirmada</span>
+        </li>
+      </ol>
+      <div class="split">
+        <section>
+          <p class="eyebrow">Etapa 1 de 4</p>
+          <h1 class="title-lg mt-2">Antes de enviar</h1>
+          <p class="lead mt-3">
+            Confira o horário e diga ao proprietário quem vai jogar. O pagamento
+            só aparece depois que ele aprovar.
+          </p>
+          <form
+            class="space-y-6 mt-8"
+            action="../solicitacao-enviada/"
+            method="get"
+          >
+            <fieldset class="panel">
+              <legend class="title-md px-1">Quem vai jogar?</legend>
+              <div class="grid gap-3 mt-5">
+                <p class="help" role="status">Carregando suas opções…</p>
+              </div>
+              <a class="link text-sm inline-block mt-4" href="../criar-time/"
+                >Criar outro time</a
+              >
+            </fieldset>
+            <div class="panel">
+              <div class="field-group">
+                <label class="label" for="message"
+                  >Recado para o proprietário
+                  <span class="muted font-normal">(opcional)</span></label
+                ><textarea
+                  class="field"
+                  id="message"
+                  maxlength="300"
+                  placeholder="Ex.: vamos chegar 15 minutos antes. Há coletes para 10 pessoas?"
+                  aria-describedby="message-help"
+                ></textarea
+                ><small id="message-help" class="help"
+                  >Até 300 caracteres. Você poderá conversar pelo chat
+                  depois.</small
+                >
+              </div>
+            </div>
+            <label class="choice"
+              ><input type="checkbox" required><span class="text-sm"
+                >Li as regras da quadra e entendo que o horário ainda precisa
+                ser aprovado.</span
+              ></label
+            >
+            <button class="btn btn-accent btn-block" type="submit">
+              Enviar solicitação
+            </button>
+          </form>
+        </section>
+        <aside class="panel sidebar" aria-label="Resumo do pedido">
+          <p class="help" role="status">Carregando o resumo da quadra…</p>
+        </aside>
+      </div>
+    </main>
+    <script type="module" src="../../assets/js/app.js?v=20260727-9"></script>
+  </body>
+</html>
