@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Convidar membros — Partiu Quadra</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/main.css?v=20260727-9">
+  </head>
+  <body data-page="inviteMembers">
+    <a class="skip-link" href="#content">Pular para o conteúdo</a>
+    <header class="app-header">
+      <div class="nav-shell">
+        <a class="brand-mark" href="../inicio/"
+          ><span class="brand-symbol"
+            ><i
+              class="fa-solid fa-location-crosshairs"
+              aria-hidden="true"
+            ></i></span
+          ><span>partiu quadra</span></a
+        ><a class="btn btn-quiet" href="../time/">Pular por agora</a>
+      </div>
+    </header>
+    <main id="content" class="page-narrow">
+      <div class="flex items-center gap-4">
+        <div class="brand-symbol brand-symbol-lg">
+          <i class="fa-solid fa-shield" aria-hidden="true"></i>
+        </div>
+        <div>
+          <p class="eyebrow">Seu time</p>
+          <h1 class="title-lg mt-1">Convide sua turma.</h1>
+        </div>
+      </div>
+      <p class="lead mt-5">
+        Busque pelo nome de usuário único. O convite aparece no perfil da
+        pessoa.
+      </p>
+      <section class="panel mt-7" aria-labelledby="user-search">
+        <h2 id="user-search" class="sr-only">Buscar usuários</h2>
+        <form class="flex gap-2">
+          <div class="field-group flex-1">
+            <label class="label" for="username">Nome de usuário</label>
+            <div class="relative">
+              <span class="absolute left-3 top-3 muted" aria-hidden="true"
+                >@</span
+              ><input
+                type="text"
+                class="field pl-8"
+                id="username"
+                placeholder="usuario"
+                autocomplete="off">
+            </div>
+          </div>
+          <button class="btn btn-primary self-end" type="submit">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            Buscar
+          </button>
+        </form>
+        <div class="divider mt-6 pt-5">
+          <p class="eyebrow mb-3">Resultado</p>
+          <div class="flex items-center gap-3">
+            <span class="avatar">BC</span>
+            <div class="flex-1">
+              <strong class="text-sm">Beatriz Costa</strong>
+              <p class="help">@bia.costa · Basquete e futsal</p>
+            </div>
+            <button class="btn btn-secondary" type="button">Convidar</button>
+          </div>
+        </div>
+      </section>
+      <section class="mt-7" aria-labelledby="sent-invitations">
+        <h2 id="sent-invitations" class="title-md">
+          Convites enviados <span class="muted">2</span>
+        </h2>
+        <div class="card mt-4 divide-y">
+          <div class="p-4 flex items-center gap-3">
+            <span class="avatar">LC</span>
+            <div class="flex-1">
+              <strong class="text-sm">Lucas Castro</strong>
+              <p class="help">@lucas.c</p>
+            </div>
+            <span class="badge badge-warning">Pendente</span>
+          </div>
+          <div class="p-4 flex items-center gap-3">
+            <span class="avatar">AM</span>
+            <div class="flex-1">
+              <strong class="text-sm">Ana Martins</strong>
+              <p class="help">@ana.martins</p>
+            </div>
+            <span class="badge badge-warning">Pendente</span>
+          </div>
+        </div>
+      </section>
+      <a class="btn btn-primary btn-block mt-8" href="../time/">Concluir</a>
+    </main>
+    <script type="module" src="../../assets/js/app.js?v=20260727-9"></script>
+  </body>
+</html>

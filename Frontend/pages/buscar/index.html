@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Buscar quadras — Partiu Quadra</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/main.css?v=20260727-9">
+  </head>
+  <body data-page="search">
+    <a class="skip-link" href="#content">Pular para o conteúdo</a>
+    <header class="app-header">
+      <div class="nav-shell">
+        <a class="brand-mark" href="../inicio/"
+          ><span class="brand-symbol"
+            ><i
+              class="fa-solid fa-location-crosshairs"
+              aria-hidden="true"
+            ></i></span
+          ><span>partiu quadra</span></a
+        >
+        <nav class="desktop-menu" aria-label="Navegação principal">
+          <a class="nav-item nav-explore gap-3" aria-current="page" href="./"
+            ><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            Explorar quadras</a
+          ><a class="nav-item" href="../times/">Times</a
+          ><a class="nav-item" href="../minhas-reservas/">Reservas</a
+          ><a class="nav-item" href="../salvas/">Salvas</a
+          ><a class="nav-item" href="../mensagens/">Mensagens</a>
+        </nav>
+        <div class="nav-actions">
+          <a class="btn btn-secondary" href="../painel-proprietario/"
+            >Área do proprietário</a
+          ><a class="avatar" href="../perfil/" aria-label="Abrir perfil">GG</a>
+        </div>
+      </div>
+    </header>
+    <main id="content" class="page">
+      <form
+        class="search-bar"
+        action="./"
+        method="get"
+        aria-label="Editar busca"
+      >
+        <div class="search-cell">
+          <label class="label" for="location">Onde</label
+          ><input
+            type="text"
+            class="field"
+            id="location"
+            name="location"
+            value="São Paulo">
+        </div>
+        <div class="search-cell">
+          <label class="label" for="sport">Esporte</label
+          ><select class="field" id="sport" name="sport">
+            <option value="">Carregando esportes…</option>
+          </select>
+        </div>
+        <div class="search-cell">
+          <label class="label" for="query">Nome ou bairro</label
+          ><input
+            class="field"
+            id="query"
+            name="query"
+            type="search"
+            placeholder="Arena, Vila Madalena…">
+        </div>
+        <button class="btn btn-primary" type="submit">
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i
+          ><span class="sr-only">Atualizar busca</span>
+        </button>
+      </form>
+
+      <div class="section-head mt-10">
+        <div>
+          <h1 class="title-lg">Quadras disponíveis</h1>
+          <p class="muted mt-2" role="status" aria-live="polite">Carregando resultados…</p>
+        </div>
+        <div class="flex gap-2">
+          <label class="sr-only" for="order">Ordenar resultados</label
+          ><select class="field w-auto" id="order">
+            <option value="RECENT">Mais recentes</option>
+            <option value="RATING">Melhor avaliadas</option>
+            <option value="NAME">Nome de A a Z</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="filter-layout">
+        <aside class="panel sidebar" aria-labelledby="search-tip-title">
+          <span class="brand-symbol" aria-hidden="true">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </span>
+          <h2 id="search-tip-title" class="font-bold mt-4">Uma busca mais simples</h2>
+          <p class="muted text-sm mt-2">
+            Combine local, modalidade e um termo. O horário é escolhido ao abrir
+            a quadra, antes de enviar o pedido.
+          </p>
+          <a class="link text-sm block mt-5" href="./">Limpar busca</a>
+        </aside>
+
+        <section aria-label="Resultados da busca">
+          <div class="flex flex-wrap gap-2 mb-5" data-active-filters></div>
+          <div class="result-grid" hidden aria-busy="true">
+            <article class="card card-hover court-card">
+              <div>
+                <div class="court-media">
+                  <img
+                    src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=800&q=80"
+                    alt="Campo da Arena do Vale"><span class="badge badge-success absolute top-3 left-3"
+                    >Disponível hoje</span
+                  >
+                  <form
+                    action="../salvas/"
+                    method="get"
+                    class="absolute top-3 right-3"
+                  >
+                    <button
+                      class="icon-button bg-white"
+                      type="submit"
+                      aria-label="Salvar quadra"
+                    >
+                      <i class="fa-regular fa-heart" aria-hidden="true"></i>
+                    </button>
+                  </form>
+                </div>
+                <div class="court-card-body">
+                  <div class="flex justify-between gap-3">
+                    <div>
+                      <h2 class="font-bold">Arena do Vale</h2>
+                      <p class="muted text-xs mt-1">Vila Madalena · 1,2 km</p>
+                    </div>
+                    <span class="court-price">R$ 120/h</span>
+                  </div>
+                  <div class="court-meta mt-4">
+                    <span
+                      ><i
+                        class="fa-solid fa-star text-yellow-500"
+                        aria-hidden="true"
+                      ></i>
+                      4,9</span
+                    ><span class="muted">86 avaliações</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="card card-hover court-card">
+              <div>
+                <div class="court-media">
+                  <img
+                    src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=800&q=80"
+                    alt="Campo iluminado da Society do Parque"><span class="badge badge-neutral absolute top-3 left-3"
+                    >Coberta</span
+                  >
+                  <form
+                    action="../salvas/"
+                    method="get"
+                    class="absolute top-3 right-3"
+                  >
+                    <button
+                      class="icon-button bg-white"
+                      type="submit"
+                      aria-label="Salvar quadra"
+                    >
+                      <i class="fa-regular fa-heart" aria-hidden="true"></i>
+                    </button>
+                  </form>
+                </div>
+                <div class="court-card-body">
+                  <div class="flex justify-between gap-3">
+                    <div>
+                      <h2 class="font-bold">Society do Parque</h2>
+                      <p class="muted text-xs mt-1">Alto de Pinheiros · 2 km</p>
+                    </div>
+                    <span class="court-price">R$ 105/h</span>
+                  </div>
+                  <div class="court-meta mt-4">
+                    <span
+                      ><i
+                        class="fa-solid fa-star text-yellow-500"
+                        aria-hidden="true"
+                      ></i>
+                      4,8</span
+                    ><span class="muted">64 avaliações</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="card card-hover court-card">
+              <div>
+                <div class="court-media">
+                  <img
+                    src="https://images.unsplash.com/photo-1553778263-73a83bab9b0c?auto=format&fit=crop&w=800&q=80"
+                    alt="Jogadores no Campo Onze"><span class="badge badge-accent absolute top-3 left-3"
+                    >Mais reservada</span
+                  >
+                  <form
+                    action="../salvas/"
+                    method="get"
+                    class="absolute top-3 right-3"
+                  >
+                    <button
+                      class="icon-button bg-white"
+                      type="submit"
+                      aria-label="Salvar quadra"
+                    >
+                      <i class="fa-regular fa-heart" aria-hidden="true"></i>
+                    </button>
+                  </form>
+                </div>
+                <div class="court-card-body">
+                  <div class="flex justify-between gap-3">
+                    <div>
+                      <h2 class="font-bold">Campo Onze</h2>
+                      <p class="muted text-xs mt-1">Lapa · 3,1 km</p>
+                    </div>
+                    <span class="court-price">R$ 135/h</span>
+                  </div>
+                  <div class="court-meta mt-4">
+                    <span
+                      ><i
+                        class="fa-solid fa-star text-yellow-500"
+                        aria-hidden="true"
+                      ></i>
+                      4,7</span
+                    ><span class="muted">41 avaliações</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="card card-hover court-card">
+              <div>
+                <div class="court-media">
+                  <img
+                    src="https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=800&q=80"
+                    alt="Campo aberto da Arena Oeste"><span class="badge badge-neutral absolute top-3 left-3"
+                    >Ao ar livre</span
+                  >
+                  <form
+                    action="../salvas/"
+                    method="get"
+                    class="absolute top-3 right-3"
+                  >
+                    <button
+                      class="icon-button bg-white"
+                      type="submit"
+                      aria-label="Salvar quadra"
+                    >
+                      <i class="fa-regular fa-heart" aria-hidden="true"></i>
+                    </button>
+                  </form>
+                </div>
+                <div class="court-card-body">
+                  <div class="flex justify-between gap-3">
+                    <div>
+                      <h2 class="font-bold">Arena Oeste</h2>
+                      <p class="muted text-xs mt-1">Pompéia · 3,8 km</p>
+                    </div>
+                    <span class="court-price">R$ 95/h</span>
+                  </div>
+                  <div class="court-meta mt-4">
+                    <span
+                      ><i
+                        class="fa-solid fa-star text-yellow-500"
+                        aria-hidden="true"
+                      ></i>
+                      4,6</span
+                    ><span class="muted">29 avaliações</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <nav class="mt-8 flex justify-center gap-2" aria-label="Paginação">
+            <a class="icon-button" href="?page=0" aria-label="Página anterior"
+              ><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></a
+            ><a
+              class="icon-button bg-brand text-white"
+              href="?page=0"
+              aria-current="page"
+              >1</a
+            ><a class="icon-button" href="?page=1">2</a
+            ><a class="icon-button" href="?page=2">3</a
+            ><a class="icon-button" href="?page=1" aria-label="Próxima página"
+              ><i class="fa-solid fa-chevron-right" aria-hidden="true"></i
+            ></a>
+          </nav>
+        </section>
+      </div>
+    </main>
+    <noscript><div class="page"><div class="empty-state" role="alert"><h2 class="title-md">JavaScript necessário</h2><p class="muted text-sm mt-2">Ative o JavaScript para carregar o catálogo e os filtros da API.</p></div></div></noscript>
+    <nav class="mobile-nav" aria-label="Navegação móvel">
+      <a class="mobile-link" aria-current="page" href="./"
+        ><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i
+        >Quadras</a
+      ><a class="mobile-link" href="../times/"
+        ><i class="fa-solid fa-people-group" aria-hidden="true"></i>Times</a
+      ><a class="mobile-link" href="../minhas-reservas/"
+        ><i class="fa-regular fa-calendar" aria-hidden="true"></i>Reservas</a
+      ><a class="mobile-link" href="../mensagens/"
+        ><i class="fa-regular fa-comment" aria-hidden="true"></i>Mensagens</a
+      ><a class="mobile-link" href="../salvas/"
+        >Salvas</a
+      ><a class="mobile-link" href="../perfil/"
+        ><i class="fa-regular fa-user" aria-hidden="true"></i>Perfil</a
+      >
+    </nav>
+    <script type="module" src="../../assets/js/app.js?v=20260727-9"></script>
+  </body>
+</html>
