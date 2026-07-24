@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mensagens — Partiu Quadra</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/main.css?v=20260727-9">
+  </head>
+  <body data-page="messages">
+    <a class="skip-link" href="#content">Pular para o conteúdo</a>
+    <header class="app-header">
+      <div class="nav-shell">
+        <a class="brand-mark" href="../inicio/"
+          ><span class="brand-symbol"
+            ><i
+              class="fa-solid fa-location-crosshairs"
+              aria-hidden="true"
+            ></i></span
+          ><span>partiu quadra</span></a
+        >
+        <nav class="desktop-menu" aria-label="Navegação principal">
+          <a class="nav-item nav-explore" href="../buscar/"
+            ><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            Explorar quadras</a
+          ><a class="nav-item" href="../times/">Times</a
+          ><a class="nav-item" href="../minhas-reservas/">Reservas</a
+          ><a class="nav-item" aria-current="page" href="./">Mensagens</a>
+        </nav>
+        <a class="avatar" href="../perfil/">GG</a>
+      </div>
+    </header>
+    <main id="content" class="page">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Conversas</p>
+          <h1 class="title-lg mt-2">Mensagens</h1>
+        </div>
+        <div class="field-group">
+          <label class="sr-only" for="conversation-search">Buscar conversa</label
+          ><input
+            class="field"
+            id="conversation-search"
+            type="search"
+            placeholder="Buscar por pessoa ou quadra">
+        </div>
+      </div>
+      <section class="chat-layout" aria-label="Lista de conversas">
+        <div class="chat-list chat-list-plain">
+          <a class="conversation" href="../chat-desafio/"
+            ><span class="brand-symbol brand-symbol-accent"
+              ><i class="fa-solid fa-basketball" aria-hidden="true"></i></span
+            ><span
+              ><strong class="text-sm">Cesta de Domingo</strong
+              ><span class="help block mt-1"
+                >Bia: domingo às 10h funciona.</span
+              ></span
+            ><span class="badge badge-accent">Desafio</span></a
+          ><a class="conversation" href="../chat/"
+            ><span class="avatar">RM</span
+            ><span
+              ><strong class="text-sm">Rafael · Arena do Vale</strong
+              ><span class="help block mt-1"
+                >Sim, temos coletes para 10.</span
+              ></span
+            ><span class="badge badge-brand">2</span></a
+          ><a class="conversation" href="../chat/"
+            ><span class="avatar">CA</span
+            ><span
+              ><strong class="text-sm">Casa da Areia</strong
+              ><span class="help block mt-1"
+                >Sua reserva foi concluída.</span
+              ></span
+            ><span class="help">15 jun</span></a
+          ><a class="conversation" href="../chat/"
+            ><span class="avatar">SO</span
+            ><span
+              ><strong class="text-sm">Society do Parque</strong
+              ><span class="help block mt-1"
+                >O estacionamento fica na rua lateral.</span
+              ></span
+            ><span class="help">10 jun</span></a
+          >
+        </div>
+        <div
+          class="hidden md:flex flex-col items-center justify-center text-center p-8"
+        >
+          <span class="empty-icon"
+            ><i class="fa-regular fa-comment-dots" aria-hidden="true"></i
+          ></span>
+          <h2 class="title-md mt-4">Escolha uma conversa</h2>
+          <p class="muted text-sm mt-2 max-w-sm">
+            Use o chat para alinhar detalhes com o proprietário antes e depois
+            da reserva.
+          </p>
+        </div>
+      </section>
+    </main>
+    <nav class="mobile-nav" aria-label="Navegação móvel">
+      <a class="mobile-link" href="../inicio/"
+        ><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i
+        >Quadras</a
+      ><a class="mobile-link" href="../times/"
+        ><i class="fa-solid fa-people-group" aria-hidden="true"></i>Times</a
+      ><a class="mobile-link" href="../minhas-reservas/"
+        ><i class="fa-regular fa-calendar" aria-hidden="true"></i>Reservas</a
+      ><a class="mobile-link" aria-current="page" href="./"
+        ><i class="fa-regular fa-comment" aria-hidden="true"></i>Mensagens</a
+      ><a class="mobile-link" href="../salvas/"
+        >Salvas</a
+      ><a class="mobile-link" href="../perfil/"
+        ><i class="fa-regular fa-user" aria-hidden="true"></i>Perfil</a
+      >
+    </nav>
+    <script type="module" src="../../assets/js/app.js?v=20260727-9"></script>
+  </body>
+</html>
