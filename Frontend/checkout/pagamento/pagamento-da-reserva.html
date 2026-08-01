@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento | JogaJunto</title>
+</head>
+
+<body>
+    <header><a href="../../index.html"><img src="../../logo.png" alt="Logo do JogaJunto"> JogaJunto</a></header>
+    <main>
+        <ol aria-label="Etapas da reserva">
+            <li>✓ Carrinho</li>
+            <li>✓ Identificação</li>
+            <li aria-current="step">Pagamento</li>
+            <li>Confirmação</li>
+        </ol>
+        <h1>Pagamento</h1>
+        <form action="../../conta/reservas/minhas-reservas.html">
+            <fieldset>
+                <legend>Forma de pagamento</legend><label><input type="radio" name="pagamento" checked> Cartão de
+                    crédito</label><label><input type="radio" name="pagamento"> Pix</label>
+            </fieldset>
+            <fieldset>
+                <legend>Dados do cartão</legend><label>Número do cartão <input inputmode="numeric"
+                        autocomplete="cc-number"></label><label>Nome no cartão <input
+                        autocomplete="cc-name"></label><label>Validade <input placeholder="MM/AA"
+                        autocomplete="cc-exp"></label><label>CVV <input inputmode="numeric"
+                        autocomplete="cc-csc"></label>
+            </fieldset>
+            <aside>
+                <h2>Resumo da reserva</h2>
+                <p>Arena Vila Mariana · Quinta, 19:30 · R$ 96</p>
+            </aside><a href="../identificacao/identificacao-do-responsavel.html">Voltar à identificação</a><button type="submit">Confirmar
+                pagamento de R$ 96</button>
+        </form>
+    </main>
+</body>
+
+</html>
