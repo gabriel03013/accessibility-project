@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arena Vila Mariana | JogaJunto</title>
+  </head>
+
+  <body>
+    <header>
+      <a href="../inicio/pagina-inicial.html"
+        ><img src="../../logo.png" alt="Logo do JogaJunto" /> JogaJunto</a
+      >
+      <nav aria-label="Navegação principal">
+        <a href="../inicio/pagina-inicial.html">Início</a
+        ><a
+          href="../explorar/explorar-quadras-e-partidas.html"
+          aria-current="page"
+          >Explorar</a
+        ><a href="../ranking/times-e-ranking.html">Times e ranking</a>
+      </nav>
+      <a href="../autenticacao/entrar/entrar-na-conta.html">Entrar</a>
+    </header>
+    <main>
+      <p>Início / Explorar / Arena Vila Mariana</p>
+      <section aria-labelledby="titulo">
+        <div>
+          <img
+            src="../../quadra.png"
+            alt="Foto principal da quadra poliesportiva da Arena Vila Mariana"
+          /><img
+            src="../../quadra.png"
+            alt="Vista lateral da quadra da Arena Vila Mariana"
+          /><img
+            src="../../quadra.png"
+            alt="Iluminação da quadra da Arena Vila Mariana"
+          />
+        </div>
+        <p>Poliesportiva · Coberta</p>
+        <h1 id="titulo">Arena Vila Mariana</h1>
+        <p>
+          Nota 4,9 de 5 em 128 avaliações · Vila Mariana, São Paulo · 2,4 km
+        </p>
+        <h2>Sobre o espaço</h2>
+        <p>
+          Uma quadra versátil para futsal, vôlei, basquete e handebol. Piso em
+          ótimo estado, iluminação uniforme e estrutura coberta.
+        </p>
+        <h2>O que tem aqui</h2>
+        <ul>
+          <li>Quadra coberta</li>
+          <li>Vestiários</li>
+          <li>Estacionamento</li>
+          <li>Bebedouro</li>
+        </ul>
+      </section>
+      <aside aria-labelledby="reserva">
+        <h2 id="reserva">Reserve seu horário</h2>
+        <form action="../checkout/carrinho/carrinho-de-reservas.html">
+          <label>Data <input type="date" required /></label>
+          <fieldset>
+            <legend>Horário disponível</legend>
+            <label><input type="radio" name="horario" required /> 19:30</label
+            ><label><input type="radio" name="horario" /> 20:30</label>
+          </fieldset>
+          <label
+            >Duração
+            <select>
+              <option>1 hora</option>
+              <option>2 horas</option>
+            </select></label
+          >
+          <p>Total estimado: R$ 96</p>
+          <button type="submit">Adicionar ao carrinho</button>
+        </form>
+      </aside>
+    </main>
+    <footer>
+      <a href="../explorar/explorar-quadras-e-partidas.html"
+        >Voltar para explorar</a
+      >
+    </footer>
+  </body>
+</html>
