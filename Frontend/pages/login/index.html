@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Entrar — Partiu Quadra</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/main.css?v=20260727-9">
+  </head>
+  <body data-page="login">
+    <a class="skip-link" href="#content">Pular para o conteúdo</a>
+    <header class="app-header">
+      <div class="nav-shell">
+        <a class="brand-mark" href="../inicio/"
+          ><span class="brand-symbol"
+            ><i
+              class="fa-solid fa-location-crosshairs"
+              aria-hidden="true"
+            ></i></span
+          ><span>partiu quadra</span></a
+        ><a class="btn btn-quiet" href="../inicio/">Continuar sem entrar</a>
+      </div>
+    </header>
+    <main id="content" class="page-narrow">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <section>
+          <p class="eyebrow">Bem-vindo de volta</p>
+          <h1 class="title-lg mt-2">Entre para organizar seu próximo jogo.</h1>
+          <p class="lead mt-4">
+            Reservas, times e conversas ficam juntos na sua conta.
+          </p>
+          <div class="soft-panel mt-7">
+            <p class="text-sm">
+              <i
+                class="fa-solid fa-shield-halved text-brand mr-2"
+                aria-hidden="true"
+              ></i>
+              Seus dados de pagamento nunca ficam visíveis para os
+              proprietários.
+            </p>
+          </div>
+        </section>
+        <section class="card p-7">
+          <form class="space-y-5" data-login-form>
+            <div class="field-group">
+              <label class="label" for="email">E-mail ou nome de usuário</label
+              ><input
+                class="field"
+                id="email"
+                name="identifier"
+                type="text"
+                autocomplete="username"
+                placeholder="voce@email.com ou seu usuário"
+                required>
+            </div>
+            <div class="field-group">
+              <label class="label" for="password">Senha</label>
+              <input
+                class="field"
+                id="password"
+                name="password"
+                type="password"
+                autocomplete="current-password"
+                required>
+            </div>
+            <button class="btn btn-primary btn-block" type="submit">
+              Entrar
+            </button>
+          </form>
+          <div class="divider mt-6 pt-6 text-center">
+            <p class="muted text-sm">
+              Ainda não tem conta?
+              <a class="link" href="../cadastro/">Criar conta</a>
+            </p>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script type="module" src="../../assets/js/app.js?v=20260727-9"></script>
+  </body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Minhas quadras — Partiu Quadra</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/main.css?v=20260727-9">
+  </head>
+  <body data-page="ownerCourts">
+    <a class="skip-link" href="#content">Pular para o conteúdo</a>
+    <header class="app-header">
+      <div class="nav-shell">
+        <a class="brand-mark" href="../painel-proprietario/"
+          ><span class="brand-symbol"
+            ><i
+              class="fa-solid fa-location-crosshairs"
+              aria-hidden="true"
+            ></i></span
+          ><span
+            >partiu quadra <small class="muted">· proprietário</small></span
+          ></a
+        >
+        <nav class="desktop-menu" aria-label="Navegação do proprietário">
+          <a class="nav-item" href="../painel-proprietario/">Visão geral</a
+          ><a class="nav-item" href="../solicitacoes/"
+            >Solicitações <span class="badge badge-accent">3</span></a
+          ><a class="nav-item" href="../agenda-proprietario/">Agenda</a
+          ><a class="nav-item" aria-current="page" href="./">Quadras</a
+          ><a class="nav-item" href="../mensagens/">Mensagens</a>
+        </nav>
+        <div class="nav-actions">
+          <a class="btn btn-secondary" href="../inicio/">Modo jogador</a
+          ><a class="avatar" href="../perfil/">GG</a>
+        </div>
+      </div>
+    </header>
+    <main id="content" class="page">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Área do proprietário</p>
+          <h1 class="title-lg mt-2">Minhas quadras</h1>
+          <p class="lead mt-2">Anúncios, agenda e desempenho em um só lugar.</p>
+        </div>
+        <a class="btn btn-primary" href="../anunciar/"
+          ><i class="fa-solid fa-plus" aria-hidden="true"></i> Cadastrar
+          quadra</a
+        >
+      </div>
+      <section class="grid gap-4" aria-label="Quadras cadastradas" hidden aria-busy="true">
+        <article class="panel">
+          <div class="grid md:grid-cols-5 gap-5 items-center">
+            <img
+              class="rounded-lg w-full h-32 object-cover"
+              src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=700&q=80"
+              alt="Arena do Vale">
+            <div class="md:col-span-2">
+              <div class="flex gap-2">
+                <span class="badge badge-success">Publicado</span
+                ><span class="badge badge-brand">Futebol</span>
+              </div>
+              <h2 class="title-md mt-3">Arena do Vale</h2>
+              <p class="muted text-xs mt-1">Vila Madalena · R$ 120/h</p>
+              <div class="flex gap-4 mt-3 text-xs">
+                <span><strong>4,9</strong> avaliação</span
+                ><span><strong>18</strong> reservas em julho</span>
+              </div>
+            </div>
+            <div>
+              <p class="muted text-xs">Próxima reserva</p>
+              <p class="font-bold text-sm mt-1">Hoje, 18h</p>
+              <p class="help mt-1">Atlético 013</p>
+            </div>
+            <div class="grid gap-2">
+              <a
+                class="btn btn-primary"
+                href="../anunciar/?editar=arena-do-vale"
+                ><i class="fa-regular fa-pen-to-square" aria-hidden="true"></i>
+                Editar</a
+              ><a class="btn btn-secondary" href="../quadra/">Ver anúncio</a>
+            </div>
+          </div>
+        </article>
+        <article class="panel">
+          <div class="grid md:grid-cols-5 gap-5 items-center">
+            <div
+              class="rounded-lg bg-surface-soft h-32 flex items-center justify-center"
+            >
+              <i
+                class="fa-regular fa-image text-2xl muted"
+                aria-hidden="true"
+              ></i>
+            </div>
+            <div class="md:col-span-2">
+              <span class="badge badge-warning">Rascunho</span>
+              <h2 class="title-md mt-3">Quadra do Centro</h2>
+              <p class="muted text-xs mt-1">Cadastro 60% concluído</p>
+            </div>
+            <div><p class="help">Faltam fotos e disponibilidade.</p></div>
+            <a class="btn btn-secondary" href="../anunciar/"
+              >Continuar cadastro</a
+            >
+          </div>
+        </article>
+      </section>
+    </main>
+    <noscript><div class="page"><div class="empty-state" role="alert"><h2 class="title-md">JavaScript necessário</h2><p class="muted text-sm mt-2">Ative o JavaScript para carregar seus anúncios.</p></div></div></noscript>
+    <nav
+      class="mobile-nav owner-nav"
+      aria-label="Navegação do proprietário no celular"
+    >
+      <a class="mobile-link" href="../painel-proprietario/"
+        ><i class="fa-solid fa-table-columns" aria-hidden="true"></i>Resumo</a
+      ><a class="mobile-link" href="../solicitacoes/"
+        ><i class="fa-regular fa-bell" aria-hidden="true"></i>Pedidos</a
+      ><a class="mobile-link" href="../agenda-proprietario/"
+        ><i class="fa-regular fa-calendar" aria-hidden="true"></i>Agenda</a
+      ><a class="mobile-link" aria-current="page" href="./"
+        ><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i
+        >Quadras</a
+      ><a class="mobile-link" href="../perfil/"
+        ><i class="fa-regular fa-user" aria-hidden="true"></i>Perfil</a
+      >
+    </nav>
+    <script type="module" src="../../assets/js/app.js?v=20260727-9"></script>
+  </body>
+</html>

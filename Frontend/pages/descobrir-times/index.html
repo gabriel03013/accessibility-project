@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Encontrar times — Partiu Quadra</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/main.css?v=20260727-9">
+  </head>
+  <body data-page="discoverTeams">
+    <a class="skip-link" href="#content">Pular para o conteúdo</a>
+    <header class="app-header">
+      <div class="nav-shell">
+        <a class="brand-mark" href="../inicio/"
+          ><span class="brand-symbol"
+            ><i
+              class="fa-solid fa-location-crosshairs"
+              aria-hidden="true"
+            ></i></span
+          ><span>partiu quadra</span></a
+        >
+        <nav class="desktop-menu" aria-label="Navegação principal">
+          <a class="nav-item nav-explore" href="../buscar/"
+            ><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            Explorar quadras</a
+          ><a class="nav-item" aria-current="page" href="../times/">Times</a
+          ><a class="nav-item" href="../minhas-reservas/">Reservas</a
+          ><a class="nav-item" href="../salvas/">Salvas</a
+          ><a class="nav-item" href="../mensagens/">Mensagens</a>
+        </nav>
+        <a class="avatar" href="../perfil/">GG</a>
+      </div>
+    </header>
+    <main id="content" class="page">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Encontre um adversário</p>
+          <h1 class="title-lg mt-2">Times abertos a desafios</h1>
+          <p class="lead mt-2">
+            Converse com a administração do outro time e combine o jogo.
+          </p>
+        </div>
+        <a class="btn btn-secondary" href="../times/"
+          ><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Meus
+          times</a
+        >
+      </div>
+      <form
+        class="search-bar"
+        action="./"
+        method="get"
+        aria-label="Filtrar times"
+      >
+        <div class="search-cell">
+          <label class="label" for="name">Nome ou bairro</label
+          ><input
+            type="search"
+            class="field"
+            id="name"
+            placeholder="Ex.: Pinheiros">
+        </div>
+        <div class="search-cell">
+          <label class="label" for="sport">Esporte</label
+          ><select class="field" id="sport">
+            <option>Todos</option>
+            <option>Futebol</option>
+            <option>Futsal</option>
+            <option>Futebol de areia</option>
+            <option>Futevôlei</option>
+            <option>Vôlei de quadra</option>
+            <option>Vôlei de praia</option>
+            <option>Tênis</option>
+            <option>Basquete</option>
+          </select>
+        </div>
+        <div class="search-cell">
+          <label class="label" for="skill-level">Nível</label
+          ><select class="field" id="skill-level">
+            <option value="">Todos</option>
+            <option value="BEGINNER">Iniciante</option>
+            <option value="INTERMEDIATE">Intermediário</option>
+            <option value="ADVANCED">Avançado</option>
+            <option value="MIXED">Misto</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Buscar</button>
+      </form>
+      <section
+        class="grid md:grid-cols-2 gap-5 mt-8"
+        aria-label="Times encontrados"
+      >
+        <article class="card card-hover p-6">
+          <div class="flex gap-4">
+            <div class="brand-symbol brand-symbol-accent text-xl">
+              <i class="fa-solid fa-basketball" aria-hidden="true"></i>
+            </div>
+            <div class="flex-1">
+              <div class="flex justify-between gap-4">
+                <div>
+                  <h2 class="title-md">Cesta de Domingo</h2>
+                  <p class="help mt-1">@bia.costa administra · 10 membros</p>
+                </div>
+                <span class="badge badge-success">Aceita desafios</span>
+              </div>
+              <p class="text-sm muted mt-4">
+                Basquete misto aos domingos pela manhã. Competitivo, mas sem
+                abrir mão do respeito.
+              </p>
+              <div class="flex flex-wrap gap-2 mt-4">
+                <span class="badge badge-brand">Basquete</span
+                ><span class="badge badge-neutral">Intermediário</span
+                ><span class="badge badge-neutral">Zona Oeste</span>
+              </div>
+              <div class="divider mt-5 pt-5 flex gap-3">
+                <a class="btn btn-primary" href="../desafiar-time/"
+                  >Desafiar time</a
+                ><a class="btn btn-secondary" href="../chat-desafio/"
+                  >Falar com a Bia</a
+                >
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="card card-hover p-6">
+          <div class="flex gap-4">
+            <div class="brand-symbol text-xl">
+              <i class="fa-solid fa-futbol" aria-hidden="true"></i>
+            </div>
+            <div class="flex-1">
+              <div class="flex justify-between gap-4">
+                <div>
+                  <h2 class="title-md">Onze da Norte</h2>
+                  <p class="help mt-1">@renan.11 administra · 14 membros</p>
+                </div>
+                <span class="badge badge-success">Aceita desafios</span>
+              </div>
+              <p class="text-sm muted mt-4">
+                Futebol e futsal durante a semana. Preferência por jogos à
+                noite.
+              </p>
+              <div class="flex flex-wrap gap-2 mt-4">
+                <span class="badge badge-brand">Futebol</span
+                ><span class="badge badge-brand">Futsal</span
+                ><span class="badge badge-neutral">Avançado</span>
+              </div>
+              <div class="divider mt-5 pt-5">
+                <a class="btn btn-primary" href="../desafiar-time/"
+                  >Desafiar time</a
+                >
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+    <nav class="mobile-nav" aria-label="Navegação móvel">
+      <a class="mobile-link" href="../buscar/"
+        ><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i
+        >Quadras</a
+      ><a class="mobile-link" aria-current="page" href="../times/"
+        ><i class="fa-solid fa-people-group" aria-hidden="true"></i>Times</a
+      ><a class="mobile-link" href="../minhas-reservas/"
+        ><i class="fa-regular fa-calendar" aria-hidden="true"></i>Reservas</a
+      ><a class="mobile-link" href="../mensagens/"
+        ><i class="fa-regular fa-comment" aria-hidden="true"></i>Mensagens</a
+      ><a class="mobile-link" href="../salvas/"
+        >Salvas</a
+      ><a class="mobile-link" href="../perfil/"
+        ><i class="fa-regular fa-user" aria-hidden="true"></i>Perfil</a
+      >
+    </nav>
+    <script type="module" src="../../assets/js/app.js?v=20260727-9"></script>
+  </body>
+</html>

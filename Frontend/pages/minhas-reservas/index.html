@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Minhas reservas — Partiu Quadra</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/main.css?v=20260727-9">
+  </head>
+  <body data-page="myBookings">
+    <a class="skip-link" href="#content">Pular para o conteúdo</a>
+    <header class="app-header">
+      <div class="nav-shell">
+        <a class="brand-mark" href="../inicio/"
+          ><span class="brand-symbol"
+            ><i
+              class="fa-solid fa-location-crosshairs"
+              aria-hidden="true"
+            ></i></span
+          ><span>partiu quadra</span></a
+        >
+        <nav class="desktop-menu" aria-label="Navegação principal">
+          <a class="nav-item nav-explore gap-3" href="../buscar/"
+            ><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            Explorar quadras</a
+          ><a class="nav-item" href="../times/">Times</a
+          ><a class="nav-item" aria-current="page" href="./">Reservas</a
+          ><a class="nav-item" href="../salvas/">Salvas</a
+          ><a class="nav-item" href="../mensagens/">Mensagens</a>
+        </nav>
+        <a class="avatar" href="../perfil/">GG</a>
+      </div>
+    </header>
+    <main id="content" class="page">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Seus jogos</p>
+          <h1 class="title-lg mt-2">Reservas</h1>
+          <p class="lead mt-2">
+            Acompanhe pedidos, pagamentos e jogos confirmados.
+          </p>
+        </div>
+        <a class="btn btn-primary" href="../buscar/"
+          ><i class="fa-solid fa-plus" aria-hidden="true"></i> Nova reserva</a
+        >
+      </div>
+      <nav class="tab-list" aria-label="Categorias">
+        <a class="tab" aria-current="page" href="#active-bookings"
+          >Ativas <span class="badge badge-brand">3</span></a
+        ><a class="tab" href="#historico">Histórico</a>
+      </nav>
+      <section id="active-bookings" class="grid gap-4 mt-6" aria-label="Reservas ativas">
+        <article class="panel">
+          <div class="grid md:grid-cols-4 gap-5 items-center">
+            <div class="md:col-span-2 flex gap-4">
+              <img
+                class="rounded-lg w-24 h-20 object-cover"
+                src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=400&q=80"
+                alt="Arena do Vale">
+              <div>
+                <span class="badge badge-warning">Aguardando proprietário</span>
+                <h2 class="font-bold mt-2">Arena do Vale</h2>
+                <p class="help">26 jul · 19:00–20:00</p>
+              </div>
+            </div>
+            <p class="text-sm muted">Rafael costuma responder em até 1 hora.</p>
+            <div class="flex gap-2 md:justify-end">
+              <a class="btn btn-secondary" href="../chat/">Mensagem</a>
+            </div>
+          </div>
+        </article>
+        <article class="panel">
+          <div class="grid md:grid-cols-4 gap-5 items-center">
+            <div class="md:col-span-2 flex gap-4">
+              <img
+                class="rounded-lg w-24 h-20 object-cover"
+                src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=400&q=80"
+                alt="Society do Parque">
+              <div>
+                <span class="badge badge-accent">Novo horário sugerido</span>
+                <h2 class="font-bold mt-2">Society do Parque</h2>
+                <p class="help">Você pediu 18h · proprietário sugeriu 20h</p>
+              </div>
+            </div>
+            <p class="text-sm muted">Domingo, 27 de julho</p>
+            <a class="btn btn-primary" href="../responder-sugestao/"
+              >Responder sugestão</a
+            >
+          </div>
+        </article>
+        <article class="panel">
+          <div class="grid md:grid-cols-4 gap-5 items-center">
+            <div class="md:col-span-2 flex gap-4">
+              <img
+                class="rounded-lg w-24 h-20 object-cover"
+                src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=400&q=80"
+                alt="Arena do Vale">
+              <div>
+                <span class="badge badge-success"
+                  >Aprovada · pague até 19:42</span
+                >
+                <h2 class="font-bold mt-2">Arena do Vale</h2>
+                <p class="help">2 ago · 18:00–19:00</p>
+              </div>
+            </div>
+            <p class="text-sm font-bold">R$ 128,00</p>
+            <a class="btn btn-accent" href="../pagamento/">Pagar agora</a>
+          </div>
+        </article>
+        <article class="panel">
+          <div class="grid md:grid-cols-4 gap-5 items-center">
+            <div class="md:col-span-2 flex gap-4">
+              <img
+                class="rounded-lg w-24 h-20 object-cover"
+                src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?auto=format&fit=crop&w=400&q=80"
+                alt="Casa da Areia">
+              <div>
+                <span class="badge badge-success">Confirmada</span>
+                <h2 class="font-bold mt-2">Casa da Areia</h2>
+                <p class="help">9 ago · 10:00–11:00 · Saque de Quinta</p>
+              </div>
+            </div>
+            <p class="text-sm muted">Código PQ-45120</p>
+            <a class="btn btn-secondary" href="../chat/">Ver detalhes</a>
+          </div>
+        </article>
+      </section>
+    </main>
+    <nav class="mobile-nav" aria-label="Navegação móvel">
+      <a class="mobile-link" href="../inicio/"
+        ><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i
+        >Quadras</a
+      ><a class="mobile-link" href="../times/"
+        ><i class="fa-solid fa-people-group" aria-hidden="true"></i>Times</a
+      ><a class="mobile-link" aria-current="page" href="./"
+        ><i class="fa-regular fa-calendar" aria-hidden="true"></i>Reservas</a
+      ><a class="mobile-link" href="../mensagens/"
+        ><i class="fa-regular fa-comment" aria-hidden="true"></i>Mensagens</a
+      ><a class="mobile-link" href="../salvas/"
+        >Salvas</a
+      ><a class="mobile-link" href="../perfil/"
+        ><i class="fa-regular fa-user" aria-hidden="true"></i>Perfil</a
+      >
+    </nav>
+    <script type="module" src="../../assets/js/app.js?v=20260727-9"></script>
+  </body>
+</html>
