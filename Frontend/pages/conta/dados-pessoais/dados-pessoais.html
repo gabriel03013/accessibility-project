@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dados pessoais | JogaJunto</title>
+  </head>
+
+  <body>
+    <header>
+      <a href="../../inicio/pagina-inicial.html"
+        ><img src="../../../logo.png" alt="Logo do JogaJunto" /> JogaJunto</a
+      ><a href="../painel-da-conta.html">Minha conta</a>
+    </header>
+    <main>
+      <aside>
+        <nav aria-label="Área do usuário">
+          <a href="../painel-da-conta.html">Visão geral</a
+          ><a href="../reservas/minhas-reservas.html">Minhas reservas</a
+          ><a href="../avaliacoes/minhas-avaliacoes.html">Avaliações</a
+          ><a href="../favoritos/meus-favoritos.html">Favoritos</a
+          ><a href="dados-pessoais.html" aria-current="page">Dados pessoais</a
+          ><a href="../ajuda/central-de-ajuda.html">Ajuda</a>
+        </nav>
+      </aside>
+      <section>
+        <h1>Dados pessoais</h1>
+        <form action="../index.html">
+          <fieldset>
+            <legend>Informações básicas</legend>
+            <label
+              >Nome completo
+              <input value="Usuário" autocomplete="name" /></label
+            ><label
+              >E-mail
+              <input
+                type="email"
+                value="usuario@email.com"
+                autocomplete="email" /></label
+            ><label
+              >Telefone
+              <input type="tel" value="(11) 99999-9999" autocomplete="tel"
+            /></label>
+          </fieldset>
+          <fieldset>
+            <legend>Preferências de jogo</legend>
+            <label
+              >Esporte preferido
+              <select>
+                <option>Vôlei</option>
+                <option>Futsal</option>
+                <option>Basquete</option>
+              </select></label
+            ><label
+              >Nível
+              <select>
+                <option>Intermediário</option>
+                <option>Iniciante</option>
+                <option>Avançado</option>
+              </select></label
+            >
+          </fieldset>
+          <button type="submit">Salvar alterações</button>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>

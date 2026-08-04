@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Explorar | JogaJunto</title>
+  </head>
+
+  <body>
+    <header>
+      <a
+        href="../inicio/pagina-inicial.html"
+        aria-label="Página inicial do JogaJunto"
+        ><img src="../../logo.png" alt="Logo do JogaJunto" /> JogaJunto</a
+      >
+      <nav aria-label="Navegação principal">
+        <a href="../inicio/pagina-inicial.html">Início</a
+        ><a href="explorar-quadras-e-partidas.html" aria-current="page"
+          >Explorar</a
+        ><a href="#partidas-abertas">Partidas abertas</a
+        ><a href="../inicio/pagina-inicial.html#como-funciona">Como funciona</a
+        ><a href="../ranking/times-e-ranking.html">Times e ranking</a>
+      </nav>
+      <a href="../autenticacao/entrar/entrar-na-conta.html">Entrar</a
+      ><a href="../autenticacao/cadastro/criar-conta.html">Criar conta</a>
+    </header>
+    <main>
+      <section aria-labelledby="titulo">
+        <p>ENCONTRE O LUGAR CERTO</p>
+        <h1 id="titulo">Quadras e partidas perto de você.</h1>
+        <p>Compare horários, estrutura, preço e nível antes de decidir.</p>
+      </section>
+      <section aria-label="Navegação estrutural">
+        <p>Início / Explorar</p>
+      </section>
+      <div>
+        <aside aria-labelledby="filtros">
+          <h2 id="filtros">Filtros</h2>
+          <form>
+            <fieldset>
+              <legend>Tipo</legend>
+              <label><input type="checkbox" checked /> Quadra inteira</label
+              ><label><input type="checkbox" /> Partida aberta</label>
+            </fieldset>
+            <fieldset>
+              <legend>Esporte</legend>
+              <label><input type="checkbox" checked /> Poliesportiva</label
+              ><label><input type="checkbox" /> Futsal</label
+              ><label><input type="checkbox" /> Vôlei</label
+              ><label><input type="checkbox" /> Basquete</label>
+            </fieldset>
+            <fieldset>
+              <legend>Data e horário</legend>
+              <label>Data <input type="date" /></label
+              ><label
+                >Horário
+                <select>
+                  <option>Qualquer horário</option>
+                  <option>Manhã</option>
+                  <option>Tarde</option>
+                  <option>Noite</option>
+                </select></label
+              >
+            </fieldset>
+            <button type="reset">Limpar tudo</button>
+          </form>
+        </aside>
+        <section id="partidas-abertas" aria-labelledby="resultados">
+          <h2 id="resultados">Quadras e partidas disponíveis</h2>
+          <p>18 resultados em São Paulo</p>
+          <article>
+            <img
+              src="../../quadra.png"
+              alt="Quadra poliesportiva coberta da Arena Vila Mariana"
+            />
+            <h3>Arena Vila Mariana</h3>
+            <p>Poliesportiva, coberta · Vila Mariana</p>
+            <p>R$ 96 por hora · Avaliação 4,9 de 5</p>
+            <a href="../detalhes/detalhes-da-quadra.html"
+              >Ver detalhes da Arena Vila Mariana</a
+            >
+          </article>
+          <article>
+            <img src="../../quadra.png" alt="Quadra para futsal e vôlei" />
+            <h3>Futsal na Vila Mariana</h3>
+            <p>Hoje, 19:30 · Intermediário · 3 vagas</p>
+            <p>R$ 24 por pessoa</p>
+            <a href="../detalhes/detalhes-da-quadra.html"
+              >Ver detalhes da partida de futsal</a
+            >
+          </article>
+        </section>
+      </div>
+    </main>
+    <footer>
+      <a href="../conta/ajuda/central-de-ajuda.html">Central de ajuda</a
+      ><a href="../inicio/pagina-inicial.html">JogaJunto</a>
+    </footer>
+  </body>
+</html>

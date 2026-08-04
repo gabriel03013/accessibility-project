@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Identificação | JogaJunto</title>
+  </head>
+
+  <body>
+    <header>
+      <a href="../../inicio/pagina-inicial.html"
+        ><img src="../../../logo.png" alt="Logo do JogaJunto" /> JogaJunto</a
+      >
+    </header>
+    <main>
+      <ol aria-label="Etapas da reserva">
+        <li>✓ Carrinho</li>
+        <li aria-current="step">Identificação</li>
+        <li>Pagamento</li>
+        <li>Confirmação</li>
+      </ol>
+      <h1>Identificação</h1>
+      <p>Confirme quem é o responsável e as preferências desta reserva.</p>
+      <form action="../pagamento/pagamento-da-reserva.html">
+        <fieldset>
+          <legend>1. Dados do responsável</legend>
+          <p>
+            Usaremos essas informações somente para confirmar o agendamento.
+          </p>
+          <label
+            >Nome completo
+            <input name="nome" autocomplete="name" required /></label
+          ><label>CPF ou documento <input name="documento" required /></label
+          ><label
+            >E-mail
+            <input
+              name="email"
+              type="email"
+              autocomplete="email"
+              required /></label
+          ><label
+            >Telefone
+            <input name="telefone" type="tel" autocomplete="tel" required
+          /></label>
+        </fieldset>
+        <fieldset>
+          <legend>2. Preferências da reserva</legend>
+          <label
+            >Quantidade de participantes
+            <input type="number" min="1" value="1" /></label
+          ><label>Observações <textarea name="observacoes"></textarea></label
+          ><label
+            ><input type="checkbox" /> Quero receber informações sobre a reserva
+            por e-mail</label
+          >
+        </fieldset>
+        <a href="../carrinho/carrinho-de-reservas.html">Voltar ao carrinho</a
+        ><button type="submit">Continuar para pagamento</button>
+      </form>
+    </main>
+  </body>
+</html>
