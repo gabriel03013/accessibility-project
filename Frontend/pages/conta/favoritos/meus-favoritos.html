@@ -1,58 +1,101 @@
 <!doctype html>
 <html lang="pt-BR">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Favoritos | JogaJunto</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Favoritos | Partiu Quadra</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+    <link rel="stylesheet" href="/assets/css/main.css?v=20260804-1" />
+    <script src="/assets/js/theme-init.js?v=20260804-1"></script>
   </head>
-
-  <body>
-    <header>
-      <a href="../../inicio/pagina-inicial.html"
-        ><img src="../../../logo.png" alt="Logo do JogaJunto" /> JogaJunto</a
-      ><a href="../painel-da-conta.html">Minha conta</a>
-    </header>
-    <main>
-      <aside>
-        <nav aria-label="Área do usuário">
-          <a href="../painel-da-conta.html">Visão geral</a
-          ><a href="../reservas/minhas-reservas.html">Minhas reservas</a
-          ><a href="../avaliacoes/minhas-avaliacoes.html">Avaliações</a
-          ><a href="meus-favoritos.html" aria-current="page">Favoritos</a
-          ><a href="../dados-pessoais/dados-pessoais.html">Dados pessoais</a
-          ><a href="../ajuda/central-de-ajuda.html">Ajuda</a>
-        </nav>
-      </aside>
-      <section>
-        <h1>Favoritos</h1>
-        <p>Espaços e partidas que você salvou para ver depois.</p>
-        <article>
-          <img
-            src="../../../quadra.png"
-            alt="Quadra poliesportiva da Arena Vila Nova"
-          />
-          <h2>Arena Vila Nova</h2>
-          <p>Poliesportiva · Nota 4,8 de 5</p>
-          <a href="../../detalhes/detalhes-da-quadra.html">Ver detalhes</a
-          ><button type="button">Remover dos favoritos</button>
-        </article>
-        <article>
-          <img src="../../../quadra.png" alt="Ginásio Aurora para basquete" />
-          <h2>Ginásio Aurora</h2>
-          <p>Basquete · Nota 4,7 de 5</p>
-          <a href="../../detalhes/detalhes-da-quadra.html">Ver detalhes</a
-          ><button type="button">Remover dos favoritos</button>
-        </article>
-        <article>
-          <img
-            src="../../../quadra.png"
-            alt="Quadra para vôlei aberto no Batel"
-          />
-          <h2>Vôlei aberto no Batel</h2>
-          <p>Partida aberta · Sábado, 10:00</p>
-          <a href="../../detalhes/detalhes-da-quadra.html">Ver detalhes</a>
-        </article>
-      </section>
+  <body data-section="account">
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <header class="site-header" data-site-header></header>
+    <main id="conteudo" class="page">
+      <div class="account-layout">
+        <aside class="side-panel">
+          <div class="user-card">
+            <strong>Usuário</strong
+            ><span class="muted">Vôlei · Intermediário</span>
+          </div>
+          <nav class="side-nav" aria-label="Área do usuário">
+            <a href="../painel-da-conta.html">Visão geral</a
+            ><a href="../reservas/minhas-reservas.html">Minhas reservas</a
+            ><a href="../avaliacoes/minhas-avaliacoes.html">Avaliações</a
+            ><a href="meus-favoritos.html" aria-current="page">Favoritos</a
+            ><a href="../dados-pessoais/dados-pessoais.html">Dados pessoais</a
+            ><a href="../acessibilidade/preferencias-de-acessibilidade.html"
+              >Acessibilidade</a
+            ><a href="../ajuda/central-de-ajuda.html">Ajuda</a>
+          </nav>
+        </aside>
+        <section class="account-content" aria-labelledby="titulo">
+          <header>
+            <p class="eyebrow">Salvos para depois</p>
+            <h1 id="titulo">Favoritos</h1>
+            <p>Espaços e partidas que você quer encontrar rapidamente.</p>
+          </header>
+          <div class="content-stack">
+            <article class="card favorite-card">
+              <img
+                src="/assets/images/court-placeholder.svg"
+                alt="Quadra poliesportiva da Arena Vila Nova"
+              />
+              <div>
+                <h2 class="text-xl mb-1">Arena Vila Nova</h2>
+                <p class="mb-0">Poliesportiva · Nota 4,8 de 5</p>
+              </div>
+              <div class="hero-actions">
+                <a
+                  class="btn btn-primary"
+                  href="../../detalhes/detalhes-da-quadra.html"
+                  >Ver detalhes</a
+                ><button class="btn btn-quiet" type="button" data-remove-card>
+                  Remover
+                </button>
+              </div>
+            </article>
+            <article class="card favorite-card">
+              <img
+                src="/assets/images/hero-court.svg"
+                alt="Ginásio Aurora para basquete"
+              />
+              <div>
+                <h2 class="text-xl mb-1">Ginásio Aurora</h2>
+                <p class="mb-0">Basquete · Nota 4,7 de 5</p>
+              </div>
+              <div class="hero-actions">
+                <a
+                  class="btn btn-primary"
+                  href="../../detalhes/detalhes-da-quadra.html"
+                  >Ver detalhes</a
+                ><button class="btn btn-quiet" type="button" data-remove-card>
+                  Remover
+                </button>
+              </div>
+            </article>
+            <article class="card favorite-card">
+              <img
+                src="/assets/images/court-orange.svg"
+                alt="Quadra para vôlei aberto no Batel"
+              />
+              <div>
+                <h2 class="text-xl mb-1">Vôlei aberto no Batel</h2>
+                <p class="mb-0">Partida aberta · Sábado, 10:00</p>
+              </div>
+              <a
+                class="btn btn-primary"
+                href="../../detalhes/detalhes-da-quadra.html"
+                >Ver detalhes</a
+              >
+            </article>
+          </div>
+        </section>
+      </div>
     </main>
+    <script type="module" src="/assets/js/app.js?v=20260804-1"></script>
   </body>
 </html>

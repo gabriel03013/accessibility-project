@@ -1,53 +1,108 @@
 <!doctype html>
 <html lang="pt-BR">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pagamento | JogaJunto</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pagamento | Partiu Quadra</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+    <link rel="stylesheet" href="/assets/css/main.css?v=20260804-1" />
+    <script src="/assets/js/theme-init.js?v=20260804-1"></script>
   </head>
-
-  <body>
-    <header>
-      <a href="../../inicio/pagina-inicial.html"
-        ><img src="../../../logo.png" alt="Logo do JogaJunto" /> JogaJunto</a
-      >
-    </header>
-    <main>
-      <ol aria-label="Etapas da reserva">
-        <li>✓ Carrinho</li>
-        <li>✓ Identificação</li>
+  <body data-shell="minimal">
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <header class="site-header" data-site-header></header>
+    <main id="conteudo" class="checkout-page">
+      <ol class="steps" aria-label="Etapas da reserva">
+        <li class="is-complete">Carrinho</li>
+        <li class="is-complete">Identificação</li>
         <li aria-current="step">Pagamento</li>
         <li>Confirmação</li>
       </ol>
-      <h1>Pagamento</h1>
-      <form action="../../conta/reservas/minhas-reservas.html">
-        <fieldset>
-          <legend>Forma de pagamento</legend>
-          <label
-            ><input type="radio" name="pagamento" checked /> Cartão de
-            crédito</label
-          ><label><input type="radio" name="pagamento" /> Pix</label>
-        </fieldset>
-        <fieldset>
-          <legend>Dados do cartão</legend>
-          <label
-            >Número do cartão
-            <input inputmode="numeric" autocomplete="cc-number" /></label
-          ><label>Nome no cartão <input autocomplete="cc-name" /></label
-          ><label
-            >Validade <input placeholder="MM/AA" autocomplete="cc-exp" /></label
-          ><label
-            >CVV <input inputmode="numeric" autocomplete="cc-csc"
-          /></label>
-        </fieldset>
-        <aside>
-          <h2>Resumo da reserva</h2>
-          <p>Arena Vila Mariana · Quinta, 19:30 · R$ 96</p>
+      <header class="listing-header">
+        <p class="eyebrow">Etapa 3 de 4</p>
+        <h1>Pagamento</h1>
+        <p>Escolha como prefere confirmar sua reserva.</p>
+      </header>
+      <div class="checkout-layout">
+        <form
+          class="panel form-panel"
+          action="../confirmacao/reserva-confirmada.html"
+        >
+          <fieldset>
+            <legend>Forma de pagamento</legend>
+            <div class="form-grid">
+              <label class="choice"
+                ><input type="radio" name="pagamento" value="card" checked />
+                Cartão de crédito</label
+              ><label class="choice"
+                ><input type="radio" name="pagamento" value="pix" /> Pix</label
+              >
+            </div>
+          </fieldset>
+          <fieldset data-card-fields>
+            <legend>Dados do cartão</legend>
+            <div class="form-grid">
+              <label class="field-group-full"
+                >Número do cartão<input
+                  name="numero-cartao"
+                  inputmode="numeric"
+                  autocomplete="cc-number"
+                  placeholder="0000 0000 0000 0000" /></label
+              ><label class="field-group-full"
+                >Nome no cartão<input
+                  name="nome-cartao"
+                  autocomplete="cc-name" /></label
+              ><label
+                >Validade<input
+                  name="validade"
+                  placeholder="MM/AA"
+                  autocomplete="cc-exp" /></label
+              ><label
+                >CVV<input
+                  name="cvv"
+                  inputmode="numeric"
+                  autocomplete="cc-csc"
+                  maxlength="4"
+              /></label>
+            </div>
+          </fieldset>
+          <section
+            class="panel"
+            data-pix-panel
+            hidden
+            aria-labelledby="pix-titulo"
+          >
+            <h2 id="pix-titulo" class="text-lg">Pagamento por Pix</h2>
+            <p>
+              O código será exibido depois da confirmação. Ele ficará válido por
+              15 minutos.
+            </p>
+          </section>
+          <div class="form-actions">
+            <a
+              class="btn btn-secondary"
+              href="../identificacao/identificacao-do-responsavel.html"
+              >Voltar</a
+            ><button class="btn btn-primary" type="submit">
+              Confirmar pagamento
+            </button>
+          </div>
+        </form>
+        <aside class="panel summary-panel">
+          <h2 class="text-xl">Resumo da reserva</h2>
+          <p><strong>Arena Vila Mariana</strong><br />Quinta, 19:30 · 1 hora</p>
+          <div class="summary-row summary-total">
+            <span>Total</span><span>R$ 96</span>
+          </div>
+          <p class="help-text mt-4">
+            Ambiente de demonstração: nenhum dado bancário real será processado.
+          </p>
         </aside>
-        <a href="../identificacao/identificacao-do-responsavel.html"
-          >Voltar à identificação</a
-        ><button type="submit">Confirmar pagamento de R$ 96</button>
-      </form>
+      </div>
     </main>
+    <script type="module" src="/assets/js/app.js?v=20260804-1"></script>
   </body>
 </html>

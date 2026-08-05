@@ -1,345 +1,373 @@
 <!doctype html>
 <html lang="pt-BR">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JogaJunto | Quadras, partidas e pessoas</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Encontre quadras, partidas abertas e pessoas para jogar perto de você."
+    />
+    <title>Partiu Quadra — hoje tem jogo</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/assets/css/main.css?v=20260804-1" />
+    <script src="/assets/js/theme-init.js?v=20260804-1"></script>
   </head>
+  <body data-section="home">
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <header class="site-header" data-site-header></header>
 
-  <body>
-    <header>
-      <a href="pagina-inicial.html" aria-label="Página inicial do JogaJunto">
-        <img src="../../logo.png" alt="Logo do JogaJunto" />
-        <span>JogaJunto</span>
-      </a>
-      <nav aria-label="Navegação principal">
-        <a href="pagina-inicial.html" aria-current="page">Início</a>
-        <a href="../explorar/explorar-quadras-e-partidas.html">Explorar</a>
-        <a href="../explorar/explorar-quadras-e-partidas.html#partidas-abertas"
-          >Partidas abertas</a
-        >
-        <a href="#como-funciona">Como funciona</a>
-        <a href="../ranking/times-e-ranking.html">Times e ranking</a>
-      </nav>
-      <div>
-        <button type="button" aria-label="Selecionar cidade">São Paulo</button>
-        <a href="../autenticacao/entrar/entrar-na-conta.html">Entrar</a>
-        <a href="../autenticacao/cadastro/criar-conta.html">Criar conta</a>
-      </div>
-    </header>
-
-    <main>
-      <section aria-labelledby="titulo-principal">
-        <div>
-          <p>São Paulo, quinta-feira</p>
-          <h1 id="titulo-principal">Hoje tem jogo.<br />Falta você.</h1>
-          <p>
+    <main id="conteudo" class="page">
+      <section class="hero" aria-labelledby="titulo-principal">
+        <div class="hero-copy">
+          <p class="eyebrow">São Paulo · jogos para hoje</p>
+          <h1 id="titulo-principal">Hoje tem jogo. Falta você.</h1>
+          <p class="lead">
             Escolha o esporte e o bairro. A gente mostra quem já confirmou e o
             que ainda falta para fechar o time.
           </p>
-          <a
-            href="../explorar/explorar-quadras-e-partidas.html#partidas-abertas"
-            >Ver jogos de hoje</a
+          <div class="hero-actions">
+            <a
+              class="btn btn-accent"
+              href="../explorar/explorar-quadras-e-partidas.html#partidas-abertas"
+              >Ver jogos de hoje</a
+            >
+            <a
+              class="btn btn-secondary"
+              href="../explorar/explorar-quadras-e-partidas.html"
+              >Explorar quadras</a
+            >
+          </div>
+          <div
+            class="hero-proof"
+            aria-label="Atividade da comunidade nesta semana"
           >
-          <a href="../explorar/explorar-quadras-e-partidas.html"
-            >Explorar quadras</a
-          >
-          <p>
-            <strong>1.240 pessoas jogaram esta semana</strong><br />Futsal,
-            vôlei e basquete em 18 bairros
-          </p>
+            <div class="avatar-stack" aria-hidden="true">
+              <span>MC</span><span>RL</span><span>BA</span>
+            </div>
+            <p>
+              <strong>1.240 pessoas jogaram esta semana</strong><br /><span
+                class="muted"
+                >em 18 bairros</span
+              >
+            </p>
+          </div>
         </div>
-        <div>
+        <div class="hero-visual">
           <img
-            src="../../quadra.png"
-            alt="Quadra poliesportiva preparada para uma partida"
+            src="/assets/images/hero-court.svg"
+            alt="Ilustração de uma quadra esportiva iluminada"
           />
-          <article>
-            <p><time datetime="19:30">19:30</time> hoje</p>
+          <article class="floating-match">
+            <span class="badge badge-accent"
+              ><time datetime="19:30">19:30</time> hoje</span
+            >
             <h2>Futsal na Vila Mariana</h2>
             <p>Arena Vila Mariana · Intermediário</p>
             <p><strong>3 vagas</strong> · R$ 24 por pessoa</p>
-            <a href="../detalhes/detalhes-da-quadra.html"
-              >Ver detalhes da partida de futsal na Vila Mariana</a
+            <a class="link" href="../detalhes/detalhes-da-quadra.html"
+              >Ver detalhes da partida</a
             >
           </article>
         </div>
       </section>
 
-      <section aria-labelledby="beneficios-titulo">
-        <div>
-          <p>PARA QUEM QUER JOGAR</p>
-          <h2 id="beneficios-titulo">
-            O jogo começa antes de chegar à quadra.
-          </h2>
-          <p>
+      <form
+        class="search-box"
+        action="../explorar/explorar-quadras-e-partidas.html"
+        role="search"
+      >
+        <label
+          >O que você quer jogar?<select name="esporte">
+            <option>Todos os esportes</option>
+            <option>Futsal</option>
+            <option>Vôlei</option>
+            <option>Basquete</option>
+          </select></label
+        >
+        <label
+          >Onde?<input
+            name="bairro"
+            type="search"
+            placeholder="Bairro ou cidade"
+        /></label>
+        <label>Quando?<input name="data" type="date" /></label>
+        <button class="btn btn-primary" type="submit">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> Buscar
+        </button>
+      </form>
+
+      <section class="section" aria-labelledby="beneficios-titulo">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Para quem quer jogar</p>
+            <h2 id="beneficios-titulo">
+              O jogo começa antes de chegar à quadra.
+            </h2>
+          </div>
+          <p class="lead">
             Você escolhe o esporte e o bairro. A plataforma mostra quem vai,
-            quanto custa e o que ainda falta para fechar o jogo.
+            quanto custa e o que falta.
           </p>
-          <ol>
-            <li>
-              <strong>Veja o que está livre</strong><br />Horários, bairros e
-              valores sem precisar perguntar no grupo.
-            </li>
-            <li>
-              <strong>Entre sozinho ou leve o time</strong><br />Dá para fechar
-              a quadra toda ou pegar só uma vaga.
-            </li>
-            <li>
-              <strong>Cada um sabe quanto paga</strong><br />O valor aparece
-              antes da confirmação e fica salvo no resumo.
-            </li>
-          </ol>
         </div>
-        <div>
-          <img
-            src="../../quadra.png"
-            alt="Quadra poliesportiva com marcações para diferentes esportes"
-          />
-          <img
-            src="../../grupo-de-amigos.png"
-            alt="Grupo de amigos reunido para jogar"
-          />
-          <img
-            src="../../jogo-aberto.png"
-            alt="Jogadores participando de uma partida aberta"
-          />
-          <article>
-            <strong>98%</strong>
-            <p>jogos confirmados quando todas as vagas são preenchidas</p>
-          </article>
-        </div>
+        <ol class="feature-grid">
+          <li class="feature-item">
+            <span class="feature-number">01</span>
+            <h3>Veja o que está livre</h3>
+            <p>Horários, bairros e valores sem precisar perguntar no grupo.</p>
+          </li>
+          <li class="feature-item">
+            <span class="feature-number">02</span>
+            <h3>Entre sozinho ou leve o time</h3>
+            <p>Feche a quadra inteira ou pegue apenas uma vaga.</p>
+          </li>
+          <li class="feature-item">
+            <span class="feature-number">03</span>
+            <h3>Cada um sabe quanto paga</h3>
+            <p>O valor aparece antes da confirmação e fica salvo no resumo.</p>
+          </li>
+        </ol>
       </section>
 
-      <section aria-labelledby="formas-titulo">
-        <p>QUATRO JEITOS DE ENTRAR EM QUADRA</p>
-        <h2 id="formas-titulo">Do seu jeito, com ou sem time</h2>
-        <p>Reserve a quadra, complete uma partida ou acompanhe os amigos.</p>
-        <div>
-          <article>
+      <section class="section" aria-labelledby="formas-titulo">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Quatro jeitos de entrar em quadra</p>
+            <h2 id="formas-titulo">Do seu jeito, com ou sem time.</h2>
+          </div>
+          <p class="lead">
+            Reserve a quadra, complete uma partida ou acompanhe os amigos.
+          </p>
+        </div>
+        <div class="option-grid">
+          <article class="card option-card card-interactive">
+            <span class="option-icon"
+              ><i class="fa-regular fa-calendar" aria-hidden="true"></i
+            ></span>
             <h3>Reserve uma quadra</h3>
             <p>Escolha data, horário e duração para jogar com seu time.</p>
-            <a href="../explorar/explorar-quadras-e-partidas.html"
+            <a class="link" href="../explorar/explorar-quadras-e-partidas.html"
               >Buscar quadras</a
             >
           </article>
-          <article>
+          <article class="card option-card card-interactive">
+            <span class="option-icon"
+              ><i class="fa-solid fa-person-running" aria-hidden="true"></i
+            ></span>
             <h3>Entre em uma partida</h3>
             <p>Encontre vagas abertas perto de você e entre no jogo.</p>
             <a
+              class="link"
               href="../explorar/explorar-quadras-e-partidas.html#partidas-abertas"
-              >Ver partidas abertas</a
+              >Ver partidas</a
             >
           </article>
-          <article>
+          <article class="card option-card card-interactive">
+            <span class="option-icon"
+              ><i class="fa-solid fa-plus" aria-hidden="true"></i
+            ></span>
             <h3>Abra uma partida</h3>
             <p>Defina esporte, nível e vagas para reunir novos jogadores.</p>
-            <a href="../autenticacao/cadastro/criar-conta.html"
-              >Criar uma partida</a
+            <a class="link" href="../autenticacao/cadastro/criar-conta.html"
+              >Criar partida</a
             >
           </article>
-          <article>
+          <article class="card option-card card-interactive">
+            <span class="option-icon"
+              ><i class="fa-solid fa-people-group" aria-hidden="true"></i
+            ></span>
             <h3>Monte seu time</h3>
             <p>Chame amigos e acompanhe a evolução de quem joga junto.</p>
-            <a href="../ranking/times-e-ranking.html"
-              >Conhecer times e ranking</a
+            <a class="link" href="../ranking/times-e-ranking.html"
+              >Ver ranking</a
             >
           </article>
         </div>
       </section>
 
-      <section aria-labelledby="destaques-titulo">
-        <div>
-          <p>ESCOLHAS PARA HOJE</p>
-          <h2 id="destaques-titulo">
-            A quadra certa está mais perto do que parece.
-          </h2>
-          <p>
-            Veja alguns espaços e partidas que estão movimentando São Paulo.
-          </p>
-          <a href="../explorar/explorar-quadras-e-partidas.html"
+      <section class="section" aria-labelledby="destaques-titulo">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Escolhas para hoje</p>
+            <h2 id="destaques-titulo">
+              A quadra certa está mais perto do que parece.
+            </h2>
+          </div>
+          <a
+            class="btn btn-secondary"
+            href="../explorar/explorar-quadras-e-partidas.html"
             >Ver todas as opções</a
           >
         </div>
-        <div>
-          <article>
+        <div class="court-grid">
+          <article class="card card-interactive">
             <img
-              src="../../quadra.png"
+              class="card-media"
+              src="/assets/images/court-placeholder.svg"
               alt="Quadra poliesportiva coberta da Arena Vila Mariana"
             />
-            <p>Poliesportiva · Coberta</p>
-            <h3>Arena Vila Mariana</h3>
-            <p>Vila Mariana · Nota 4,9 de 5</p>
-            <a href="../detalhes/detalhes-da-quadra.html"
-              >Ver horários da Arena Vila Mariana</a
-            >
+            <div class="card-body">
+              <span class="badge">Poliesportiva · Coberta</span>
+              <h3 class="mt-3">Arena Vila Mariana</h3>
+              <p>Vila Mariana · Nota 4,9 de 5</p>
+              <a class="link" href="../detalhes/detalhes-da-quadra.html"
+                >Ver horários</a
+              >
+            </div>
           </article>
-          <article>
+          <article class="card card-interactive">
             <img
-              src="../../volei-misto.png"
-              alt="Grupo jogando vôlei misto em uma quadra"
+              class="card-media"
+              src="/assets/images/court-orange.svg"
+              alt="Quadra preparada para uma partida de vôlei misto"
             />
-            <p>Partida aberta · Vôlei</p>
-            <h3>Vôlei misto no Ibirapuera</h3>
-            <p>Hoje, 20:00 · 2 vagas · R$ 18 por pessoa</p>
-            <a href="../detalhes/detalhes-da-quadra.html"
-              >Ver detalhes da partida de vôlei</a
-            >
+            <div class="card-body">
+              <span class="badge badge-accent">Partida aberta · Vôlei</span>
+              <h3 class="mt-3">Vôlei misto no Ibirapuera</h3>
+              <p>Hoje, 20:00 · 2 vagas · R$ 18</p>
+              <a class="link" href="../detalhes/detalhes-da-quadra.html"
+                >Ver partida</a
+              >
+            </div>
           </article>
-          <article>
+          <article class="card card-interactive">
             <img
-              src="../../basquete.png"
-              alt="Partida de basquete três contra três em uma quadra"
+              class="card-media"
+              src="/assets/images/hero-court.svg"
+              alt="Quadra preparada para basquete três contra três"
             />
-            <p>Partida aberta · Basquete</p>
-            <h3>Basquete 3x3 em Pinheiros</h3>
-            <p>Amanhã, 19:00 · 4 vagas · R$ 22 por pessoa</p>
-            <a href="../detalhes/detalhes-da-quadra.html"
-              >Ver detalhes da partida de basquete</a
-            >
+            <div class="card-body">
+              <span class="badge badge-accent">Partida aberta · Basquete</span>
+              <h3 class="mt-3">Basquete 3x3 em Pinheiros</h3>
+              <p>Amanhã, 19:00 · 4 vagas · R$ 22</p>
+              <a class="link" href="../detalhes/detalhes-da-quadra.html"
+                >Ver partida</a
+              >
+            </div>
           </article>
         </div>
       </section>
 
-      <section aria-labelledby="comunidade-titulo">
+      <section
+        class="section community-banner"
+        aria-labelledby="comunidade-titulo"
+      >
         <img
-          src="../../comunidade.png"
-          alt="Pessoa sorrindo após participar de uma partida esportiva"
+          src="/assets/images/community.svg"
+          alt="Ilustração de uma comunidade esportiva reunida"
         />
-        <div>
-          <p>MAIS GENTE JOGANDO</p>
+        <div class="community-copy">
+          <p class="eyebrow">Mais gente jogando</p>
           <h2 id="comunidade-titulo">Quando alguém entra, o jogo acontece.</h2>
           <p>
-            O JogaJunto ajuda a transformar horários vazios em partidas de
-            verdade. Você vê quem confirmou, o que falta e decide com segurança.
+            O Partiu Quadra transforma horários vazios em partidas de verdade. Você
+            vê quem confirmou e decide com segurança.
           </p>
-          <dl>
-            <dt>18</dt>
-            <dd>bairros com jogos nesta semana</dd>
-            <dt>1.240</dt>
-            <dd>pessoas em quadra</dd>
-            <dt>4,8</dt>
-            <dd>nota média das experiências</dd>
-          </dl>
+          <div class="stat-grid mt-8">
+            <div>
+              <strong class="text-2xl">18</strong>
+              <p>bairros esta semana</p>
+            </div>
+            <div>
+              <strong class="text-2xl">1.240</strong>
+              <p>pessoas em quadra</p>
+            </div>
+            <div>
+              <strong class="text-2xl">4,8</strong>
+              <p>nota média</p>
+            </div>
+          </div>
           <a
+            class="btn btn-accent mt-6"
             href="../explorar/explorar-quadras-e-partidas.html#partidas-abertas"
-            >Encontrar minha próxima partida</a
+            >Encontrar uma partida</a
           >
         </div>
       </section>
 
-      <section id="como-funciona" aria-labelledby="como-funciona-titulo">
-        <p>É SIMPLES COMEÇAR</p>
-        <h2 id="como-funciona-titulo">
-          Três passos para sair do grupo e ir para o jogo.
-        </h2>
-        <ol>
-          <li>
-            <strong>Escolha o que quer jogar</strong><br />Filtre por esporte,
-            bairro, horário e nível.
+      <section
+        id="como-funciona"
+        class="section"
+        aria-labelledby="como-funciona-titulo"
+      >
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">É simples começar</p>
+            <h2 id="como-funciona-titulo">
+              Três passos para sair do grupo e ir para o jogo.
+            </h2>
+          </div>
+        </div>
+        <ol class="process-grid">
+          <li class="process-step">
+            <h3>Escolha o que quer jogar</h3>
+            <p>Filtre por esporte, bairro, horário e nível.</p>
           </li>
-          <li>
-            <strong>Confira os detalhes</strong><br />Veja quem já confirmou, o
-            valor e a estrutura da quadra.
+          <li class="process-step">
+            <h3>Confira os detalhes</h3>
+            <p>Veja quem confirmou, o valor e a estrutura.</p>
           </li>
-          <li>
-            <strong>Confirme sua vaga</strong><br />Preencha seus dados e receba
-            tudo no resumo da reserva.
+          <li class="process-step">
+            <h3>Confirme sua vaga</h3>
+            <p>Preencha seus dados e receba o resumo.</p>
+          </li>
+          <li class="process-step">
+            <h3>Entre em quadra</h3>
+            <p>Chegue no horário e aproveite a partida.</p>
           </li>
         </ol>
-        <a href="../explorar/explorar-quadras-e-partidas.html"
-          >Começar a explorar</a
-        >
       </section>
 
-      <section aria-labelledby="seguranca-titulo">
-        <h2 id="seguranca-titulo">Feito para jogar com mais clareza.</h2>
-        <ul>
-          <li>
-            <strong>Informações antes de decidir</strong><br />Preço, nível,
-            estrutura e regras da reserva ficam visíveis.
-          </li>
-          <li>
-            <strong>Avaliações da comunidade</strong><br />Veja experiências de
-            quem já jogou no espaço.
-          </li>
-          <li>
-            <strong>Acessível para todos</strong><br />Navegação por teclado,
-            foco visível e imagens com descrição.
-          </li>
-        </ul>
-      </section>
-
-      <section aria-labelledby="cta-titulo">
-        <h2 id="cta-titulo">A próxima partida pode ser hoje.</h2>
-        <p>Encontre uma quadra, complete um time ou convide os amigos.</p>
-        <a href="../autenticacao/cadastro/criar-conta.html"
-          >Criar minha conta</a
-        >
-        <a href="../explorar/explorar-quadras-e-partidas.html"
-          >Explorar sem compromisso</a
-        >
+      <section class="section cta-panel" aria-labelledby="cta-titulo">
+        <div>
+          <h2 id="cta-titulo">A próxima partida pode ser hoje.</h2>
+          <p>Encontre uma quadra, complete um time ou convide os amigos.</p>
+        </div>
+        <div class="hero-actions">
+          <a
+            class="btn btn-primary"
+            href="../autenticacao/cadastro/criar-conta.html"
+            >Criar minha conta</a
+          ><a
+            class="btn btn-secondary"
+            href="../explorar/explorar-quadras-e-partidas.html"
+            >Explorar agora</a
+          >
+        </div>
       </section>
     </main>
 
-    <footer>
-      <section>
+    <footer class="site-footer">
+      <div class="footer-grid">
         <div>
-          <a href="pagina-inicial.html"
-            ><img src="../../logo.png" alt="Logo do JogaJunto" /> JogaJunto</a
+          <a class="brand" href="pagina-inicial.html"
+            ><span class="brand-symbol" aria-hidden="true"></span
+            ><span>Partiu Quadra</span></a
           >
-          <p>Quadras, partidas e pessoas reunidas num só lugar.</p>
+          <p class="mt-4">Quadras, partidas e pessoas reunidas num só lugar.</p>
         </div>
-        <nav aria-labelledby="titulo-explorar">
-          <h2 id="titulo-explorar">Explorar</h2>
-          <ul>
-            <li>
-              <a href="../explorar/explorar-quadras-e-partidas.html">Quadras</a>
-            </li>
-            <li>
-              <a
-                href="../explorar/explorar-quadras-e-partidas.html#partidas-abertas"
-                >Partidas abertas</a
-              >
-            </li>
-            <li>
-              <a href="../ranking/times-e-ranking.html">Times e ranking</a>
-            </li>
-          </ul>
+        <nav aria-label="Explorar">
+          <strong>Explorar</strong
+          ><a href="../explorar/explorar-quadras-e-partidas.html"
+            >Quadras e partidas</a
+          ><a href="../ranking/times-e-ranking.html">Times e ranking</a
+          ><a href="../proprietario/meus-espacos.html">Anuncie sua quadra</a>
         </nav>
-        <nav aria-labelledby="titulo-ajuda">
-          <h2 id="titulo-ajuda">Ajuda</h2>
-          <ul>
-            <li><a href="#como-funciona">Como funciona</a></li>
-            <li>
-              <a href="../conta/ajuda/central-de-ajuda.html"
-                >Central de ajuda</a
-              >
-            </li>
-            <li>
-              <a href="../conta/ajuda/central-de-ajuda.html">Acessibilidade</a>
-            </li>
-          </ul>
+        <nav aria-label="Ajuda">
+          <strong>Ajuda</strong
+          ><a href="../conta/ajuda/central-de-ajuda.html">Central de ajuda</a
+          ><a href="../conta/acessibilidade/preferencias-de-acessibilidade.html"
+            >Acessibilidade</a
+          ><span>© <span data-current-year>2026</span> Partiu Quadra</span>
         </nav>
-        <section aria-labelledby="titulo-novidades">
-          <h2 id="titulo-novidades">Receba novidades</h2>
-          <p>Jogos abertos e novos horários, sem spam.</p>
-          <form>
-            <label for="email-novidades">Seu e-mail</label
-            ><input
-              id="email-novidades"
-              name="email"
-              type="email"
-              autocomplete="email"
-              required
-            /><button type="submit">Inscrever-se</button>
-          </form>
-        </section>
-      </section>
-      <p><small>© 2026 JogaJunto</small></p>
-      <nav aria-label="Redes sociais">
-        <a href="#">Instagram</a><a href="#">TikTok</a><a href="#">YouTube</a>
-      </nav>
+      </div>
     </footer>
+    <script type="module" src="/assets/js/app.js?v=20260804-1"></script>
   </body>
 </html>

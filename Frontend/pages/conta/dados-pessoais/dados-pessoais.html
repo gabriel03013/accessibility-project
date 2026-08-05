@@ -1,68 +1,101 @@
 <!doctype html>
 <html lang="pt-BR">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dados pessoais | JogaJunto</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dados pessoais | Partiu Quadra</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+    <link rel="stylesheet" href="/assets/css/main.css?v=20260804-1" />
+    <script src="/assets/js/theme-init.js?v=20260804-1"></script>
   </head>
-
-  <body>
-    <header>
-      <a href="../../inicio/pagina-inicial.html"
-        ><img src="../../../logo.png" alt="Logo do JogaJunto" /> JogaJunto</a
-      ><a href="../painel-da-conta.html">Minha conta</a>
-    </header>
-    <main>
-      <aside>
-        <nav aria-label="Área do usuário">
-          <a href="../painel-da-conta.html">Visão geral</a
-          ><a href="../reservas/minhas-reservas.html">Minhas reservas</a
-          ><a href="../avaliacoes/minhas-avaliacoes.html">Avaliações</a
-          ><a href="../favoritos/meus-favoritos.html">Favoritos</a
-          ><a href="dados-pessoais.html" aria-current="page">Dados pessoais</a
-          ><a href="../ajuda/central-de-ajuda.html">Ajuda</a>
-        </nav>
-      </aside>
-      <section>
-        <h1>Dados pessoais</h1>
-        <form action="../index.html">
-          <fieldset>
-            <legend>Informações básicas</legend>
-            <label
-              >Nome completo
-              <input value="Usuário" autocomplete="name" /></label
-            ><label
-              >E-mail
-              <input
-                type="email"
-                value="usuario@email.com"
-                autocomplete="email" /></label
-            ><label
-              >Telefone
-              <input type="tel" value="(11) 99999-9999" autocomplete="tel"
-            /></label>
-          </fieldset>
-          <fieldset>
-            <legend>Preferências de jogo</legend>
-            <label
-              >Esporte preferido
-              <select>
-                <option>Vôlei</option>
-                <option>Futsal</option>
-                <option>Basquete</option>
-              </select></label
-            ><label
-              >Nível
-              <select>
-                <option>Intermediário</option>
-                <option>Iniciante</option>
-                <option>Avançado</option>
-              </select></label
-            >
-          </fieldset>
-          <button type="submit">Salvar alterações</button>
-        </form>
-      </section>
+  <body data-section="account">
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <header class="site-header" data-site-header></header>
+    <main id="conteudo" class="page">
+      <div class="account-layout">
+        <aside class="side-panel">
+          <div class="user-card">
+            <strong>Usuário</strong
+            ><span class="muted">Vôlei · Intermediário</span>
+          </div>
+          <nav class="side-nav" aria-label="Área do usuário">
+            <a href="../painel-da-conta.html">Visão geral</a
+            ><a href="../reservas/minhas-reservas.html">Minhas reservas</a
+            ><a href="../avaliacoes/minhas-avaliacoes.html">Avaliações</a
+            ><a href="../favoritos/meus-favoritos.html">Favoritos</a
+            ><a href="dados-pessoais.html" aria-current="page">Dados pessoais</a
+            ><a href="../acessibilidade/preferencias-de-acessibilidade.html"
+              >Acessibilidade</a
+            ><a href="../ajuda/central-de-ajuda.html">Ajuda</a>
+          </nav>
+        </aside>
+        <section class="account-content" aria-labelledby="titulo">
+          <header>
+            <p class="eyebrow">Seu perfil</p>
+            <h1 id="titulo">Dados pessoais</h1>
+            <p>Mantenha seus dados e preferências de jogo atualizados.</p>
+          </header>
+          <form class="panel form-panel" action="../painel-da-conta.html">
+            <fieldset>
+              <legend>Informações básicas</legend>
+              <div class="form-grid">
+                <label
+                  >Nome completo<input
+                    name="nome"
+                    value="Usuário"
+                    autocomplete="name"
+                    required /></label
+                ><label
+                  >E-mail<input
+                    name="email"
+                    type="email"
+                    value="usuario@email.com"
+                    autocomplete="email"
+                    required /></label
+                ><label
+                  >Telefone<input
+                    name="telefone"
+                    type="tel"
+                    value="(11) 99999-9999"
+                    autocomplete="tel" /></label
+                ><label
+                  >Cidade<input
+                    name="cidade"
+                    value="São Paulo"
+                    autocomplete="address-level2"
+                /></label>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Preferências de jogo</legend>
+              <div class="form-grid">
+                <label
+                  >Esporte preferido<select name="esporte">
+                    <option>Vôlei</option>
+                    <option>Futsal</option>
+                    <option>Basquete</option>
+                  </select></label
+                ><label
+                  >Nível<select name="nivel">
+                    <option>Intermediário</option>
+                    <option>Iniciante</option>
+                    <option>Avançado</option>
+                  </select></label
+                >
+              </div>
+            </fieldset>
+            <div class="form-actions">
+              <button class="btn btn-primary" type="submit">
+                Salvar alterações
+              </button>
+            </div>
+          </form>
+        </section>
+      </div>
     </main>
+    <script type="module" src="/assets/js/app.js?v=20260804-1"></script>
   </body>
 </html>

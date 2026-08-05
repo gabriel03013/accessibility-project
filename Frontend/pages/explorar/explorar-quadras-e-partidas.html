@@ -1,60 +1,67 @@
 <!doctype html>
 <html lang="pt-BR">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Explorar | JogaJunto</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Compare quadras e partidas abertas por esporte, bairro, data e preço."
+    />
+    <title>Explorar quadras e partidas | Partiu Quadra</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/assets/css/main.css?v=20260804-1" />
+    <script src="/assets/js/theme-init.js?v=20260804-1"></script>
   </head>
-
-  <body>
-    <header>
-      <a
-        href="../inicio/pagina-inicial.html"
-        aria-label="Página inicial do JogaJunto"
-        ><img src="../../logo.png" alt="Logo do JogaJunto" /> JogaJunto</a
-      >
-      <nav aria-label="Navegação principal">
-        <a href="../inicio/pagina-inicial.html">Início</a
-        ><a href="explorar-quadras-e-partidas.html" aria-current="page"
-          >Explorar</a
-        ><a href="#partidas-abertas">Partidas abertas</a
-        ><a href="../inicio/pagina-inicial.html#como-funciona">Como funciona</a
-        ><a href="../ranking/times-e-ranking.html">Times e ranking</a>
+  <body data-section="explore">
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <header class="site-header" data-site-header></header>
+    <main id="conteudo" class="page">
+      <nav class="breadcrumbs" aria-label="Você está aqui">
+        <ol>
+          <li><a href="../inicio/pagina-inicial.html">Início</a></li>
+          <li aria-current="page">Explorar</li>
+        </ol>
       </nav>
-      <a href="../autenticacao/entrar/entrar-na-conta.html">Entrar</a
-      ><a href="../autenticacao/cadastro/criar-conta.html">Criar conta</a>
-    </header>
-    <main>
-      <section aria-labelledby="titulo">
-        <p>ENCONTRE O LUGAR CERTO</p>
-        <h1 id="titulo">Quadras e partidas perto de você.</h1>
-        <p>Compare horários, estrutura, preço e nível antes de decidir.</p>
-      </section>
-      <section aria-label="Navegação estrutural">
-        <p>Início / Explorar</p>
-      </section>
-      <div>
-        <aside aria-labelledby="filtros">
-          <h2 id="filtros">Filtros</h2>
+      <header class="listing-header">
+        <p class="eyebrow">Encontre o lugar certo</p>
+        <h1>Quadras e partidas perto de você.</h1>
+        <p class="lead">
+          Compare horários, estrutura, preço e nível antes de decidir.
+        </p>
+      </header>
+
+      <div class="listing-layout">
+        <aside class="panel filter-panel" aria-labelledby="filtros">
+          <h2 id="filtros" class="text-xl mb-5">Filtros</h2>
           <form>
             <fieldset>
               <legend>Tipo</legend>
-              <label><input type="checkbox" checked /> Quadra inteira</label
-              ><label><input type="checkbox" /> Partida aberta</label>
+              <label class="choice"
+                ><input type="checkbox" checked /> Quadra inteira</label
+              ><label class="choice"
+                ><input type="checkbox" /> Partida aberta</label
+              >
             </fieldset>
             <fieldset>
               <legend>Esporte</legend>
-              <label><input type="checkbox" checked /> Poliesportiva</label
-              ><label><input type="checkbox" /> Futsal</label
-              ><label><input type="checkbox" /> Vôlei</label
-              ><label><input type="checkbox" /> Basquete</label>
+              <label class="choice"
+                ><input type="checkbox" checked /> Poliesportiva</label
+              ><label class="choice"><input type="checkbox" /> Futsal</label
+              ><label class="choice"><input type="checkbox" /> Vôlei</label
+              ><label class="choice"><input type="checkbox" /> Basquete</label>
             </fieldset>
             <fieldset>
               <legend>Data e horário</legend>
-              <label>Data <input type="date" /></label
+              <label>Data<input type="date" /></label
               ><label
-                >Horário
-                <select>
+                >Horário<select>
                   <option>Qualquer horário</option>
                   <option>Manhã</option>
                   <option>Tarde</option>
@@ -62,39 +69,131 @@
                 </select></label
               >
             </fieldset>
-            <button type="reset">Limpar tudo</button>
+            <button class="btn btn-secondary btn-block" type="reset">
+              Limpar filtros
+            </button>
           </form>
         </aside>
-        <section id="partidas-abertas" aria-labelledby="resultados">
-          <h2 id="resultados">Quadras e partidas disponíveis</h2>
-          <p>18 resultados em São Paulo</p>
-          <article>
+
+        <section
+          id="partidas-abertas"
+          class="results-grid"
+          aria-labelledby="resultados"
+        >
+          <div class="results-header">
+            <div>
+              <h2 id="resultados" class="text-2xl mb-1">Opções disponíveis</h2>
+              <p class="mb-0">18 resultados em São Paulo</p>
+            </div>
+            <label class="field-group"
+              >Ordenar por<select>
+                <option>Mais relevantes</option>
+                <option>Menor preço</option>
+                <option>Melhor avaliação</option>
+              </select></label
+            >
+          </div>
+          <article class="card card-interactive">
             <img
-              src="../../quadra.png"
+              class="card-media"
+              src="/assets/images/court-placeholder.svg"
               alt="Quadra poliesportiva coberta da Arena Vila Mariana"
             />
-            <h3>Arena Vila Mariana</h3>
-            <p>Poliesportiva, coberta · Vila Mariana</p>
-            <p>R$ 96 por hora · Avaliação 4,9 de 5</p>
-            <a href="../detalhes/detalhes-da-quadra.html"
-              >Ver detalhes da Arena Vila Mariana</a
-            >
+            <div class="card-body">
+              <div class="court-meta">
+                <span class="badge">Quadra inteira</span><span>★ 4,9</span>
+              </div>
+              <h3 class="mt-3">Arena Vila Mariana</h3>
+              <p>Poliesportiva coberta · Vila Mariana</p>
+              <p><strong>R$ 96</strong> por hora</p>
+              <a
+                class="btn btn-primary btn-block"
+                href="../detalhes/detalhes-da-quadra.html"
+                >Ver horários</a
+              >
+            </div>
           </article>
-          <article>
-            <img src="../../quadra.png" alt="Quadra para futsal e vôlei" />
-            <h3>Futsal na Vila Mariana</h3>
-            <p>Hoje, 19:30 · Intermediário · 3 vagas</p>
-            <p>R$ 24 por pessoa</p>
-            <a href="../detalhes/detalhes-da-quadra.html"
-              >Ver detalhes da partida de futsal</a
-            >
+          <article class="card card-interactive">
+            <img
+              class="card-media"
+              src="/assets/images/court-orange.svg"
+              alt="Quadra preparada para uma partida de futsal"
+            />
+            <div class="card-body">
+              <div class="court-meta">
+                <span class="badge badge-accent">Partida aberta</span
+                ><span>3 vagas</span>
+              </div>
+              <h3 class="mt-3">Futsal na Vila Mariana</h3>
+              <p>Hoje, 19:30 · Intermediário</p>
+              <p><strong>R$ 24</strong> por pessoa</p>
+              <a
+                class="btn btn-primary btn-block"
+                href="../detalhes/detalhes-da-quadra.html"
+                >Ver partida</a
+              >
+            </div>
+          </article>
+          <article class="card card-interactive">
+            <img
+              class="card-media"
+              src="/assets/images/hero-court.svg"
+              alt="Quadra de basquete no bairro de Pinheiros"
+            />
+            <div class="card-body">
+              <div class="court-meta">
+                <span class="badge badge-accent">Partida aberta</span
+                ><span>4 vagas</span>
+              </div>
+              <h3 class="mt-3">Basquete 3x3 em Pinheiros</h3>
+              <p>Amanhã, 19:00 · Livre</p>
+              <p><strong>R$ 22</strong> por pessoa</p>
+              <a
+                class="btn btn-primary btn-block"
+                href="../detalhes/detalhes-da-quadra.html"
+                >Ver partida</a
+              >
+            </div>
+          </article>
+          <article class="card card-interactive">
+            <img
+              class="card-media"
+              src="/assets/images/court-placeholder.svg"
+              alt="Ginásio coberto preparado para vôlei"
+            />
+            <div class="card-body">
+              <div class="court-meta">
+                <span class="badge">Quadra inteira</span><span>★ 4,7</span>
+              </div>
+              <h3 class="mt-3">Ginásio Aurora</h3>
+              <p>Vôlei e basquete · Moema</p>
+              <p><strong>R$ 110</strong> por hora</p>
+              <a
+                class="btn btn-primary btn-block"
+                href="../detalhes/detalhes-da-quadra.html"
+                >Ver horários</a
+              >
+            </div>
           </article>
         </section>
       </div>
     </main>
-    <footer>
-      <a href="../conta/ajuda/central-de-ajuda.html">Central de ajuda</a
-      ><a href="../inicio/pagina-inicial.html">JogaJunto</a>
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div>
+          <strong>Partiu Quadra</strong>
+          <p>Seu próximo jogo começa aqui.</p>
+        </div>
+        <nav aria-label="Atalhos">
+          <a href="../inicio/pagina-inicial.html">Início</a
+          ><a href="../conta/ajuda/central-de-ajuda.html">Central de ajuda</a>
+        </nav>
+        <nav aria-label="Conta">
+          <a href="../conta/painel-da-conta.html">Minha conta</a
+          ><a href="../proprietario/meus-espacos.html">Área do proprietário</a>
+        </nav>
+      </div>
     </footer>
+    <script type="module" src="/assets/js/app.js?v=20260804-1"></script>
   </body>
 </html>

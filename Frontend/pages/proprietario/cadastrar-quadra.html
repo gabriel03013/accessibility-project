@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Cadastre uma quadra privada para receber reservas pelo Partiu Quadra."
+    />
+    <title>Cadastrar quadra | Partiu Quadra</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/assets/css/main.css?v=20260804-1" />
+    <script src="/assets/js/theme-init.js?v=20260804-1"></script>
+  </head>
+  <body data-section="owner">
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <header class="site-header" data-site-header></header>
+    <main id="conteudo" class="page-narrow">
+      <nav class="breadcrumbs" aria-label="Você está aqui">
+        <ol>
+          <li><a href="meus-espacos.html">Meus espaços</a></li>
+          <li aria-current="page">Cadastrar quadra</li>
+        </ol>
+      </nav>
+      <header class="listing-header">
+        <p class="eyebrow">Novo espaço</p>
+        <h1>Conte como é a sua quadra.</h1>
+        <p class="lead">
+          Informações claras ajudam jogadores a reservar com segurança e reduzem
+          dúvidas antes do jogo.
+        </p>
+      </header>
+      <form class="content-stack" action="meus-espacos.html" method="get">
+        <fieldset class="panel">
+          <legend>Informações principais</legend>
+          <div class="form-grid">
+            <label class="field-group-full"
+              >Nome da quadra<input
+                name="nome"
+                placeholder="Ex.: Arena Vila Mariana"
+                required /></label
+            ><label
+              >Modalidade principal<select name="modalidade" required>
+                <option value="">Selecione</option>
+                <option>Poliesportiva</option>
+                <option>Futsal</option>
+                <option>Vôlei</option>
+                <option>Basquete</option>
+                <option>Tênis</option>
+              </select></label
+            ><label
+              >Valor por hora<input
+                name="valor"
+                type="number"
+                min="0"
+                step="0.01"
+                inputmode="decimal"
+                placeholder="R$ 0,00"
+                required /></label
+            ><label class="field-group-full"
+              >Descrição<textarea
+                name="descricao"
+                maxlength="3000"
+                placeholder="Descreva piso, cobertura, iluminação, equipamentos e o que está incluído."
+                required
+              ></textarea
+              ><small class="help-text"
+                >Priorize informações úteis para quem vai reservar.</small
+              ></label
+            ><label class="field-group-full"
+              >Observações importantes<textarea
+                name="observacoes"
+                maxlength="1500"
+                placeholder="Informe regras de acesso, itens que o jogador deve levar ou outras orientações."
+              ></textarea>
+            </label>
+          </div>
+        </fieldset>
+        <fieldset class="panel">
+          <legend>Endereço</legend>
+          <div class="form-grid">
+            <label class="field-group-full"
+              >Rua<input
+                name="rua"
+                autocomplete="address-line1"
+                required /></label
+            ><label>Número<input name="numero" required /></label
+            ><label
+              >Complemento<input
+                name="complemento"
+                autocomplete="address-line2" /></label
+            ><label
+              >CEP<input
+                name="cep"
+                inputmode="numeric"
+                autocomplete="postal-code"
+                required /></label
+            ><label>Bairro<input name="bairro" required /></label
+            ><label
+              >Cidade<input
+                name="cidade"
+                autocomplete="address-level2"
+                required /></label
+            ><label
+              >Estado<input
+                name="estado"
+                maxlength="2"
+                autocomplete="address-level1"
+                placeholder="SP"
+                required
+            /></label>
+          </div>
+        </fieldset>
+        <fieldset class="panel">
+          <legend>Estrutura e acessibilidade</legend>
+          <p>Marque apenas o que está disponível no local.</p>
+          <div class="form-grid">
+            <label class="choice"
+              ><input type="checkbox" name="coberta" /> Quadra coberta</label
+            ><label class="choice"
+              ><input type="checkbox" name="vestiario" /> Vestiários</label
+            ><label class="choice"
+              ><input type="checkbox" name="estacionamento" />
+              Estacionamento</label
+            ><label class="choice"
+              ><input type="checkbox" name="bebedouro" /> Bebedouro</label
+            ><label class="choice"
+              ><input type="checkbox" name="sem-degraus" /> Entrada sem
+              degraus</label
+            ><label class="choice"
+              ><input type="checkbox" name="banheiro-acessivel" /> Banheiro
+              acessível</label
+            ><label class="choice"
+              ><input type="checkbox" name="piso-tatil" /> Piso tátil</label
+            ><label class="choice"
+              ><input type="checkbox" name="vaga-pcd" /> Vaga reservada</label
+            >
+          </div>
+        </fieldset>
+        <fieldset class="panel">
+          <legend>Fotos da quadra</legend>
+          <p>
+            Envie ao menos uma foto nítida. Visão geral, piso e entrada ajudam
+            quem está escolhendo.
+          </p>
+          <label class="upload-zone"
+            ><i class="fa-regular fa-images text-2xl" aria-hidden="true"></i
+            ><strong>Selecionar fotos</strong
+            ><span class="help-text">JPG ou PNG · até 10 imagens</span
+            ><input
+              class="sr-only"
+              name="fotos"
+              type="file"
+              accept="image/png,image/jpeg"
+              multiple
+              required
+          /></label>
+        </fieldset>
+        <div class="form-actions">
+          <a class="btn btn-secondary" href="meus-espacos.html">Cancelar</a
+          ><button class="btn btn-primary" type="submit">
+            Enviar para análise
+          </button>
+        </div>
+      </form>
+    </main>
+    <script type="module" src="/assets/js/app.js?v=20260804-1"></script>
+  </body>
+</html>

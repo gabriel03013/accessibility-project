@@ -1,60 +1,103 @@
 <!doctype html>
 <html lang="pt-BR">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Minha conta | JogaJunto</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Acompanhe suas reservas e atividades no Partiu Quadra."
+    />
+    <title>Minha conta | Partiu Quadra</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/assets/css/main.css?v=20260804-1" />
+    <script src="/assets/js/theme-init.js?v=20260804-1"></script>
   </head>
-  <body>
-    <header>
-      <a href="../inicio/pagina-inicial.html"
-        ><img src="../../logo.png" alt="Logo do JogaJunto" /> JogaJunto</a
-      >
-      <nav aria-label="Navegação principal">
-        <a href="../inicio/pagina-inicial.html">Início</a
-        ><a href="../explorar/explorar-quadras-e-partidas.html">Explorar</a
-        ><a href="../ranking/times-e-ranking.html">Times e ranking</a>
-      </nav>
-      <a href="painel-da-conta.html" aria-current="page">Usuário</a>
-    </header>
-    <main>
-      <aside>
-        <h2>Usuário</h2>
-        <p>Vôlei · Intermediário</p>
-        <nav aria-label="Área do usuário">
-          <a href="painel-da-conta.html" aria-current="page">Visão geral</a
-          ><a href="reservas/minhas-reservas.html">Minhas reservas</a
-          ><a href="avaliacoes/minhas-avaliacoes.html">Avaliações</a
-          ><a href="favoritos/meus-favoritos.html">Favoritos</a
-          ><a href="dados-pessoais/dados-pessoais.html">Dados pessoais</a
-          ><a href="ajuda/central-de-ajuda.html">Ajuda</a>
-        </nav>
-      </aside>
-      <section aria-labelledby="titulo">
-        <h1 id="titulo">Olá, Usuário</h1>
-        <p>
-          Acompanhe seus próximos jogos, reservas e atividades da comunidade.
-        </p>
-        <h2>Próxima reserva</h2>
-        <article>
-          <img
-            src="../../quadra.png"
-            alt="Quadra poliesportiva da Arena Vila Mariana"
-          />
-          <h3>Arena Vila Mariana</h3>
-          <p>Quinta-feira, 19:30 · Poliesportiva</p>
-          <a href="reservas/minhas-reservas.html">Ver minhas reservas</a>
-        </article>
-        <h2>Seu resumo</h2>
-        <dl>
-          <dt>Reservas realizadas</dt>
-          <dd>6</dd>
-          <dt>Avaliações enviadas</dt>
-          <dd>3</dd>
-          <dt>Favoritos</dt>
-          <dd>4</dd>
-        </dl>
-      </section>
+  <body data-section="account">
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <header class="site-header" data-site-header></header>
+    <main id="conteudo" class="page">
+      <div class="account-layout">
+        <aside class="side-panel">
+          <div class="user-card">
+            <strong>Usuário</strong
+            ><span class="muted">Vôlei · Intermediário</span>
+          </div>
+          <nav class="side-nav" aria-label="Área do usuário">
+            <a href="painel-da-conta.html" aria-current="page">Visão geral</a
+            ><a href="reservas/minhas-reservas.html">Minhas reservas</a
+            ><a href="avaliacoes/minhas-avaliacoes.html">Avaliações</a
+            ><a href="favoritos/meus-favoritos.html">Favoritos</a
+            ><a href="dados-pessoais/dados-pessoais.html">Dados pessoais</a
+            ><a href="acessibilidade/preferencias-de-acessibilidade.html"
+              >Acessibilidade</a
+            ><a href="ajuda/central-de-ajuda.html">Ajuda</a>
+          </nav>
+        </aside>
+        <section class="account-content" aria-labelledby="titulo">
+          <header>
+            <p class="eyebrow">Sua área</p>
+            <h1 id="titulo">Olá, Usuário</h1>
+            <p class="lead">
+              Acompanhe seus próximos jogos, reservas e atividades da
+              comunidade.
+            </p>
+          </header>
+          <section aria-labelledby="proxima">
+            <div class="section-heading">
+              <h2 id="proxima">Próxima reserva</h2>
+              <a class="link" href="reservas/minhas-reservas.html">Ver todas</a>
+            </div>
+            <article class="card reservation-card">
+              <img
+                src="/assets/images/court-placeholder.svg"
+                alt="Quadra poliesportiva da Arena Vila Mariana"
+              />
+              <div>
+                <span class="badge badge-success">Confirmada</span>
+                <h3 class="mt-2 mb-1">Arena Vila Mariana</h3>
+                <p class="mb-0">Quinta-feira, 19:30 · Poliesportiva</p>
+              </div>
+              <a class="btn btn-secondary" href="reservas/minhas-reservas.html"
+                >Ver reserva</a
+              >
+            </article>
+          </section>
+          <section class="section" aria-labelledby="resumo">
+            <h2 id="resumo">Seu resumo</h2>
+            <div class="stat-grid">
+              <dl class="stat-card">
+                <dt>Reservas realizadas</dt>
+                <dd>6</dd>
+              </dl>
+              <dl class="stat-card">
+                <dt>Avaliações enviadas</dt>
+                <dd>3</dd>
+              </dl>
+              <dl class="stat-card">
+                <dt>Favoritos</dt>
+                <dd>4</dd>
+              </dl>
+            </div>
+          </section>
+          <section class="section cta-panel">
+            <div>
+              <h2>Tem uma quadra?</h2>
+              <p>Cadastre seu espaço e organize horários em um só lugar.</p>
+            </div>
+            <a class="btn btn-primary" href="../proprietario/meus-espacos.html"
+              >Área do proprietário</a
+            >
+          </section>
+        </section>
+      </div>
     </main>
+    <script type="module" src="/assets/js/app.js?v=20260804-1"></script>
   </body>
 </html>

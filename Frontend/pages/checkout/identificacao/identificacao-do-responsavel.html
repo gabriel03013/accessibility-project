@@ -1,62 +1,99 @@
 <!doctype html>
 <html lang="pt-BR">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Identificação | JogaJunto</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Identificação | Partiu Quadra</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+    <link rel="stylesheet" href="/assets/css/main.css?v=20260804-1" />
+    <script src="/assets/js/theme-init.js?v=20260804-1"></script>
   </head>
-
-  <body>
-    <header>
-      <a href="../../inicio/pagina-inicial.html"
-        ><img src="../../../logo.png" alt="Logo do JogaJunto" /> JogaJunto</a
-      >
-    </header>
-    <main>
-      <ol aria-label="Etapas da reserva">
-        <li>✓ Carrinho</li>
+  <body data-shell="minimal">
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <header class="site-header" data-site-header></header>
+    <main id="conteudo" class="checkout-page">
+      <ol class="steps" aria-label="Etapas da reserva">
+        <li class="is-complete">Carrinho</li>
         <li aria-current="step">Identificação</li>
         <li>Pagamento</li>
         <li>Confirmação</li>
       </ol>
-      <h1>Identificação</h1>
-      <p>Confirme quem é o responsável e as preferências desta reserva.</p>
-      <form action="../pagamento/pagamento-da-reserva.html">
+      <header class="listing-header">
+        <p class="eyebrow">Etapa 2 de 4</p>
+        <h1>Identificação</h1>
+        <p>Confirme o responsável e as preferências desta reserva.</p>
+      </header>
+      <form
+        class="panel form-panel"
+        action="../pagamento/pagamento-da-reserva.html"
+      >
         <fieldset>
-          <legend>1. Dados do responsável</legend>
+          <legend>Dados do responsável</legend>
           <p>
             Usaremos essas informações somente para confirmar o agendamento.
           </p>
-          <label
-            >Nome completo
-            <input name="nome" autocomplete="name" required /></label
-          ><label>CPF ou documento <input name="documento" required /></label
-          ><label
-            >E-mail
-            <input
-              name="email"
-              type="email"
-              autocomplete="email"
-              required /></label
-          ><label
-            >Telefone
-            <input name="telefone" type="tel" autocomplete="tel" required
-          /></label>
+          <div class="form-grid">
+            <label
+              >Nome completo<input
+                name="nome"
+                autocomplete="name"
+                required /></label
+            ><label
+              >CPF ou documento<input
+                name="documento"
+                inputmode="numeric"
+                required /></label
+            ><label
+              >E-mail<input
+                name="email"
+                type="email"
+                autocomplete="email"
+                required /></label
+            ><label
+              >Telefone<input
+                name="telefone"
+                type="tel"
+                autocomplete="tel"
+                required
+            /></label>
+          </div>
         </fieldset>
         <fieldset>
-          <legend>2. Preferências da reserva</legend>
-          <label
-            >Quantidade de participantes
-            <input type="number" min="1" value="1" /></label
-          ><label>Observações <textarea name="observacoes"></textarea></label
-          ><label
-            ><input type="checkbox" /> Quero receber informações sobre a reserva
-            por e-mail</label
+          <legend>Preferências da reserva</legend>
+          <div class="form-grid">
+            <label
+              >Quantidade de participantes<input
+                name="participantes"
+                type="number"
+                min="1"
+                value="1"
+                required /></label
+            ><label class="field-group-full"
+              >Observações<textarea
+                name="observacoes"
+                placeholder="Conte algo importante para o responsável pela quadra"
+              ></textarea>
+            </label>
+          </div>
+          <label class="toggle mt-4"
+            ><input type="checkbox" /> Quero receber informações da reserva por
+            e-mail</label
           >
         </fieldset>
-        <a href="../carrinho/carrinho-de-reservas.html">Voltar ao carrinho</a
-        ><button type="submit">Continuar para pagamento</button>
+        <div class="form-actions">
+          <a
+            class="btn btn-secondary"
+            href="../carrinho/carrinho-de-reservas.html"
+            >Voltar</a
+          ><button class="btn btn-primary" type="submit">
+            Continuar para pagamento
+          </button>
+        </div>
       </form>
     </main>
+    <script type="module" src="/assets/js/app.js?v=20260804-1"></script>
   </body>
 </html>
