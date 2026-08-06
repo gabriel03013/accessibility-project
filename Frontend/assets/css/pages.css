@@ -237,7 +237,42 @@
 }
 
 .community-copy p {
-  opacity: 0.78;
+  opacity: 0.9;
+}
+
+.community-copy .stat-grid {
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.community-copy .stat-box {
+  background: rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 0.85rem;
+  padding: 1rem 0.65rem;
+  text-align: center;
+}
+
+.community-copy .stat-number {
+  color: #ffffff !important;
+  display: block;
+  font-size: 2.1rem;
+  font-weight: 850;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.community-copy .stat-label {
+  color: #f1f5f9 !important;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.25;
+  margin-top: 0.35rem;
+  opacity: 0.95;
 }
 
 .process-grid {
@@ -295,16 +330,47 @@
   align-self: start;
   position: sticky;
   top: 6.4rem;
+  padding: 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.filter-panel h2 {
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--brand-action);
 }
 
 .filter-panel form {
-  display: grid;
-  gap: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
 .filter-panel fieldset {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 0.55rem;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.filter-panel fieldset + fieldset {
+  border-top: 1px solid var(--line);
+  margin-top: 0.25rem;
+  padding-top: 1.25rem;
+}
+
+.filter-panel legend {
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 800;
+  margin-bottom: 0.65rem;
+  padding: 0;
+  width: 100%;
 }
 
 .results-grid {
