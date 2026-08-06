@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" role="img" aria-labelledby="title desc">
+  <title id="title">Comunidade esportiva reunida</title>
+  <desc id="desc">Ilustração de cinco pessoas lado a lado depois de uma partida.</desc>
+  <rect width="900" height="700" fill="#d9ede3"/>
+  <path d="M0 520c180-80 320-60 450 0 160 74 280 64 450-18v198H0Z" fill="#064e3b"/>
+  <circle cx="175" cy="250" r="62" fill="#dc7048"/>
+  <circle cx="320" cy="220" r="66" fill="#17342b"/>
+  <circle cx="460" cy="248" r="62" fill="#dc7048"/>
+  <circle cx="600" cy="215" r="66" fill="#17342b"/>
+  <circle cx="740" cy="258" r="60" fill="#dc7048"/>
+  <path d="M80 520c5-145 45-220 95-220s92 75 95 220M215 520c8-158 55-235 105-235s98 77 105 235M365 520c5-145 45-215 95-215s92 70 95 215M495 520c8-160 55-238 105-238s98 78 105 238M650 520c5-138 42-205 90-205s90 67 95 205" fill="#fbfaf6" stroke="#064e3b" stroke-width="9"/>
+  <path d="M245 360 175 410l-70-40M390 355l70 55 70-55M530 350l70 58 70-50" fill="none" stroke="#064e3b" stroke-linecap="round" stroke-width="18"/>
+</svg>

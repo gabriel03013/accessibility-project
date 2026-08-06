@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Conheça e configure os recursos de acessibilidade do Partiu Quadra."
+    />
+    <title>Acessibilidade | Partiu Quadra</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+    <link rel="stylesheet" href="/assets/css/main.css?v=20260804-1" />
+    <script src="/assets/js/theme-init.js?v=20260804-1"></script>
+  </head>
+  <body data-section="account">
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <header class="site-header" data-site-header></header>
+    <main id="conteudo" class="page">
+      <div class="account-layout">
+        <aside class="side-panel">
+          <div class="user-card">
+            <strong>Usuário</strong
+            ><span class="muted">Vôlei · Intermediário</span>
+          </div>
+          <nav class="side-nav" aria-label="Área do usuário">
+            <a href="/pages/conta/painel-da-conta.html">Visão geral</a
+            ><a href="/pages/conta/reservas/minhas-reservas.html">Minhas reservas</a
+            ><a href="/pages/conta/avaliacoes/minhas-avaliacoes.html">Avaliações</a
+            ><a href="/pages/conta/favoritos/meus-favoritos.html">Favoritos</a
+            ><a href="/pages/ranking/times-e-ranking.html">Times e ranking</a
+            ><a href="/pages/conta/dados-pessoais/dados-pessoais.html">Dados pessoais</a
+            ><a href="/pages/conta/acessibilidade/preferencias-de-acessibilidade.html" aria-current="page"
+              >Acessibilidade</a
+            ><a href="/pages/conta/ajuda/central-de-ajuda.html">Ajuda</a>
+          </nav>
+        </aside>
+        <section class="account-content" aria-labelledby="titulo">
+          <header>
+            <p class="eyebrow">Ajuste do seu jeito</p>
+            <h1 id="titulo">Acessibilidade</h1>
+            <p class="lead">
+              Use o botão de acessibilidade no cabeçalho. Suas preferências
+              ficam salvas neste navegador.
+            </p>
+          </header>
+          <div class="accessibility-grid">
+            <article class="card accessibility-card">
+              <span class="option-icon">◐</span>
+              <h2 class="text-xl">Claro, escuro ou automático</h2>
+              <p>
+                Escolha o tema ou acompanhe a configuração do seu dispositivo.
+              </p>
+            </article>
+            <article class="card accessibility-card">
+              <span class="option-icon">A+</span>
+              <h2 class="text-xl">Texto maior</h2>
+              <p>Amplie a interface sem perder conteúdo ou funcionalidade.</p>
+            </article>
+            <article class="card accessibility-card">
+              <span class="option-icon">◒</span>
+              <h2 class="text-xl">Contraste reforçado</h2>
+              <p>Realce textos, campos e bordas para facilitar a leitura.</p>
+            </article>
+            <article class="card accessibility-card">
+              <span class="option-icon">≈</span>
+              <h2 class="text-xl">Menos movimento</h2>
+              <p>
+                Reduza transições e animações que possam causar desconforto.
+              </p>
+            </article>
+          </div>
+          <section class="section" aria-labelledby="teclado">
+            <h2 id="teclado">Navegação pelo teclado</h2>
+            <div class="panel overflow-x-auto">
+              <table class="keyboard-table">
+                <thead>
+                  <tr>
+                    <th>Ação</th>
+                    <th>Tecla</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Avançar entre controles</td>
+                    <td><kbd>Tab</kbd></td>
+                  </tr>
+                  <tr>
+                    <td>Voltar ao controle anterior</td>
+                    <td><kbd>Shift</kbd> + <kbd>Tab</kbd></td>
+                  </tr>
+                  <tr>
+                    <td>Acionar botão ou link</td>
+                    <td><kbd>Enter</kbd></td>
+                  </tr>
+                  <tr>
+                    <td>Marcar opções</td>
+                    <td><kbd>Espaço</kbd></td>
+                  </tr>
+                  <tr>
+                    <td>Fechar preferências</td>
+                    <td><kbd>Esc</kbd></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <section class="section cta-panel">
+            <div>
+              <h2>Encontrou uma barreira?</h2>
+              <p>
+                Conte para nós em qual página aconteceu e qual tecnologia você
+                usa.
+              </p>
+            </div>
+            <a
+              class="btn btn-primary"
+              href="mailto:acessibilidade@partiuquadra.com.br"
+              >Falar com acessibilidade</a
+            >
+          </section>
+        </section>
+      </div>
+    </main>
+    <script type="module" src="/assets/js/app.js?v=20260804-1"></script>
+  </body>
+</html>

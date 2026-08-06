@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Carrinho | Partiu Quadra</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+    <link rel="stylesheet" href="/assets/css/main.css?v=20260804-1" />
+    <script src="/assets/js/theme-init.js?v=20260804-1"></script>
+  </head>
+  <body data-shell="minimal">
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <header class="site-header" data-site-header></header>
+    <main id="conteudo" class="checkout-page">
+      <ol class="steps" aria-label="Etapas da reserva">
+        <li aria-current="step">Carrinho</li>
+        <li>Identificação</li>
+        <li>Pagamento</li>
+        <li>Confirmação</li>
+      </ol>
+      <header class="listing-header">
+        <p class="eyebrow">Sua seleção</p>
+        <h1>Seu carrinho</h1>
+        <p>Confira o horário antes de continuar.</p>
+      </header>
+      <div class="checkout-layout">
+        <section aria-labelledby="itens">
+          <h2 id="itens" class="text-xl mb-4">Reserva selecionada</h2>
+          <article class="card checkout-card">
+            <img
+              src="/assets/images/court-volleyball-real.jpg"
+              alt="Quadra poliesportiva da Arena Vila Mariana"
+            />
+            <div>
+              <span class="badge">Poliesportiva coberta</span>
+              <h3 class="mt-2 mb-1">Arena Vila Mariana</h3>
+              <p class="mb-1">Quinta-feira, 19:30 · 1 hora</p>
+              <strong>R$ 96</strong>
+            </div>
+            <button class="btn btn-danger" type="button" data-remove-card>
+              Remover
+            </button>
+          </article>
+          <a
+            class="link inline-block mt-5"
+            href="../../explorar/explorar-quadras-e-partidas.html"
+            >← Continuar explorando</a
+          >
+        </section>
+        <aside class="panel summary-panel">
+          <h2 class="text-xl">Resumo</h2>
+          <div class="summary-row">
+            <span>Subtotal</span><strong>R$ 96</strong>
+          </div>
+          <div class="summary-row summary-total">
+            <span>Total</span><span>R$ 96</span>
+          </div>
+          <a
+            class="btn btn-accent btn-block mt-5"
+            href="../identificacao/identificacao-do-responsavel.html"
+            >Continuar</a
+          >
+          <p class="help-text text-center mt-3">Pagamento seguro e simulado.</p>
+        </aside>
+      </div>
+    </main>
+    <script type="module" src="/assets/js/app.js?v=20260804-1"></script>
+  </body>
+</html>

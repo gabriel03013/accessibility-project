@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Entre na sua conta Partiu Quadra." />
+    <title>Entrar | Partiu Quadra</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+    <link rel="stylesheet" href="/assets/css/main.css?v=20260804-1" />
+    <script src="/assets/js/theme-init.js?v=20260804-1"></script>
+  </head>
+  <body data-shell="minimal">
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <header class="site-header" data-site-header></header>
+    <main id="conteudo" class="auth-page">
+      <section class="auth-story" aria-labelledby="historia">
+        <p class="eyebrow">Sua comunidade espera</p>
+        <h1 id="historia">Volte pro jogo.</h1>
+        <p>
+          Seus horários, partidas e avaliações ficam organizados em um só lugar.
+        </p>
+        <img
+          src="/assets/images/community-real.jpg"
+          alt="Fotografia de um time reunido e comemorando após uma partida"
+        />
+        <blockquote>
+          “Achei uma vaga no vôlei em cinco minutos. No mesmo dia já estava em
+          quadra.”
+        </blockquote>
+      </section>
+      <section class="auth-form-shell" aria-labelledby="titulo">
+        <p class="eyebrow">Que bom te ver</p>
+        <h2 id="titulo">Entre na sua conta</h2>
+        <p>
+          Ainda não tem conta?
+          <a class="link" href="../cadastro/criar-conta.html">Criar conta</a>
+        </p>
+        <form class="auth-form" action="../../conta/painel-da-conta.html">
+          <button
+            class="btn btn-secondary btn-block"
+            type="button"
+            data-feedback="O login com Google será conectado em breve."
+          >
+            Continuar com Google
+          </button>
+          <p class="muted text-center mb-0" aria-hidden="true">
+            ou use seu e-mail
+          </p>
+          <label
+            >E-mail<input
+              name="email"
+              type="email"
+              autocomplete="email"
+              inputmode="email"
+              required /></label
+          ><label
+            >Senha<input
+              name="senha"
+              type="password"
+              autocomplete="current-password"
+              minlength="8"
+              required
+          /></label>
+          <div class="auth-row">
+            <label class="toggle"
+              ><input type="checkbox" /> Continuar conectado</label
+            ><a class="link" href="../cadastro/criar-conta.html"
+              >Esqueci minha senha</a
+            >
+          </div>
+          <button class="btn btn-primary btn-block" type="submit">
+            Entrar
+          </button>
+        </form>
+        <p class="help-text mt-5">
+          Todo o fluxo funciona pelo teclado, com foco visível e mensagens
+          compatíveis com leitores de tela.
+        </p>
+      </section>
+    </main>
+    <script type="module" src="/assets/js/app.js?v=20260804-1"></script>
+  </body>
+</html>

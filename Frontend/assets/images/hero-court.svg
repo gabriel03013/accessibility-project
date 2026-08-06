@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Quadra esportiva iluminada</title>
+  <desc id="desc">Ilustração abstrata de uma quadra verde com linhas claras e uma bola laranja.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#17342b"/>
+      <stop offset="1" stop-color="#064e3b"/>
+    </linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0b6a52"/>
+      <stop offset="1" stop-color="#033c2d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#sky)"/>
+  <circle cx="180" cy="160" r="210" fill="#d9ede3" opacity=".09"/>
+  <circle cx="1040" cy="90" r="280" fill="#dc7048" opacity=".12"/>
+  <path d="M110 815 360 330h500l250 485Z" fill="url(#floor)" stroke="#d9ede3" stroke-width="10"/>
+  <path d="M610 330v485M360 330l-250 485M860 330l250 485M260 525h700" fill="none" stroke="#d9ede3" stroke-width="8" opacity=".78"/>
+  <ellipse cx="610" cy="625" rx="170" ry="95" fill="none" stroke="#d9ede3" stroke-width="8" opacity=".78"/>
+  <path d="M150 150h210M840 150h210" stroke="#fae7df" stroke-linecap="round" stroke-width="18" opacity=".65"/>
+  <circle cx="720" cy="560" r="50" fill="#dc7048"/>
+  <path d="M680 555c24-16 55-16 80 0M710 515c-8 28-5 57 9 84" fill="none" stroke="#9a3e23" stroke-width="7"/>
+</svg>

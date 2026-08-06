@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Conheça a estrutura e reserve um horário na Arena Vila Mariana."
+    />
+    <title>Arena Vila Mariana | Partiu Quadra</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/assets/css/main.css?v=20260804-1" />
+    <script src="/assets/js/theme-init.js?v=20260804-1"></script>
+  </head>
+  <body data-section="explore">
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <header class="site-header" data-site-header></header>
+    <main id="conteudo" class="page">
+      <nav class="breadcrumbs" aria-label="Você está aqui">
+        <ol>
+          <li><a href="../inicio/pagina-inicial.html">Início</a></li>
+          <li>
+            <a href="../explorar/explorar-quadras-e-partidas.html">Explorar</a>
+          </li>
+          <li aria-current="page">Arena Vila Mariana</li>
+        </ol>
+      </nav>
+      <div class="detail-layout">
+        <section aria-labelledby="titulo">
+          <div class="gallery">
+            <img
+              src="/assets/images/court-volleyball-real.jpg"
+              alt="Vista principal da quadra poliesportiva coberta"
+            /><img
+              src="/assets/images/court-futsal-real.jpg"
+              alt="Vista lateral da quadra"
+            /><img
+              src="/assets/images/hero-court-real.jpg"
+              alt="Detalhe da iluminação da quadra"
+            />
+          </div>
+          <div class="detail-content">
+            <span class="badge">Poliesportiva · Coberta</span>
+            <h1 id="titulo">Arena Vila Mariana</h1>
+            <p>
+              ★ <strong>4,9</strong> em 128 avaliações · Vila Mariana, São Paulo
+              · 2,4 km
+            </p>
+            <div class="hero-actions mt-5">
+              <button
+                class="btn btn-secondary"
+                type="button"
+                data-feedback="Arena Vila Mariana foi adicionada aos favoritos."
+              >
+                <i class="fa-regular fa-heart" aria-hidden="true"></i>
+                Salvar</button
+              ><button
+                class="btn btn-secondary"
+                type="button"
+                data-feedback="Link da quadra copiado para compartilhar."
+              >
+                <i
+                  class="fa-solid fa-arrow-up-from-bracket"
+                  aria-hidden="true"
+                ></i>
+                Compartilhar
+              </button>
+            </div>
+            <section class="section" aria-labelledby="sobre">
+              <h2 id="sobre">Sobre o espaço</h2>
+              <p class="lead">
+                Uma quadra versátil para futsal, vôlei, basquete e handebol.
+                Piso em ótimo estado, iluminação uniforme e estrutura coberta.
+              </p>
+            </section>
+            <section class="section" aria-labelledby="estrutura">
+              <h2 id="estrutura">O que tem aqui</h2>
+              <ul class="amenity-list">
+                <li>✓ Quadra coberta</li>
+                <li>✓ Vestiários</li>
+                <li>✓ Estacionamento</li>
+                <li>✓ Bebedouro</li>
+                <li>✓ Entrada sem degraus</li>
+                <li>✓ Banheiro acessível</li>
+              </ul>
+            </section>
+            <section class="section" aria-labelledby="avaliacoes">
+              <div class="section-heading">
+                <h2 id="avaliacoes">Quem já jogou recomenda</h2>
+                <strong>4,9 de 5</strong>
+              </div>
+              <article class="panel">
+                <blockquote>
+                  “Quadra bem cuidada, boa iluminação e atendimento direto.
+                  Voltaremos com o time.”
+                </blockquote>
+                <p class="mb-0"><strong>Marina C.</strong> · jogou em julho</p>
+              </article>
+            </section>
+          </div>
+        </section>
+        <aside class="panel booking-panel" aria-labelledby="reserva">
+          <p class="eyebrow">A partir de R$ 96/h</p>
+          <h2 id="reserva" class="text-2xl">Reserve seu horário</h2>
+          <form action="../checkout/carrinho/carrinho-de-reservas.html">
+            <label>Data<input type="date" required /></label>
+            <fieldset>
+              <legend>Horário disponível</legend>
+              <div class="time-options">
+                <label class="choice"
+                  ><input type="radio" name="horario" required /> 19:30</label
+                ><label class="choice"
+                  ><input type="radio" name="horario" /> 20:30</label
+                >
+              </div>
+            </fieldset>
+            <label
+              >Duração<select>
+                <option>1 hora</option>
+                <option>2 horas</option>
+              </select></label
+            >
+            <div class="summary-row summary-total">
+              <span>Total</span><span>R$ 96</span>
+            </div>
+            <button class="btn btn-accent btn-block" type="submit">
+              Adicionar ao carrinho
+            </button>
+            <p class="help-text text-center">Você só paga na próxima etapa.</p>
+          </form>
+        </aside>
+      </div>
+    </main>
+    <script type="module" src="/assets/js/app.js?v=20260804-1"></script>
+  </body>
+</html>

@@ -1,0 +1,259 @@
+@media (max-width: 1023px) {
+  .desktop-nav {
+    display: none;
+  }
+
+  .hero {
+    gap: 2rem;
+    grid-template-columns: 1fr 0.9fr;
+  }
+
+  .court-grid,
+  .feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .option-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .detail-layout {
+    grid-template-columns: minmax(0, 1fr) 18rem;
+  }
+}
+
+@media (max-width: 767px) {
+  body {
+    padding-bottom: calc(4.2rem + env(safe-area-inset-bottom));
+  }
+
+  body[data-shell="minimal"] {
+    padding-bottom: 0;
+  }
+
+  .header-inner {
+    min-height: 4.2rem;
+    padding-inline: 1rem;
+  }
+
+  .header-actions > .btn,
+  .header-actions > .account-link {
+    display: none;
+  }
+
+  .page,
+  .page-narrow,
+  .checkout-page {
+    padding: 1.5rem 1rem 3.5rem;
+  }
+
+  .section {
+    margin-top: 3.8rem;
+  }
+
+  .section-heading,
+  .cta-panel,
+  .owner-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .hero {
+    display: block;
+    min-height: auto;
+    padding-block: 2.2rem;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(2.6rem, 13vw, 4.2rem);
+  }
+
+  .hero-visual {
+    margin-top: 2.5rem;
+    min-height: 23rem;
+  }
+
+  .hero-visual > img {
+    height: 21rem;
+    width: 92%;
+  }
+
+  .floating-match {
+    max-width: 15rem;
+  }
+
+  .search-box {
+    grid-template-columns: 1fr;
+    margin-top: 0;
+  }
+
+  .search-box label {
+    border-bottom: 1px solid var(--line);
+    border-right: 0;
+    padding-block: 0.45rem;
+  }
+
+  .court-grid,
+  .feature-grid,
+  .option-grid,
+  .results-grid,
+  .accessibility-grid,
+  .stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .community-banner,
+  .listing-layout,
+  .detail-layout,
+  .account-layout,
+  .checkout-layout,
+  .auth-page {
+    grid-template-columns: 1fr;
+  }
+
+  .community-banner img {
+    min-height: 16rem;
+  }
+
+  .process-grid {
+    gap: 1.2rem;
+    grid-template-columns: 1fr;
+  }
+
+  .filter-panel,
+  .booking-panel,
+  .summary-panel,
+  .side-panel {
+    position: static;
+  }
+
+  .gallery {
+    height: 19rem;
+  }
+
+  .gallery img:last-child {
+    display: none;
+  }
+
+  .auth-story {
+    min-height: 24rem;
+  }
+
+  .auth-form-shell {
+    padding: 2rem 1rem 3.5rem;
+  }
+
+  .checkout-card,
+  .reservation-card,
+  .favorite-card,
+  .review-card {
+    align-items: start;
+    grid-template-columns: 6rem minmax(0, 1fr);
+  }
+
+  .checkout-card img,
+  .reservation-card img,
+  .favorite-card img,
+  .review-card img {
+    height: 5rem;
+    width: 6rem;
+  }
+
+  .checkout-card > :last-child,
+  .reservation-card > :last-child,
+  .favorite-card > :last-child,
+  .review-card > :last-child {
+    grid-column: 1 / -1;
+  }
+
+  .form-grid,
+  .amenity-list {
+    grid-template-columns: 1fr;
+  }
+
+  .steps li {
+    font-size: 0;
+  }
+
+  .steps li::before {
+    font-size: 0.75rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    padding: 2.5rem 1rem 6rem;
+  }
+
+  .mobile-nav {
+    align-items: center;
+    backdrop-filter: blur(18px);
+    background: color-mix(in srgb, var(--surface) 94%, transparent);
+    border-top: 1px solid var(--line);
+    bottom: 0;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    left: 0;
+    padding: 0.45rem 0.3rem calc(0.45rem + env(safe-area-inset-bottom));
+    position: fixed;
+    right: 0;
+    z-index: 90;
+  }
+
+  .mobile-nav a {
+    align-items: center;
+    color: var(--ink-soft);
+    display: flex;
+    flex-direction: column;
+    font-size: 0.62rem;
+    font-weight: 750;
+    gap: 0.12rem;
+    min-width: 0;
+  }
+
+  .mobile-nav a::before {
+    font-size: 1.05rem;
+  }
+
+  .mobile-nav a[data-nav="home"]::before {
+    content: "⌂";
+  }
+  .mobile-nav a[data-nav="explore"]::before {
+    content: "⌕";
+  }
+  .mobile-nav a[data-nav="ranking"]::before {
+    content: "♜";
+  }
+  .mobile-nav a[data-nav="bookings"]::before {
+    content: "▣";
+  }
+  .mobile-nav a[data-nav="account"]::before {
+    content: "●";
+  }
+  .mobile-nav a[data-nav="owner"]::before {
+    content: "▦";
+  }
+
+  .mobile-nav a[aria-current="page"] {
+    color: var(--brand-ink);
+  }
+}
+
+@media (max-width: 420px) {
+  .brand-text {
+    display: none;
+  }
+
+  .hero-actions .btn,
+  .form-actions .btn {
+    width: 100%;
+  }
+
+  .gallery {
+    display: block;
+  }
+
+  .gallery img:not(:first-child) {
+    display: none;
+  }
+}

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Gerencie suas quadras e horários no Partiu Quadra."
+    />
+    <title>Meus espaços | Partiu Quadra</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/assets/css/main.css?v=20260804-1" />
+    <script src="/assets/js/theme-init.js?v=20260804-1"></script>
+  </head>
+  <body data-section="owner">
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <header class="site-header" data-site-header></header>
+    <main id="conteudo" class="page">
+      <header class="owner-toolbar">
+        <div>
+          <p class="eyebrow">Área do proprietário</p>
+          <h1 class="mb-2">Meus espaços</h1>
+          <p>Cadastre quadras privadas e acompanhe reservas em um só lugar.</p>
+        </div>
+        <a class="btn btn-accent" href="cadastrar-quadra.html"
+          ><i class="fa-solid fa-plus" aria-hidden="true"></i> Cadastrar
+          quadra</a
+        >
+      </header>
+      <div class="stat-grid mb-8">
+        <dl class="stat-card">
+          <dt>Espaços ativos</dt>
+          <dd>1</dd>
+        </dl>
+        <dl class="stat-card">
+          <dt>Reservas no mês</dt>
+          <dd>18</dd>
+        </dl>
+        <dl class="stat-card">
+          <dt>Receita estimada</dt>
+          <dd>R$ 1,7 mil</dd>
+        </dl>
+      </div>
+      <section aria-labelledby="espacos">
+        <div class="section-heading">
+          <h2 id="espacos">Seus espaços</h2>
+          <span class="badge badge-success">Cadastro aprovado</span>
+        </div>
+        <article class="card reservation-card">
+          <img
+            src="/assets/images/court-futsal-real.jpg"
+            alt="Quadra poliesportiva cadastrada da Arena Vila Mariana"
+          />
+          <div>
+            <h3 class="mb-1">Arena Vila Mariana</h3>
+            <p class="mb-1">Poliesportiva coberta · R$ 96/h</p>
+            <span class="muted">Próximo horário reservado: quinta, 19:30</span>
+          </div>
+          <div class="hero-actions">
+            <a
+              class="btn btn-secondary"
+              href="../detalhes/detalhes-da-quadra.html"
+              >Ver anúncio</a
+            ><button
+              class="btn btn-quiet"
+              type="button"
+              data-feedback="A edição do espaço será conectada ao cadastro."
+            >
+              Editar
+            </button>
+          </div>
+        </article>
+      </section>
+      <section class="section cta-panel">
+        <div>
+          <h2>Tem outro espaço?</h2>
+          <p>
+            O cadastro leva poucos minutos. Você pode salvar e revisar antes de
+            publicar.
+          </p>
+        </div>
+        <a class="btn btn-primary" href="cadastrar-quadra.html"
+          >Adicionar espaço</a
+        >
+      </section>
+    </main>
+    <script type="module" src="/assets/js/app.js?v=20260804-1"></script>
+  </body>
+</html>
