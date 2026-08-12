@@ -59,6 +59,10 @@ datas futuras calculadas no momento da carga.
 
 - Gabriel M. Gonçalves: desenvolvimento full stack, acessibilidade, testes e
   documentação.
+- Erick Neves Barbosa: desenvolvimento backend e modelagem de dados.
+- Bruna de Oliveira Jesus: desenvolvimento backend.
+- Gustavo Manganelli: desenvolvimento frontend e modelagem de dados.
+- Mari Torres: design da interface (Figma) e toda identidade visual.
 
 ## Uso de inteligência artificial
 
