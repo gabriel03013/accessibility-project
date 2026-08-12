@@ -14,7 +14,7 @@ export class ApiError extends Error {
 
 function readSession() {
   try {
-    const session = JSON.parse(sessionStorage.getItem(SESSION_KEY) || "null");
+    const session = JSON.parse(localStorage.getItem(SESSION_KEY) || "null");
     if (
       !session?.accessToken ||
       typeof session.expiresAt !== "number" ||
@@ -33,7 +33,7 @@ export function writeSession(payload) {
     expiresAt: Date.now() + Number(payload.expiresIn) * 1000,
     user: payload.user,
   };
-  sessionStorage.setItem(SESSION_KEY, JSON.stringify(session));
+  localStorage.setItem(SESSION_KEY, JSON.stringify(session));
   window.dispatchEvent(
     new CustomEvent("sessionchange", { detail: session.user }),
   );
@@ -41,7 +41,7 @@ export function writeSession(payload) {
 }
 
 export function clearSession() {
-  sessionStorage.removeItem(SESSION_KEY);
+  localStorage.removeItem(SESSION_KEY);
   window.dispatchEvent(new CustomEvent("sessionchange", { detail: null }));
 }
 
@@ -54,7 +54,7 @@ export function updateSessionUser(user) {
   const session = readSession();
   if (!session) return null;
   session.user = user;
-  sessionStorage.setItem(SESSION_KEY, JSON.stringify(session));
+  localStorage.setItem(SESSION_KEY, JSON.stringify(session));
   window.dispatchEvent(new CustomEvent("sessionchange", { detail: user }));
   return session;
 }
@@ -136,13 +136,26 @@ export async function refreshSession() {
 }
 
 export async function request(path, options = {}) {
-  const authenticated = options.auth !== false;
-  let session = authenticated ? getSession() : null;
-  if (authenticated && !session) session = await refreshSession();
+  const requireAuth = options.auth !== false;
+  let session = getSession();
+
+  if (requireAuth && !session) {
+    try {
+      session = await refreshSession();
+    } catch {
+      window.location.href = "/pages/autenticacao/entrar/entrar-na-conta.html";
+      return new Promise(() => {});
+    }
+  }
 
   let response = await send(path, options, session?.accessToken);
-  if (authenticated && response.status === 401 && options.retry !== false) {
-    session = await refreshSession();
+  if (requireAuth && response.status === 401 && options.retry !== false) {
+    try {
+      session = await refreshSession();
+    } catch {
+      window.location.href = "/pages/autenticacao/entrar/entrar-na-conta.html";
+      return new Promise(() => {});
+    }
     response = await send(
       path,
       { ...options, retry: false },
