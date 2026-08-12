@@ -596,6 +596,21 @@ async function loadCourtDetails() {
       dateInput.min = new Date().toISOString().slice(0, 10);
     }
 
+    const pricePerHour = Number(detail.sports?.[0]?.pricePerHour || 96);
+    const durationSelect = bookingForm?.querySelector('select[name="duracao"]');
+    const totalSpan = bookingForm?.querySelector(".summary-total span:last-child");
+
+    function updateCourtTotalDisplay() {
+      const h = Number(durationSelect?.value || 1);
+      const tot = h * pricePerHour;
+      if (totalSpan) totalSpan.textContent = formatPrice(tot);
+    }
+
+    if (durationSelect) {
+      durationSelect.addEventListener("change", updateCourtTotalDisplay);
+      updateCourtTotalDisplay();
+    }
+
     bookingForm?.addEventListener("submit", async (event) => {
       event.preventDefault();
       if (!isAuthenticated()) {
@@ -709,6 +724,10 @@ function loadCartPage() {
     ]);
     section.replaceChildren(emptyPanel);
     if (summaryPanel) {
+      const subtotalEl = summaryPanel.querySelector(".summary-row:not(.summary-total) strong");
+      const totalEl = summaryPanel.querySelector(".summary-total span:last-child");
+      if (subtotalEl) subtotalEl.textContent = "R$ 0,00";
+      if (totalEl) totalEl.textContent = "R$ 0,00";
       const continueBtn = summaryPanel.querySelector("a.btn-accent");
       if (continueBtn) {
         continueBtn.style.pointerEvents = "none";
