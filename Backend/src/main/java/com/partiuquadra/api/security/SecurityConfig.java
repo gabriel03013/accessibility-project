@@ -63,7 +63,18 @@ public class SecurityConfig {
                         .permitAll()
                         .requestMatchers(
                                 org.springframework.http.HttpMethod.GET,
-                                "/api/v1/courts/**",
+                                "/api/v1/courts/mine",
+                                "/api/v1/courts/saved",
+                                "/api/v1/teams/mine",
+                                "/api/v1/teams/invitations/**",
+                                "/api/v1/teams/challenges/**")
+                        .authenticated()
+                        .requestMatchers(
+                                org.springframework.http.HttpMethod.GET,
+                                "/api/v1/courts",
+                                "/api/v1/courts/*",
+                                "/api/v1/teams",
+                                "/api/v1/teams/{teamId}",
                                 "/api/v1/reference/**",
                                 "/api/v1/media/images/**")
                         .permitAll()

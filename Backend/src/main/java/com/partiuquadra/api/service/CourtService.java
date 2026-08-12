@@ -2,6 +2,7 @@ package com.partiuquadra.api.service;
 
 import com.partiuquadra.api.exception.ApiException;
 import com.partiuquadra.api.dto.CourtDtos;
+import com.partiuquadra.api.model.AccountType;
 import com.partiuquadra.api.model.AmenityEntity;
 import com.partiuquadra.api.repository.AmenityRepository;
 import com.partiuquadra.api.model.CourtEntity;
@@ -60,7 +61,17 @@ public class CourtService {
             String sport,
             String query,
             Pageable pageable) {
-        return courts.searchPublished(clean(location), clean(sport), clean(query), pageable)
+        String locationFilter = clean(location);
+        String sportFilter = clean(sport);
+        String queryFilter = clean(query);
+        return courts.searchPublished(
+                        locationFilter,
+                        contains(locationFilter),
+                        locationFilter.toLowerCase(Locale.ROOT),
+                        sportFilter,
+                        queryFilter,
+                        contains(queryFilter),
+                        pageable)
                 .map(this::toSummary);
     }
 
@@ -75,6 +86,9 @@ public class CourtService {
     public CourtDtos.Detail create(UUID ownerId, CourtDtos.CreateRequest request) {
         UserEntity owner = users.findById(ownerId)
                 .orElseThrow(() -> notFound("Conta não encontrada."));
+        if (owner.getAccountType() != AccountType.OWNER) {
+            owner.setAccountType(AccountType.OWNER);
+        }
         List<Long> sportIds = request.sports().stream()
                 .map(CourtDtos.SportInput::sportId)
                 .distinct()
@@ -284,6 +298,10 @@ public class CourtService {
 
     private String clean(String value) {
         return value == null || value.isBlank() ? "" : value.trim();
+    }
+
+    private String contains(String value) {
+        return "%" + value.toLowerCase(Locale.ROOT) + "%";
     }
 
     private String trimToNull(String value) {

@@ -123,7 +123,15 @@ public class TeamService {
             String query,
             SkillLevel level,
             Pageable pageable) {
-        return teams.searchPublic(clean(sport), clean(query), level, pageable).map(this::toView);
+        String sportFilter = clean(sport);
+        String queryFilter = clean(query);
+        return teams.searchPublic(
+                        sportFilter,
+                        queryFilter,
+                        contains(queryFilter),
+                        level,
+                        pageable)
+                .map(this::toView);
     }
 
     @Transactional(readOnly = true)
@@ -139,7 +147,9 @@ public class TeamService {
         TeamEntity team = teams.findWithMembersById(teamId)
                 .filter(found -> found.getStatus() == TeamStatus.ACTIVE)
                 .orElseThrow(() -> notFound("Time não encontrado."));
-        if (!team.isPublicProfile() && !members.existsByTeamIdAndUserId(teamId, viewerId)) {
+        if (!team.isPublicProfile()
+                && (viewerId == null
+                        || !members.existsByTeamIdAndUserId(teamId, viewerId))) {
             throw new ApiException(
                     HttpStatus.FORBIDDEN,
                     "TEAM_FORBIDDEN",
@@ -510,7 +520,11 @@ public class TeamService {
     }
 
     private String clean(String value) {
-        return value == null || value.isBlank() ? null : value.trim();
+        return value == null || value.isBlank() ? "" : value.trim();
+    }
+
+    private String contains(String value) {
+        return "%" + value.toLowerCase(Locale.ROOT) + "%";
     }
 
     private String trimToNull(String value) {
