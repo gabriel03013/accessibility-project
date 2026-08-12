@@ -8,8 +8,8 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
     />
-    <link rel="stylesheet" href="/assets/css/main.css?v=20260804-1" />
-    <script src="/assets/js/theme-init.js?v=20260804-1"></script>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <script src="/assets/js/theme-init.js"></script>
   </head>
   <body data-section="account">
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -30,7 +30,8 @@
             ><a href="/pages/conta/dados-pessoais/dados-pessoais.html">Dados pessoais</a
             ><a href="/pages/conta/acessibilidade/preferencias-de-acessibilidade.html"
               >Acessibilidade</a
-            ><a href="/pages/conta/ajuda/central-de-ajuda.html">Ajuda</a>
+            ><a href="/pages/conta/ajuda/central-de-ajuda.html">Ajuda</a
+            ><a href="#" data-logout>Sair da conta</a>
           </nav>
         </aside>
         <section class="account-content" aria-labelledby="titulo">
@@ -40,63 +41,14 @@
             <p>Espaços e partidas que você quer encontrar rapidamente.</p>
           </header>
           <div class="content-stack">
-            <article class="card favorite-card">
-              <img
-                src="/assets/images/court-volleyball-real.jpg"
-                alt="Quadra poliesportiva da Arena Vila Nova"
-              />
-              <div>
-                <h2 class="text-xl mb-1">Arena Vila Nova</h2>
-                <p class="mb-0">Poliesportiva · Nota 4,8 de 5</p>
-              </div>
-              <div class="hero-actions">
-                <a
-                  class="btn btn-primary"
-                  href="../../detalhes/detalhes-da-quadra.html"
-                  >Ver detalhes</a
-                ><button class="btn btn-quiet" type="button" data-remove-card>
-                  Remover
-                </button>
-              </div>
-            </article>
-            <article class="card favorite-card">
-              <img
-                src="/assets/images/hero-court-real.jpg"
-                alt="Ginásio Aurora para basquete"
-              />
-              <div>
-                <h2 class="text-xl mb-1">Ginásio Aurora</h2>
-                <p class="mb-0">Basquete · Nota 4,7 de 5</p>
-              </div>
-              <div class="hero-actions">
-                <a
-                  class="btn btn-primary"
-                  href="../../detalhes/detalhes-da-quadra.html"
-                  >Ver detalhes</a
-                ><button class="btn btn-quiet" type="button" data-remove-card>
-                  Remover
-                </button>
-              </div>
-            </article>
-            <article class="card favorite-card">
-              <img
-                src="/assets/images/court-futsal-real.jpg"
-                alt="Quadra para vôlei aberto no Batel"
-              />
-              <div>
-                <h2 class="text-xl mb-1">Vôlei aberto no Batel</h2>
-                <p class="mb-0">Partida aberta · Sábado, 10:00</p>
-              </div>
-              <a
-                class="btn btn-primary"
-                href="../../detalhes/detalhes-da-quadra.html"
-                >Ver detalhes</a
-              >
-            </article>
+            <div class="panel text-center py-8">
+              <p class="lead mb-4">Você ainda não possui quadras ou partidas favoritadas.</p>
+              <a class="btn btn-accent" href="/pages/explorar/explorar-quadras-e-partidas.html">Explorar quadras</a>
+            </div>
           </div>
         </section>
       </div>
     </main>
-    <script type="module" src="/assets/js/app.js?v=20260804-1"></script>
+    <script type="module" src="/assets/js/app.js"></script>
   </body>
 </html>

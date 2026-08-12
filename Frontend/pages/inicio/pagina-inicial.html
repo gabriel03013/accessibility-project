@@ -16,8 +16,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
-    <link rel="stylesheet" href="/assets/css/main.css?v=20260804-1" />
-    <script src="/assets/js/theme-init.js?v=20260804-1"></script>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <script src="/assets/js/theme-init.js"></script>
   </head>
   <body data-section="home">
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -84,16 +84,16 @@
         role="search"
       >
         <label
-          >O que você quer jogar?<select name="esporte">
-            <option>Todos os esportes</option>
-            <option>Futsal</option>
-            <option>Vôlei</option>
-            <option>Basquete</option>
+          >O que você quer jogar?<select name="sport">
+            <option value="">Todos os esportes</option>
+            <option value="futsal">Futsal</option>
+            <option value="volei">Vôlei</option>
+            <option value="basquete">Basquete</option>
           </select></label
         >
         <label
           >Onde?<input
-            name="bairro"
+            name="location"
             type="search"
             placeholder="Bairro ou cidade"
         /></label>
@@ -347,8 +347,8 @@
       <div class="footer-grid">
         <div>
           <a class="brand" href="pagina-inicial.html"
-            ><span class="brand-symbol" aria-hidden="true"></span
-            ><span>Partiu Quadra</span></a
+            ><img class="brand-logo" src="/assets/images/logo.png" alt="Logo Partiu Quadra"
+            /><span>Partiu Quadra</span></a
           >
           <p class="mt-4">Quadras, partidas e pessoas reunidas num só lugar.</p>
         </div>
@@ -368,6 +368,6 @@
         </nav>
       </div>
     </footer>
-    <script type="module" src="/assets/js/app.js?v=20260804-1"></script>
+    <script type="module" src="/assets/js/app.js"></script>
   </body>
 </html>

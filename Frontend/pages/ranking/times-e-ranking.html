@@ -16,8 +16,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
-    <link rel="stylesheet" href="/assets/css/main.css?v=20260804-1" />
-    <script src="/assets/js/theme-init.js?v=20260804-1"></script>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <script src="/assets/js/theme-init.js"></script>
   </head>
   <body data-section="ranking">
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -38,7 +38,8 @@
             ><a href="/pages/conta/dados-pessoais/dados-pessoais.html">Dados pessoais</a
             ><a href="/pages/conta/acessibilidade/preferencias-de-acessibilidade.html"
               >Acessibilidade</a
-            ><a href="/pages/conta/ajuda/central-de-ajuda.html">Ajuda</a>
+            ><a href="/pages/conta/ajuda/central-de-ajuda.html">Ajuda</a
+            ><a href="#" data-logout>Sair da conta</a>
           </nav>
         </aside>
         <section class="account-content" aria-labelledby="titulo">
@@ -50,30 +51,12 @@
               sua região.
             </p>
           </header>
-          <div class="stat-grid mb-8">
-            <dl class="stat-card">
-              <dt>Sua posição</dt>
-              <dd>12º</dd>
-            </dl>
-            <dl class="stat-card">
-              <dt>Pontos</dt>
-              <dd>540</dd>
-            </dl>
-            <dl class="stat-card">
-              <dt>Partidas</dt>
-              <dd>6</dd>
-            </dl>
-          </div>
           <section aria-labelledby="ranking">
             <div class="section-heading">
-              <h2 id="ranking">Ranking da semana</h2>
-              <span class="badge">Atualizado hoje</span>
+              <h2 id="ranking">Times em destaque</h2>
             </div>
             <ol class="ranking-list">
-              <li><strong>Marina Costa</strong><span>980 pontos</span></li>
-              <li><strong>Rafael Lima</strong><span>920 pontos</span></li>
-              <li><strong>João Pedro</strong><span>880 pontos</span></li>
-              <li><strong>Beatriz Alves</strong><span>850 pontos</span></li>
+              <li class="muted">Carregando times...</li>
             </ol>
           </section>
           <section class="section cta-panel">
@@ -90,6 +73,6 @@
         </section>
       </div>
     </main>
-    <script type="module" src="/assets/js/app.js?v=20260804-1"></script>
+    <script type="module" src="/assets/js/app.js"></script>
   </body>
 </html>

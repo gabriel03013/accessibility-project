@@ -16,8 +16,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
-    <link rel="stylesheet" href="/assets/css/main.css?v=20260804-1" />
-    <script src="/assets/js/theme-init.js?v=20260804-1"></script>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <script src="/assets/js/theme-init.js"></script>
   </head>
   <body data-section="explore">
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -55,9 +55,9 @@
             </p>
             <div class="hero-actions mt-5">
               <button
+                id="save-court"
                 class="btn btn-secondary"
                 type="button"
-                data-feedback="Arena Vila Mariana foi adicionada aos favoritos."
               >
                 <i class="fa-regular fa-heart" aria-hidden="true"></i>
                 Salvar</button
@@ -109,22 +109,22 @@
         <aside class="panel booking-panel" aria-labelledby="reserva">
           <p class="eyebrow">A partir de R$ 96/h</p>
           <h2 id="reserva" class="text-2xl">Reserve seu horário</h2>
-          <form action="../checkout/carrinho/carrinho-de-reservas.html">
-            <label>Data<input type="date" required /></label>
+          <form id="booking-form">
+            <label>Data<input name="data" type="date" required /></label>
             <fieldset>
               <legend>Horário disponível</legend>
               <div class="time-options">
                 <label class="choice"
-                  ><input type="radio" name="horario" required /> 19:30</label
+                  ><input type="radio" name="horario" value="19:30" required /> 19:30</label
                 ><label class="choice"
-                  ><input type="radio" name="horario" /> 20:30</label
+                  ><input type="radio" name="horario" value="20:30" /> 20:30</label
                 >
               </div>
             </fieldset>
             <label
-              >Duração<select>
-                <option>1 hora</option>
-                <option>2 horas</option>
+              >Duração<select name="duracao">
+                <option value="1">1 hora</option>
+                <option value="2">2 horas</option>
               </select></label
             >
             <div class="summary-row summary-total">
@@ -138,6 +138,6 @@
         </aside>
       </div>
     </main>
-    <script type="module" src="/assets/js/app.js?v=20260804-1"></script>
+    <script type="module" src="/assets/js/app.js"></script>
   </body>
 </html>

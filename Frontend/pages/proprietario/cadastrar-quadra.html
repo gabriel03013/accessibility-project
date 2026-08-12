@@ -16,8 +16,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
-    <link rel="stylesheet" href="/assets/css/main.css?v=20260804-1" />
-    <script src="/assets/js/theme-init.js?v=20260804-1"></script>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <script src="/assets/js/theme-init.js"></script>
   </head>
   <body data-section="owner">
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -49,11 +49,6 @@
             ><label
               >Modalidade principal<select name="modalidade" required>
                 <option value="">Selecione</option>
-                <option>Poliesportiva</option>
-                <option>Futsal</option>
-                <option>Vôlei</option>
-                <option>Basquete</option>
-                <option>Tênis</option>
               </select></label
             ><label
               >Valor por hora<input
@@ -123,24 +118,24 @@
           <p>Marque apenas o que está disponível no local.</p>
           <div class="form-grid">
             <label class="choice"
-              ><input type="checkbox" name="coberta" /> Quadra coberta</label
+              ><input type="checkbox" name="amenity" value="coberta" /> Quadra coberta</label
             ><label class="choice"
-              ><input type="checkbox" name="vestiario" /> Vestiários</label
+              ><input type="checkbox" name="amenity" value="vestiario" /> Vestiários</label
             ><label class="choice"
-              ><input type="checkbox" name="estacionamento" />
+              ><input type="checkbox" name="amenity" value="estacionamento" />
               Estacionamento</label
             ><label class="choice"
-              ><input type="checkbox" name="bebedouro" /> Bebedouro</label
+              ><input type="checkbox" name="amenity" value="bebedouro" /> Bebedouro</label
             ><label class="choice"
-              ><input type="checkbox" name="sem-degraus" /> Entrada sem
+              ><input type="checkbox" name="amenity" value="acessibilidade" /> Entrada sem
               degraus</label
             ><label class="choice"
-              ><input type="checkbox" name="banheiro-acessivel" /> Banheiro
+              ><input type="checkbox" name="amenity" value="banheiro-acessivel" /> Banheiro
               acessível</label
             ><label class="choice"
-              ><input type="checkbox" name="piso-tatil" /> Piso tátil</label
+              ><input type="checkbox" name="amenity" value="iluminacao" /> Iluminação noturna</label
             ><label class="choice"
-              ><input type="checkbox" name="vaga-pcd" /> Vaga reservada</label
+              ><input type="checkbox" name="amenity" value="wifi" /> Wi-Fi</label
             >
           </div>
         </fieldset>
@@ -156,12 +151,15 @@
             ><span class="help-text">JPG ou PNG · até 10 imagens</span
             ><input
               class="sr-only"
+              id="court-photos"
               name="fotos"
               type="file"
               accept="image/png,image/jpeg"
               multiple
               required
           /></label>
+          <p id="photo-preview-status" class="help-text mt-3" hidden></p>
+          <div id="photo-preview" class="photo-preview" hidden></div>
         </fieldset>
         <div class="form-actions">
           <a class="btn btn-secondary" href="meus-espacos.html">Cancelar</a
@@ -171,6 +169,6 @@
         </div>
       </form>
     </main>
-    <script type="module" src="/assets/js/app.js?v=20260804-1"></script>
+    <script type="module" src="/assets/js/app.js"></script>
   </body>
 </html>

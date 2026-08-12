@@ -16,8 +16,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
-    <link rel="stylesheet" href="/assets/css/main.css?v=20260804-1" />
-    <script src="/assets/js/theme-init.js?v=20260804-1"></script>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <script src="/assets/js/theme-init.js"></script>
   </head>
   <body data-section="account">
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -38,7 +38,8 @@
             ><a href="/pages/conta/dados-pessoais/dados-pessoais.html">Dados pessoais</a
             ><a href="/pages/conta/acessibilidade/preferencias-de-acessibilidade.html"
               >Acessibilidade</a
-            ><a href="/pages/conta/ajuda/central-de-ajuda.html">Ajuda</a>
+            ><a href="/pages/conta/ajuda/central-de-ajuda.html">Ajuda</a
+            ><a href="#" data-logout>Sair da conta</a>
           </nav>
         </aside>
         <section class="account-content" aria-labelledby="titulo">
@@ -55,36 +56,8 @@
               <h2 id="proxima">Próxima reserva</h2>
               <a class="link" href="reservas/minhas-reservas.html">Ver todas</a>
             </div>
-            <article class="card reservation-card">
-              <img
-                src="/assets/images/court-volleyball-real.jpg"
-                alt="Quadra poliesportiva da Arena Vila Mariana"
-              />
-              <div>
-                <span class="badge badge-success">Confirmada</span>
-                <h3 class="mt-2 mb-1">Arena Vila Mariana</h3>
-                <p class="mb-0">Quinta-feira, 19:30 · Poliesportiva</p>
-              </div>
-              <a class="btn btn-secondary" href="reservas/minhas-reservas.html"
-                >Ver reserva</a
-              >
-            </article>
-          </section>
-          <section class="section" aria-labelledby="resumo">
-            <h2 id="resumo">Seu resumo</h2>
-            <div class="stat-grid">
-              <dl class="stat-card">
-                <dt>Reservas realizadas</dt>
-                <dd>6</dd>
-              </dl>
-              <dl class="stat-card">
-                <dt>Avaliações enviadas</dt>
-                <dd>3</dd>
-              </dl>
-              <dl class="stat-card">
-                <dt>Favoritos</dt>
-                <dd>4</dd>
-              </dl>
+            <div class="panel text-center py-6">
+              <p class="lead mb-0 muted">Nenhuma reserva agendada para os próximos dias.</p>
             </div>
           </section>
           <section class="section cta-panel">
@@ -99,6 +72,6 @@
         </section>
       </div>
     </main>
-    <script type="module" src="/assets/js/app.js?v=20260804-1"></script>
+    <script type="module" src="/assets/js/app.js"></script>
   </body>
 </html>
