@@ -138,6 +138,14 @@ export function renderNavigation() {
   const privateArea = ["account", "bookings", "owner"].includes(current);
   const loggedIn = !!getSession();
 
+  actions.append(
+    element("a", {
+      className: "account-link",
+      attributes: { href: "/pages/checkout/carrinho/carrinho-de-reservas.html" },
+      text: "Carrinho",
+    }),
+  );
+
   if (privateArea || loggedIn) {
     if (current === "owner") {
       actions.append(

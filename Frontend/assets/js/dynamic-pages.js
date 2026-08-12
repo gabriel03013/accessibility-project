@@ -25,6 +25,14 @@ export function initializeDynamicPages() {
     loadCourtDetails();
   } else if (path.includes("times-e-ranking.html")) {
     loadTeamsAndRanking();
+  } else if (path.includes("carrinho-de-reservas.html")) {
+    loadCartPage();
+  } else if (path.includes("identificacao-do-responsavel.html")) {
+    loadCheckoutIdentificationPage();
+  } else if (path.includes("pagamento-da-reserva.html")) {
+    loadCheckoutPaymentPage();
+  } else if (path.includes("reserva-confirmada.html")) {
+    loadCheckoutConfirmationPage();
   }
 }
 
@@ -614,20 +622,28 @@ async function loadCourtDetails() {
 
       const submitBtn = bookingForm.querySelector('button[type="submit"]');
       if (submitBtn) submitBtn.disabled = true;
-      try {
-        await api.bookings.create({
-          courtId: detail.id,
-          sportId,
-          startsAt: starts.toISOString(),
-          endsAt: ends.toISOString(),
-          participants: 1,
-        });
-        announce("Solicitação de reserva enviada. O proprietário será notificado.");
-        window.location.href = "/pages/conta/reservas/minhas-reservas.html";
-      } catch (error) {
-        announce(error.message || "Não foi possível enviar a solicitação de reserva.");
-        if (submitBtn) submitBtn.disabled = false;
-      }
+
+      const pricePerHour = Number(detail.sports?.[0]?.pricePerHour || 96);
+      const totalAmount = hours * pricePerHour;
+
+      setCart({
+        courtId: detail.id,
+        courtName: detail.name,
+        courtSlug: detail.slug,
+        coverUrl: coverUrl(detail),
+        sportId,
+        sportName: detail.sports?.[0]?.name || "Poliesportiva",
+        date,
+        time,
+        hours,
+        startsAt: starts.toISOString(),
+        endsAt: ends.toISOString(),
+        pricePerHour,
+        totalAmount,
+      });
+
+      announce("Quadra adicionada ao carrinho!");
+      window.location.href = "/pages/checkout/carrinho/carrinho-de-reservas.html";
     });
   } catch {
     // Mantem conteudo padrao se erro
@@ -658,4 +674,243 @@ async function loadTeamsAndRanking() {
   } catch {
     listEl.replaceChildren(element("li", { className: "muted", text: "Não foi possível carregar os times." }));
   }
+}
+
+export function getCart() {
+  try {
+    return JSON.parse(localStorage.getItem("partiuquadra:cart") || "null");
+  } catch {
+    return null;
+  }
+}
+
+export function setCart(cartItem) {
+  localStorage.setItem("partiuquadra:cart", JSON.stringify(cartItem));
+}
+
+export function clearCart() {
+  localStorage.removeItem("partiuquadra:cart");
+}
+
+function loadCartPage() {
+  const cart = getCart();
+  const section = document.querySelector('section[aria-labelledby="itens"]');
+  const summaryPanel = document.querySelector(".summary-panel");
+  if (!section) return;
+
+  if (!cart) {
+    const emptyPanel = element("div", { className: "panel text-center py-10" }, [
+      element("p", { className: "lead mb-4", text: "Seu carrinho está vazio." }),
+      element("a", {
+        className: "btn btn-primary",
+        attributes: { href: "/pages/explorar/explorar-quadras-e-partidas.html" },
+        text: "Explorar quadras disponíveis",
+      }),
+    ]);
+    section.replaceChildren(emptyPanel);
+    if (summaryPanel) {
+      const continueBtn = summaryPanel.querySelector("a.btn-accent");
+      if (continueBtn) {
+        continueBtn.style.pointerEvents = "none";
+        continueBtn.style.opacity = "0.5";
+        continueBtn.removeAttribute("href");
+      }
+    }
+    return;
+  }
+
+  const dateObj = new Date(cart.startsAt);
+  const formattedDate = dateObj.toLocaleDateString("pt-BR", { weekday: "long" });
+  const dateCapitalized = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+  const hoursText = cart.hours === 1 ? "1 hora" : `${cart.hours} horas`;
+  const timeDetailsText = `${dateCapitalized}, ${cart.time} · ${hoursText}`;
+  const formattedPrice = formatPrice(cart.totalAmount);
+
+  const cardArticle = element("article", { className: "card checkout-card" }, [
+    element("img", {
+      attributes: { src: cart.coverUrl || "/assets/images/hero-court-real.jpg", alt: cart.courtName },
+    }),
+    element("div", {}, [
+      element("span", { className: "badge", text: cart.sportName || "Poliesportiva" }),
+      element("h3", { className: "mt-2 mb-1", text: cart.courtName }),
+      element("p", { className: "mb-1", text: timeDetailsText }),
+      element("strong", { text: formattedPrice }),
+    ]),
+    element("button", {
+      className: "btn btn-danger",
+      attributes: { type: "button" },
+      text: "Remover",
+      events: {
+        click: () => {
+          clearCart();
+          announce("Item removido do carrinho.");
+          loadCartPage();
+        },
+      },
+    }),
+  ]);
+
+  const exploreLink = element("a", {
+    className: "link inline-block mt-5",
+    attributes: { href: "/pages/explorar/explorar-quadras-e-partidas.html" },
+    text: "← Continuar explorando",
+  });
+
+  const heading = element("h2", { id: "itens", className: "text-xl mb-4", text: "Reserva selecionada" });
+  section.replaceChildren(heading, cardArticle, exploreLink);
+
+  if (summaryPanel) {
+    const subtotalEl = summaryPanel.querySelector(".summary-row:not(.summary-total) strong");
+    const totalEl = summaryPanel.querySelector(".summary-total span:last-child");
+    if (subtotalEl) subtotalEl.textContent = formattedPrice;
+    if (totalEl) totalEl.textContent = formattedPrice;
+  }
+}
+
+function loadCheckoutIdentificationPage() {
+  const cart = getCart();
+  if (!cart) {
+    window.location.href = "/pages/checkout/carrinho/carrinho-de-reservas.html";
+    return;
+  }
+
+  const form = document.querySelector("form.form-panel");
+  if (!form) return;
+
+  api.me().then((currentUser) => {
+    if (!currentUser) return;
+    const nameInput = form.querySelector('input[name="nome"]');
+    const emailInput = form.querySelector('input[name="email"]');
+    const phoneInput = form.querySelector('input[name="telefone"]');
+    if (nameInput && !nameInput.value) nameInput.value = currentUser.displayName || "";
+    if (emailInput && !emailInput.value) emailInput.value = currentUser.email || "";
+    if (phoneInput && !phoneInput.value) phoneInput.value = currentUser.phone || "";
+  }).catch(() => {});
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const name = form.querySelector('input[name="nome"]')?.value?.trim();
+    const doc = form.querySelector('input[name="documento"]')?.value?.trim();
+    const email = form.querySelector('input[name="email"]')?.value?.trim();
+    const phone = form.querySelector('input[name="telefone"]')?.value?.trim();
+    const participants = Number(form.querySelector('input[name="participantes"]')?.value || 1);
+    const notes = form.querySelector('textarea[name="observacoes"]')?.value?.trim();
+
+    if (!name || !doc || !email || !phone) {
+      announce("Preencha todos os dados obrigatórios do responsável.");
+      return;
+    }
+
+    cart.responsibleName = name;
+    cart.document = doc;
+    cart.responsibleEmail = email;
+    cart.responsiblePhone = phone;
+    cart.participants = participants;
+    cart.notes = notes;
+    setCart(cart);
+
+    window.location.href = "../pagamento/pagamento-da-reserva.html";
+  });
+}
+
+function loadCheckoutPaymentPage() {
+  const cart = getCart();
+  if (!cart) {
+    window.location.href = "/pages/checkout/carrinho/carrinho-de-reservas.html";
+    return;
+  }
+
+  const summaryPanel = document.querySelector(".summary-panel");
+  if (summaryPanel) {
+    const dateObj = new Date(cart.startsAt);
+    const formattedDate = dateObj.toLocaleDateString("pt-BR", { weekday: "short" });
+    const hoursText = cart.hours === 1 ? "1 hora" : `${cart.hours} horas`;
+
+    const infoP = summaryPanel.querySelector("p");
+    if (infoP) {
+      infoP.innerHTML = `<strong>${cart.courtName}</strong><br />${formattedDate}, ${cart.time} · ${hoursText}`;
+    }
+    const totalEl = summaryPanel.querySelector(".summary-total span:last-child");
+    if (totalEl) totalEl.textContent = formatPrice(cart.totalAmount);
+  }
+
+  const form = document.querySelector("form.form-panel");
+  if (!form) return;
+
+  const paymentRadios = form.querySelectorAll('input[name="pagamento"]');
+  const cardFields = form.querySelector("[data-card-fields]");
+  const pixPanel = form.querySelector("[data-pix-panel]");
+
+  paymentRadios.forEach((radio) => {
+    radio.addEventListener("change", () => {
+      const isPix = radio.value === "pix" && radio.checked;
+      if (cardFields) cardFields.hidden = isPix;
+      if (pixPanel) pixPanel.hidden = !isPix;
+    });
+  });
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!isAuthenticated()) {
+      announce("Faça login para concluir o pagamento.");
+      window.location.href = "/pages/autenticacao/entrar/entrar-na-conta.html";
+      return;
+    }
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+    if (submitBtn) submitBtn.disabled = true;
+
+    try {
+      const rentalRequest = await api.bookings.create({
+        courtId: cart.courtId,
+        sportId: cart.sportId,
+        startsAt: cart.startsAt,
+        endsAt: cart.endsAt,
+        participants: cart.participants || 1,
+        message: cart.notes || undefined,
+      });
+
+      localStorage.setItem("partiuquadra:last_booking", JSON.stringify({
+        ...cart,
+        id: rentalRequest.id,
+        status: rentalRequest.status || "PENDING",
+        code: `PQ-${rentalRequest.id.substring(0, 8).toUpperCase()}`,
+      }));
+
+      clearCart();
+      announce("Pagamento simulado e reserva enviada com sucesso!");
+      window.location.href = "../confirmacao/reserva-confirmada.html";
+    } catch (error) {
+      announce(error.message || "Não foi possível concluir o pagamento.");
+      if (submitBtn) submitBtn.disabled = false;
+    }
+  });
+}
+
+function loadCheckoutConfirmationPage() {
+  let lastBooking = null;
+  try {
+    lastBooking = JSON.parse(localStorage.getItem("partiuquadra:last_booking") || "null");
+  } catch {}
+
+  if (!lastBooking) return;
+
+  const hero = document.querySelector(".success-hero");
+  if (!hero) return;
+
+  const leadP = hero.querySelector(".lead");
+  if (leadP) {
+    const dateObj = new Date(lastBooking.startsAt);
+    const dateStr = dateObj.toLocaleDateString("pt-BR", { weekday: "long", day: "2-digit", month: "long" });
+    leadP.textContent = `${lastBooking.courtName} · ${dateStr}, às ${lastBooking.time}. Enviamos o resumo da solicitação para o seu e-mail.`;
+  }
+
+  const codeEl = hero.querySelector(".summary-row:nth-child(1) strong");
+  if (codeEl) codeEl.textContent = lastBooking.code || "PQ-CONFIRMED";
+
+  const durationEl = hero.querySelector(".summary-row:nth-child(2) strong");
+  if (durationEl) durationEl.textContent = lastBooking.hours === 1 ? "1 hora" : `${lastBooking.hours} horas`;
+
+  const totalEl = hero.querySelector(".summary-total span:last-child");
+  if (totalEl) totalEl.textContent = formatPrice(lastBooking.totalAmount);
 }
