@@ -11,6 +11,7 @@ export function initializeDynamicPages() {
     loadExploreCourts();
   } else if (path.includes("meus-espacos.html")) {
     loadOwnerCourts();
+    loadOwnerRequests();
   } else if (path.includes("cadastrar-quadra.html")) {
     initCourtCreationForm();
   } else if (path.includes("minhas-reservas.html")) {
@@ -23,6 +24,12 @@ export function initializeDynamicPages() {
     initReviewsPage();
   } else if (path.includes("detalhes-da-quadra.html")) {
     loadCourtDetails();
+  } else if (path.includes("carrinho-de-reservas.html")) {
+    loadCart();
+  } else if (path.includes("pagamento-da-reserva.html")) {
+    initPaymentPage();
+  } else if (path.includes("reserva-confirmada.html")) {
+    loadBookingConfirmation();
   } else if (path.includes("times-e-ranking.html")) {
     loadTeamsAndRanking();
   }
@@ -44,6 +51,38 @@ function formatPrice(value) {
   const amount = Number(value);
   if (Number.isNaN(amount)) return `R$ ${value}`;
   return amount.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+}
+
+function formatBookingDate(startsAt, endsAt) {
+  const starts = new Date(startsAt);
+  const ends = new Date(endsAt);
+  if (Number.isNaN(starts.getTime()) || Number.isNaN(ends.getTime())) return "Horário a confirmar";
+
+  const date = new Intl.DateTimeFormat("pt-BR", {
+    weekday: "long",
+    day: "2-digit",
+    month: "long",
+    timeZone: "America/Sao_Paulo",
+  }).format(starts);
+  const time = new Intl.DateTimeFormat("pt-BR", {
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: "America/Sao_Paulo",
+  }).format(starts);
+  const hours = Math.round((ends.getTime() - starts.getTime()) / 3600000 * 100) / 100;
+  const duration = `${hours.toLocaleString("pt-BR")} ${hours === 1 ? "hora" : "horas"}`;
+  return `${date}, ${time} · ${duration}`;
+}
+
+function todayForDateInput() {
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    timeZone: "America/Sao_Paulo",
+  }).formatToParts(new Date());
+  const part = (type) => parts.find((item) => item.type === type)?.value;
+  return `${part("year")}-${part("month")}-${part("day")}`;
 }
 
 function courtCard(court) {
@@ -238,6 +277,73 @@ async function loadOwnerCourts() {
   }
 }
 
+async function loadOwnerRequests() {
+  if (!isAuthenticated()) return;
+
+  const section = document.querySelector('section[aria-labelledby="solicitacoes"]');
+  if (!section) return;
+  const heading = section.querySelector("h2");
+  try {
+    const page = await api.bookings.owner(0, 20);
+    const requests = (page?.content || []).filter((item) => item.status === "PENDING");
+    if (!requests.length) {
+      section.replaceChildren(heading, element("p", {
+        className: "muted",
+        text: "Não há solicitações aguardando aprovação.",
+      }));
+      return;
+    }
+    const cards = requests.map((request) => {
+      const card = element("article", { className: "card reservation-card" }, [
+        element("div", {}, [
+          element("span", { className: "badge", text: "Aguardando aprovação" }),
+          element("h3", { className: "mt-2 mb-1", text: request.courtName }),
+          element("p", { text: `${formatBookingDate(request.startsAt, request.endsAt)} · ${formatPrice(request.amount)}` }),
+          element("p", { className: "muted mb-0", text: `Solicitado por ${request.requesterName || "jogador"}` }),
+        ]),
+        element("div", { className: "hero-actions" }, [
+          element("button", { className: "btn btn-accent", attributes: { type: "button" }, text: "Aprovar" }),
+          element("button", { className: "btn btn-secondary", attributes: { type: "button" }, text: "Recusar" }),
+        ]),
+      ]);
+      const [acceptButton, rejectButton] = card.querySelectorAll("button");
+      const setLoading = (loading) => {
+        acceptButton.disabled = loading;
+        rejectButton.disabled = loading;
+      };
+      acceptButton.addEventListener("click", async () => {
+        setLoading(true);
+        try {
+          await api.bookings.accept(request.id);
+          announce("Solicitação aprovada. A reserva aguarda o pagamento do jogador.");
+          loadOwnerRequests();
+        } catch (error) {
+          announce(error.message || "Não foi possível aprovar a solicitação.");
+          setLoading(false);
+        }
+      });
+      rejectButton.addEventListener("click", async () => {
+        setLoading(true);
+        try {
+          await api.bookings.reject(request.id);
+          announce("Solicitação recusada.");
+          loadOwnerRequests();
+        } catch (error) {
+          announce(error.message || "Não foi possível recusar a solicitação.");
+          setLoading(false);
+        }
+      });
+      return card;
+    });
+    section.replaceChildren(heading, ...cards);
+  } catch (error) {
+    section.replaceChildren(heading, element("p", {
+      className: "muted",
+      text: error.message || "Não foi possível carregar as solicitações.",
+    }));
+  }
+}
+
 function initCourtCreationForm() {
   const form = document.querySelector("form.content-stack");
   if (!form) return;
@@ -372,7 +478,7 @@ function reservationCard(item, badgeClass = "badge-success") {
         minute: "2-digit",
       })
     : "";
-  return element("article", { className: "card reservation-card" }, [
+  const content = [
     element("img", {
       attributes: { src: "/assets/images/court-volleyball-real.jpg", alt: item.courtName },
     }),
@@ -381,7 +487,15 @@ function reservationCard(item, badgeClass = "badge-success") {
       element("h3", { className: "mt-2 mb-1", text: item.courtName }),
       element("p", { className: "mb-0", text: `${dateStr} · ${formatPrice(item.amount)}` }),
     ]),
-  ]);
+  ];
+  if (item.status === "AWAITING_PAYMENT" && item.id) {
+    content.push(element("a", {
+      className: "btn btn-accent",
+      attributes: { href: `/pages/checkout/pagamento/pagamento-da-reserva.html?reservationId=${encodeURIComponent(item.id)}` },
+      text: "Realizar pagamento",
+    }));
+  }
+  return element("article", { className: "card reservation-card" }, content);
 }
 
 async function loadUserReservations() {
@@ -519,6 +633,189 @@ function initReviewsPage() {
   }
 }
 
+async function loadCart() {
+  const itemSection = document.querySelector('section[aria-labelledby="itens"]');
+  const summaryPanel = document.querySelector(".summary-panel");
+  if (!itemSection || !summaryPanel) return;
+
+  const heading = itemSection.querySelector("h2");
+  const summaryHeading = summaryPanel.querySelector("h2");
+  let items;
+  try {
+    items = await api.cart.items();
+  } catch (error) {
+    itemSection.replaceChildren(heading, element("p", {
+      className: "muted",
+      text: error.message || "Não foi possível carregar o carrinho.",
+    }));
+    return;
+  }
+
+  if (!items.length) {
+    itemSection.replaceChildren(heading, element("div", { className: "panel text-center py-8" }, [
+      element("p", { className: "lead mb-4", text: "Seu carrinho está vazio." }),
+      element("a", {
+        className: "btn btn-accent",
+        attributes: { href: "../../explorar/explorar-quadras-e-partidas.html" },
+        text: "Explorar quadras disponíveis",
+      }),
+    ]));
+    summaryPanel.replaceChildren(
+      summaryHeading,
+      element("p", { className: "muted mb-0", text: "Adicione uma reserva para ver o resumo." }),
+    );
+    return;
+  }
+
+  const amount = items.reduce((total, item) => total + Number(item.amount || 0), 0);
+  const amountText = formatPrice(amount);
+  const cards = items.map((item) => {
+    const card = element("article", { className: "card checkout-card" }, [
+      element("img", {
+        attributes: {
+          src: item.imageUrl || "/assets/images/court-placeholder.svg",
+          alt: `Foto da quadra ${item.courtName}`,
+        },
+      }),
+      element("div", {}, [
+        element("span", { className: "badge", text: item.sport || "Quadra esportiva" }),
+        element("h3", { className: "mt-2 mb-1", text: item.courtName }),
+        element("p", { className: "mb-1", text: formatBookingDate(item.startsAt, item.endsAt) }),
+        element("strong", { text: formatPrice(item.amount) }),
+      ]),
+      element("button", { className: "btn btn-danger", attributes: { type: "button" }, text: "Remover" }),
+    ]);
+    card.querySelector("button").addEventListener("click", async () => {
+      try {
+        await api.cart.remove(item.id);
+        announce(`${item.courtName} foi removida do carrinho.`);
+        loadCart();
+      } catch (error) {
+        announce(error.message || "Não foi possível remover o item do carrinho.");
+      }
+    });
+    return card;
+  });
+
+  itemSection.replaceChildren(
+    heading,
+    ...cards,
+    element("a", {
+      className: "link inline-block mt-5",
+      attributes: { href: "../../explorar/explorar-quadras-e-partidas.html" },
+      text: "← Continuar explorando",
+    }),
+  );
+  summaryPanel.replaceChildren(
+    summaryHeading,
+    element("div", { className: "summary-row" }, [
+      element("span", { text: "Subtotal" }),
+      element("strong", { text: amountText }),
+    ]),
+    element("div", { className: "summary-row summary-total" }, [
+      element("span", { text: "Total" }),
+      element("span", { text: amountText }),
+    ]),
+    element("button", {
+      className: "btn btn-accent btn-block mt-5",
+      attributes: { type: "button" },
+      text: "Continuar",
+    }),
+    element("p", { className: "help-text text-center mt-3", text: "Pagamento seguro e simulado." }),
+  );
+  const continueButton = summaryPanel.querySelector("button");
+  continueButton.addEventListener("click", async () => {
+    continueButton.disabled = true;
+    try {
+      await api.cart.checkout();
+      announce("Solicitação enviada. Aguarde a aprovação do proprietário para realizar o pagamento.");
+      window.location.href = "/pages/conta/reservas/minhas-reservas.html";
+    } catch (error) {
+      announce(error.message || "Não foi possível enviar a solicitação de reserva.");
+      continueButton.disabled = false;
+    }
+  });
+}
+
+async function initPaymentPage() {
+  const reservationId = new URLSearchParams(window.location.search).get("reservationId");
+  const form = document.getElementById("payment-form");
+  const summary = document.querySelector(".summary-panel");
+  if (!reservationId || !form || !summary) {
+    window.location.href = "/pages/conta/reservas/minhas-reservas.html";
+    return;
+  }
+
+  let reservation;
+  try {
+    reservation = await api.bookings.reservation(reservationId);
+  } catch (error) {
+    announce(error.message || "Não foi possível carregar a reserva.");
+    return;
+  }
+  if (reservation.status !== "AWAITING_PAYMENT") {
+    announce("Esta reserva não está disponível para pagamento.");
+    window.location.href = "/pages/conta/reservas/minhas-reservas.html";
+    return;
+  }
+
+  summary.replaceChildren(
+    element("h2", { className: "text-xl", text: "Resumo da reserva" }),
+    element("p", {}, [
+      element("strong", { text: reservation.courtName }),
+      document.createElement("br"),
+      document.createTextNode(formatBookingDate(reservation.startsAt, reservation.endsAt)),
+    ]),
+    element("div", { className: "summary-row summary-total" }, [
+      element("span", { text: "Total" }),
+      element("span", { text: formatPrice(reservation.amount) }),
+    ]),
+    element("p", {
+      className: "help-text mt-4",
+      text: "Ambiente de demonstração: nenhum dado bancário real será processado.",
+    }),
+  );
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const submitButton = form.querySelector('button[type="submit"]');
+    if (submitButton) submitButton.disabled = true;
+    try {
+      await api.payments.pay(reservationId);
+      window.location.href = `../confirmacao/reserva-confirmada.html?reservationId=${encodeURIComponent(reservationId)}`;
+    } catch (error) {
+      announce(error.message || "Não foi possível confirmar o pagamento.");
+      if (submitButton) submitButton.disabled = false;
+    }
+  });
+}
+
+async function loadBookingConfirmation() {
+  const reservationId = new URLSearchParams(window.location.search).get("reservationId");
+  const section = document.querySelector(".success-hero");
+  if (!reservationId || !section) return;
+  try {
+    const reservation = await api.bookings.reservation(reservationId);
+    if (reservation.status !== "CONFIRMED") return;
+    const lead = section.querySelector(".lead");
+    if (lead) lead.textContent = `${reservation.courtName} · ${formatBookingDate(reservation.startsAt, reservation.endsAt)}.`;
+    const summary = section.querySelector(".panel");
+    if (summary) {
+      summary.replaceChildren(
+        element("div", { className: "summary-row" }, [
+          element("span", { text: "Código" }),
+          element("strong", { text: reservation.confirmationCode }),
+        ]),
+        element("div", { className: "summary-row summary-total" }, [
+          element("span", { text: "Total" }),
+          element("span", { text: formatPrice(reservation.amount) }),
+        ]),
+      );
+    }
+  } catch {
+    // Mantém a confirmação estática como fallback.
+  }
+}
+
 async function loadCourtDetails() {
   const urlParams = new URLSearchParams(window.location.search);
   const slug = urlParams.get("slug");
@@ -541,7 +838,7 @@ async function loadCourtDetails() {
     if (locationLine && detail.address) {
       const rating = detail.averageRating ? `★ ${detail.averageRating}` : "Nova";
       const reviews = detail.reviewCount ? ` em ${detail.reviewCount} avaliações` : "";
-      locationLine.innerHTML = `${rating}${reviews} · ${detail.address.neighborhood}, ${detail.address.city}`;
+      locationLine.textContent = `${rating}${reviews} · ${detail.address.neighborhood}, ${detail.address.city}`;
     }
 
     const gallery = document.querySelector(".gallery");
@@ -555,9 +852,11 @@ async function loadCourtDetails() {
       );
     }
 
+    const selectedSport = detail.sports?.[0];
+    const pricePerHour = Number(selectedSport?.pricePerHour);
     const priceEl = document.querySelector(".booking-panel .eyebrow");
-    if (priceEl && detail.sports?.[0]?.pricePerHour) {
-      priceEl.textContent = `A partir de ${formatPrice(detail.sports[0].pricePerHour)}/h`;
+    if (priceEl && Number.isFinite(pricePerHour)) {
+      priceEl.textContent = `A partir de ${formatPrice(pricePerHour)}/h`;
     }
 
     const amenitiesList = document.querySelector(".amenity-list");
@@ -585,8 +884,18 @@ async function loadCourtDetails() {
     const bookingForm = document.getElementById("booking-form");
     const dateInput = bookingForm?.querySelector('input[name="data"]');
     if (dateInput) {
-      dateInput.min = new Date().toISOString().slice(0, 10);
+      dateInput.min = todayForDateInput();
     }
+
+    const durationSelect = bookingForm?.querySelector('select[name="duracao"]');
+    const totalEl = bookingForm?.querySelector("[data-booking-total]");
+    const updateBookingTotal = () => {
+      if (!totalEl || !Number.isFinite(pricePerHour)) return;
+      const hours = Number(durationSelect?.value || 1);
+      totalEl.textContent = formatPrice(pricePerHour * hours);
+    };
+    durationSelect?.addEventListener("change", updateBookingTotal);
+    updateBookingTotal();
 
     bookingForm?.addEventListener("submit", async (event) => {
       event.preventDefault();
@@ -598,7 +907,7 @@ async function loadCourtDetails() {
       const date = bookingForm.querySelector('input[name="data"]')?.value;
       const time = bookingForm.querySelector('input[name="horario"]:checked')?.value;
       const hours = Number(bookingForm.querySelector('select[name="duracao"]')?.value || 1);
-      const sportId = detail.sports?.[0]?.id;
+      const sportId = selectedSport?.id;
 
       if (!date || !time || !sportId) {
         announce("Escolha data, horário e uma modalidade para reservar.");
@@ -615,15 +924,14 @@ async function loadCourtDetails() {
       const submitBtn = bookingForm.querySelector('button[type="submit"]');
       if (submitBtn) submitBtn.disabled = true;
       try {
-        await api.bookings.create({
+        await api.cart.add({
           courtId: detail.id,
           sportId,
           startsAt: starts.toISOString(),
           endsAt: ends.toISOString(),
           participants: 1,
         });
-        announce("Solicitação de reserva enviada. O proprietário será notificado.");
-        window.location.href = "/pages/conta/reservas/minhas-reservas.html";
+        window.location.href = "/pages/checkout/carrinho/carrinho-de-reservas.html";
       } catch (error) {
         announce(error.message || "Não foi possível enviar a solicitação de reserva.");
         if (submitBtn) submitBtn.disabled = false;
