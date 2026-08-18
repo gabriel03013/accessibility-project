@@ -476,7 +476,58 @@ function initCourtCreationForm() {
   });
 }
 
-function reservationCard(item, badgeClass = "badge-success") {
+export function formatReservationStatus(status) {
+  switch (status) {
+    case "AWAITING_PAYMENT":
+      return "Aguardando pagamento";
+    case "CONFIRMED":
+      return "Confirmada";
+    case "IN_PROGRESS":
+      return "Em andamento";
+    case "COMPLETED":
+      return "Concluída";
+    case "CANCELLED":
+      return "Cancelada";
+    case "NO_SHOW":
+      return "Não compareceu";
+    case "PENDING":
+      return "Pendente de aprovação";
+    case "COUNTER_PROPOSED":
+      return "Contraproposta enviada";
+    case "ACCEPTED":
+      return "Aprovada";
+    case "REJECTED":
+      return "Recusada";
+    case "EXPIRED":
+      return "Expirada";
+    default:
+      return status || "Pendente";
+  }
+}
+
+export function getStatusBadgeClass(status) {
+  switch (status) {
+    case "CONFIRMED":
+    case "COMPLETED":
+    case "ACCEPTED":
+      return "badge-success";
+    case "AWAITING_PAYMENT":
+    case "PENDING":
+    case "COUNTER_PROPOSED":
+      return "badge-warning";
+    case "CANCELLED":
+    case "REJECTED":
+    case "NO_SHOW":
+    case "EXPIRED":
+      return "badge-danger";
+    case "IN_PROGRESS":
+      return "badge-info";
+    default:
+      return "badge-secondary";
+  }
+}
+
+function reservationCard(item, customBadgeClass = null) {
   const dateStr = item.startsAt
     ? new Date(item.startsAt).toLocaleString("pt-BR", {
         weekday: "long",
@@ -486,12 +537,15 @@ function reservationCard(item, badgeClass = "badge-success") {
         minute: "2-digit",
       })
     : "";
+  const statusLabel = formatReservationStatus(item.status);
+  const badgeClass = customBadgeClass || getStatusBadgeClass(item.status);
+
   const content = [
     element("img", {
       attributes: { src: "/assets/images/court-volleyball-real.jpg", alt: item.courtName },
     }),
     element("div", {}, [
-      element("span", { className: `badge ${badgeClass}`, text: item.status || "Pendente" }),
+      element("span", { className: `badge ${badgeClass}`, text: statusLabel }),
       element("h3", { className: "mt-2 mb-1", text: item.courtName }),
       element("p", { className: "mb-0", text: `${dateStr} · ${formatPrice(item.amount)}` }),
     ]),
