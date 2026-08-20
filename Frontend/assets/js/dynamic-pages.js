@@ -32,14 +32,6 @@ export function initializeDynamicPages() {
     loadBookingConfirmation();
   } else if (path.includes("times-e-ranking.html")) {
     loadTeamsAndRanking();
-  } else if (path.includes("carrinho-de-reservas.html")) {
-    loadCartPage();
-  } else if (path.includes("identificacao-do-responsavel.html")) {
-    loadCheckoutIdentificationPage();
-  } else if (path.includes("pagamento-da-reserva.html")) {
-    loadCheckoutPaymentPage();
-  } else if (path.includes("reserva-confirmada.html")) {
-    loadCheckoutConfirmationPage();
   }
 }
 
@@ -61,6 +53,7 @@ function formatPrice(value) {
   return amount.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 }
 
+// formata data e hora no fuso de sp e calcula a duracao em horas quebradas
 function formatBookingDate(startsAt, endsAt) {
   const starts = new Date(startsAt);
   const ends = new Date(endsAt);
@@ -82,6 +75,7 @@ function formatBookingDate(startsAt, endsAt) {
   return `${date}, ${time} · ${duration}`;
 }
 
+// pega o dia de hoje no formato yyyy-mm-dd em sp pro min do input date
 function todayForDateInput() {
   const parts = new Intl.DateTimeFormat("en-CA", {
     year: "numeric",
@@ -133,7 +127,7 @@ async function loadHomeHighlights() {
     if (!courts.length) return;
     grid.replaceChildren(...courts.map(courtCard));
   } catch {
-    // Mantem os destaques estáticos se a API falhar
+    // mantem os destaques estaticos se a api falhar
   }
 }
 
@@ -215,6 +209,7 @@ async function loadExploreCourts() {
   };
 
   if (filterForm) {
+    // debounce de 300ms pra nao ficar chamando a api a cada letra digitada
     filterForm.querySelectorAll('input[type="search"]').forEach((input) => {
       input.addEventListener("input", () => {
         clearTimeout(filterDebounceTimeout);
@@ -281,7 +276,7 @@ async function loadOwnerCourts() {
 
     container.replaceChildren(heading, ...cards);
   } catch {
-    // Mantem dados atuais caso nao seja proprietario ou haja erro
+    // mantem dados atuais caso nao seja proprietario ou de erro
   }
 }
 
@@ -418,6 +413,7 @@ function initCourtCreationForm() {
     if (submitBtn) submitBtn.disabled = true;
 
     try {
+      // sobe as fotos em sequencia pra api de midia e se falhar usa imagem padrao
       const files = [...(form.querySelector('input[name="fotos"]')?.files || [])];
       const photos = [];
       for (const [index, file] of files.entries()) {
@@ -430,7 +426,7 @@ function initCourtCreationForm() {
             cover: index === 0,
           });
         } catch {
-          // continua tentando as demais fotos
+          // continua tentando as outras fotos se uma falhar
         }
       }
 
@@ -574,6 +570,7 @@ async function loadUserReservations() {
     ]);
     const reservations = reservationsPage?.content || [];
     const requests = requestsPage?.content || [];
+    // separa reservas futuras de passadas e pendencias comparando com agora
     const now = Date.now();
     const upcomingReservations = reservations.filter((item) => new Date(item.startsAt).getTime() >= now);
     const pastReservations = reservations.filter((item) => new Date(item.startsAt).getTime() < now);
@@ -612,7 +609,7 @@ async function loadUserReservations() {
       );
     }
   } catch {
-    // Mantem dados se erro
+    // mantem dados se der erro
   }
 }
 
@@ -628,7 +625,7 @@ async function loadAccountDashboard() {
     if (!next) return;
     section.replaceChildren(heading, reservationCard(next));
   } catch {
-    // Mantem estado vazio
+    // mantem estado vazio
   }
 }
 
@@ -643,7 +640,7 @@ async function loadFavorites() {
     if (!courts.length) return;
     stack.replaceChildren(...courts.map(courtCard));
   } catch {
-    // Mantem estado vazio
+    // mantem estado vazio
   }
 }
 
@@ -729,6 +726,7 @@ async function loadCart() {
     return;
   }
 
+  // soma o total acumulado de todos os itens do carrinho
   const amount = items.reduce((total, item) => total + Number(item.amount || 0), 0);
   const amountText = formatPrice(amount);
   const cards = items.map((item) => {
@@ -815,6 +813,7 @@ async function initPaymentPage() {
     announce(error.message || "Não foi possível carregar a reserva.");
     return;
   }
+  // so deixa pagar se a reserva ja foi aprovada pelo dono
   if (reservation.status !== "AWAITING_PAYMENT") {
     announce("Esta reserva não está disponível para pagamento.");
     window.location.href = "/pages/conta/reservas/minhas-reservas.html";
@@ -874,7 +873,7 @@ async function loadBookingConfirmation() {
       );
     }
   } catch {
-    // Mantém a confirmação estática como fallback.
+    // mantem a confirmacao estatica como fallback
   }
 }
 
@@ -951,6 +950,7 @@ async function loadCourtDetails() {
 
     const durationSelect = bookingForm?.querySelector('select[name="duracao"]');
     const totalEl = bookingForm?.querySelector("[data-booking-total]");
+    // recalcula o preco total quando o usuario troca a quantidade de horas
     const updateBookingTotal = () => {
       if (!totalEl || !Number.isFinite(pricePerHour)) return;
       const hours = Number(durationSelect?.value || 1);
@@ -976,6 +976,7 @@ async function loadCourtDetails() {
         return;
       }
 
+      // monta os timestamps de inicio e fim somando a duracao em horas e valida horario futuro
       const starts = new Date(`${date}T${time}:00`);
       const ends = new Date(starts.getTime() + hours * 60 * 60 * 1000);
       if (starts.getTime() <= Date.now()) {
@@ -1000,7 +1001,7 @@ async function loadCourtDetails() {
       }
     });
   } catch {
-    // Mantem conteudo padrao se erro
+    // mantem conteudo padrao se der erro
   }
 }
 
@@ -1030,245 +1031,3 @@ async function loadTeamsAndRanking() {
   }
 }
 
-export function getCart() {
-  try {
-    return JSON.parse(localStorage.getItem("partiuquadra:cart") || "null");
-  } catch {
-    return null;
-  }
-}
-
-export function setCart(cartItem) {
-  localStorage.setItem("partiuquadra:cart", JSON.stringify(cartItem));
-}
-
-export function clearCart() {
-  localStorage.removeItem("partiuquadra:cart");
-}
-
-function loadCartPage() {
-  const cart = getCart();
-  const section = document.querySelector('section[aria-labelledby="itens"]');
-  const summaryPanel = document.querySelector(".summary-panel");
-  if (!section) return;
-
-  if (!cart) {
-    const emptyPanel = element("div", { className: "panel text-center py-10" }, [
-      element("p", { className: "lead mb-4", text: "Seu carrinho está vazio." }),
-      element("a", {
-        className: "btn btn-primary",
-        attributes: { href: "/pages/explorar/explorar-quadras-e-partidas.html" },
-        text: "Explorar quadras disponíveis",
-      }),
-    ]);
-    section.replaceChildren(emptyPanel);
-    if (summaryPanel) {
-      const subtotalEl = summaryPanel.querySelector(".summary-row:not(.summary-total) strong");
-      const totalEl = summaryPanel.querySelector(".summary-total span:last-child");
-      if (subtotalEl) subtotalEl.textContent = "R$ 0,00";
-      if (totalEl) totalEl.textContent = "R$ 0,00";
-      const continueBtn = summaryPanel.querySelector("a.btn-accent");
-      if (continueBtn) {
-        continueBtn.style.pointerEvents = "none";
-        continueBtn.style.opacity = "0.5";
-        continueBtn.removeAttribute("href");
-      }
-    }
-    return;
-  }
-
-  const dateObj = new Date(cart.startsAt);
-  const formattedDate = dateObj.toLocaleDateString("pt-BR", { weekday: "long" });
-  const dateCapitalized = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
-  const hoursText = cart.hours === 1 ? "1 hora" : `${cart.hours} horas`;
-  const timeDetailsText = `${dateCapitalized}, ${cart.time} · ${hoursText}`;
-  const formattedPrice = formatPrice(cart.totalAmount);
-
-  const cardArticle = element("article", { className: "card checkout-card" }, [
-    element("img", {
-      attributes: { src: cart.coverUrl || "/assets/images/hero-court-real.jpg", alt: cart.courtName },
-    }),
-    element("div", {}, [
-      element("span", { className: "badge", text: cart.sportName || "Poliesportiva" }),
-      element("h3", { className: "mt-2 mb-1", text: cart.courtName }),
-      element("p", { className: "mb-1", text: timeDetailsText }),
-      element("strong", { text: formattedPrice }),
-    ]),
-    element("button", {
-      className: "btn btn-danger",
-      attributes: { type: "button" },
-      text: "Remover",
-      events: {
-        click: () => {
-          clearCart();
-          announce("Item removido do carrinho.");
-          loadCartPage();
-        },
-      },
-    }),
-  ]);
-
-  const exploreLink = element("a", {
-    className: "link inline-block mt-5",
-    attributes: { href: "/pages/explorar/explorar-quadras-e-partidas.html" },
-    text: "← Continuar explorando",
-  });
-
-  const heading = element("h2", { id: "itens", className: "text-xl mb-4", text: "Reserva selecionada" });
-  section.replaceChildren(heading, cardArticle, exploreLink);
-
-  if (summaryPanel) {
-    const subtotalEl = summaryPanel.querySelector(".summary-row:not(.summary-total) strong");
-    const totalEl = summaryPanel.querySelector(".summary-total span:last-child");
-    if (subtotalEl) subtotalEl.textContent = formattedPrice;
-    if (totalEl) totalEl.textContent = formattedPrice;
-  }
-}
-
-function loadCheckoutIdentificationPage() {
-  const cart = getCart();
-  if (!cart) {
-    window.location.href = "/pages/checkout/carrinho/carrinho-de-reservas.html";
-    return;
-  }
-
-  const form = document.querySelector("form.form-panel");
-  if (!form) return;
-
-  api.me().then((currentUser) => {
-    if (!currentUser) return;
-    const nameInput = form.querySelector('input[name="nome"]');
-    const emailInput = form.querySelector('input[name="email"]');
-    const phoneInput = form.querySelector('input[name="telefone"]');
-    if (nameInput && !nameInput.value) nameInput.value = currentUser.displayName || "";
-    if (emailInput && !emailInput.value) emailInput.value = currentUser.email || "";
-    if (phoneInput && !phoneInput.value) phoneInput.value = currentUser.phone || "";
-  }).catch(() => {});
-
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const name = form.querySelector('input[name="nome"]')?.value?.trim();
-    const doc = form.querySelector('input[name="documento"]')?.value?.trim();
-    const email = form.querySelector('input[name="email"]')?.value?.trim();
-    const phone = form.querySelector('input[name="telefone"]')?.value?.trim();
-    const participants = Number(form.querySelector('input[name="participantes"]')?.value || 1);
-    const notes = form.querySelector('textarea[name="observacoes"]')?.value?.trim();
-
-    if (!name || !doc || !email || !phone) {
-      announce("Preencha todos os dados obrigatórios do responsável.");
-      return;
-    }
-
-    cart.responsibleName = name;
-    cart.document = doc;
-    cart.responsibleEmail = email;
-    cart.responsiblePhone = phone;
-    cart.participants = participants;
-    cart.notes = notes;
-    setCart(cart);
-
-    window.location.href = "../pagamento/pagamento-da-reserva.html";
-  });
-}
-
-function loadCheckoutPaymentPage() {
-  const cart = getCart();
-  if (!cart) {
-    window.location.href = "/pages/checkout/carrinho/carrinho-de-reservas.html";
-    return;
-  }
-
-  const summaryPanel = document.querySelector(".summary-panel");
-  if (summaryPanel) {
-    const dateObj = new Date(cart.startsAt);
-    const formattedDate = dateObj.toLocaleDateString("pt-BR", { weekday: "short" });
-    const hoursText = cart.hours === 1 ? "1 hora" : `${cart.hours} horas`;
-
-    const infoP = summaryPanel.querySelector("p");
-    if (infoP) {
-      infoP.innerHTML = `<strong>${cart.courtName}</strong><br />${formattedDate}, ${cart.time} · ${hoursText}`;
-    }
-    const totalEl = summaryPanel.querySelector(".summary-total span:last-child");
-    if (totalEl) totalEl.textContent = formatPrice(cart.totalAmount);
-  }
-
-  const form = document.querySelector("form.form-panel");
-  if (!form) return;
-
-  const paymentRadios = form.querySelectorAll('input[name="pagamento"]');
-  const cardFields = form.querySelector("[data-card-fields]");
-  const pixPanel = form.querySelector("[data-pix-panel]");
-
-  paymentRadios.forEach((radio) => {
-    radio.addEventListener("change", () => {
-      const isPix = radio.value === "pix" && radio.checked;
-      if (cardFields) cardFields.hidden = isPix;
-      if (pixPanel) pixPanel.hidden = !isPix;
-    });
-  });
-
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    if (!isAuthenticated()) {
-      announce("Faça login para concluir o pagamento.");
-      window.location.href = "/pages/autenticacao/entrar/entrar-na-conta.html";
-      return;
-    }
-
-    const submitBtn = form.querySelector('button[type="submit"]');
-    if (submitBtn) submitBtn.disabled = true;
-
-    try {
-      const rentalRequest = await api.bookings.create({
-        courtId: cart.courtId,
-        sportId: cart.sportId,
-        startsAt: cart.startsAt,
-        endsAt: cart.endsAt,
-        participants: cart.participants || 1,
-        message: cart.notes || undefined,
-      });
-
-      localStorage.setItem("partiuquadra:last_booking", JSON.stringify({
-        ...cart,
-        id: rentalRequest.id,
-        status: rentalRequest.status || "PENDING",
-        code: `PQ-${rentalRequest.id.substring(0, 8).toUpperCase()}`,
-      }));
-
-      clearCart();
-      announce("Pagamento simulado e reserva enviada com sucesso!");
-      window.location.href = "../confirmacao/reserva-confirmada.html";
-    } catch (error) {
-      announce(error.message || "Não foi possível concluir o pagamento.");
-      if (submitBtn) submitBtn.disabled = false;
-    }
-  });
-}
-
-function loadCheckoutConfirmationPage() {
-  let lastBooking = null;
-  try {
-    lastBooking = JSON.parse(localStorage.getItem("partiuquadra:last_booking") || "null");
-  } catch {}
-
-  if (!lastBooking) return;
-
-  const hero = document.querySelector(".success-hero");
-  if (!hero) return;
-
-  const leadP = hero.querySelector(".lead");
-  if (leadP) {
-    const dateObj = new Date(lastBooking.startsAt);
-    const dateStr = dateObj.toLocaleDateString("pt-BR", { weekday: "long", day: "2-digit", month: "long" });
-    leadP.textContent = `${lastBooking.courtName} · ${dateStr}, às ${lastBooking.time}. Enviamos o resumo da solicitação para o seu e-mail.`;
-  }
-
-  const codeEl = hero.querySelector(".summary-row:nth-child(1) strong");
-  if (codeEl) codeEl.textContent = lastBooking.code || "PQ-CONFIRMED";
-
-  const durationEl = hero.querySelector(".summary-row:nth-child(2) strong");
-  if (durationEl) durationEl.textContent = lastBooking.hours === 1 ? "1 hora" : `${lastBooking.hours} horas`;
-
-  const totalEl = hero.querySelector(".summary-total span:last-child");
-  if (totalEl) totalEl.textContent = formatPrice(lastBooking.totalAmount);
-}

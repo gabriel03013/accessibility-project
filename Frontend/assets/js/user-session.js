@@ -1,4 +1,4 @@
-import { getSession, clearSession } from "./api/client.js";
+import { getSession } from "./api/client.js";
 import { api } from "./api.js";
 import { announce } from "./dom.js";
 
@@ -162,7 +162,7 @@ function initProfileForm() {
   const formPanel = document.querySelector(".form-panel");
   if (!formPanel) return;
 
-  // Populate sport dropdown from the API and pre-select user's favorites
+  // monta o select com as modalidades da api e ja deixa marcado o que o usuario curte
   const sportSelect = formPanel.querySelector('select[name="esporte"]');
   if (sportSelect) {
     api.reference.sports().then((sports) => {
@@ -185,7 +185,7 @@ function initProfileForm() {
     }).catch(() => {});
   }
 
-  // Fetch fresh profile from the API to ensure all fields are populated
+  // puxa os dados mais recentes do perfil pra garantir que nenhum input fique vazio
   api.me().then((freshUser) => {
     if (!freshUser) return;
     const nameInput = formPanel.querySelector('input[name="nome"]');
@@ -220,7 +220,7 @@ function initProfileForm() {
       return;
     }
 
-    // Collect selected sport IDs from the dropdown
+    // pega os ids das opcoes selecionadas pra mandar no patch do usuario
     const selectedSportIds = sportSelect
       ? [...sportSelect.selectedOptions]
           .map((opt) => Number(opt.value))

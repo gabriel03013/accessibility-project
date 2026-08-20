@@ -1,5 +1,5 @@
 const API_ROOT = "/api/v1";
-const SESSION_KEY = "partiuquadra:session";
+const SESSION_COOKIE = "partiu_session";
 let refreshRequest;
 
 export class ApiError extends Error {
@@ -12,9 +12,41 @@ export class ApiError extends Error {
   }
 }
 
+function getCookie(name) {
+  if (typeof document === "undefined") return null;
+  const prefix = `${name}=`;
+  const cookies = document.cookie.split(";");
+  for (let cookie of cookies) {
+    cookie = cookie.trim();
+    if (cookie.startsWith(prefix)) {
+      return decodeURIComponent(cookie.substring(prefix.length));
+    }
+  }
+  return null;
+}
+
+function setCookie(name, value, maxAgeSeconds) {
+  if (typeof document === "undefined") return;
+  let cookie = `${name}=${encodeURIComponent(value)}; path=/; SameSite=Lax`;
+  if (typeof maxAgeSeconds === "number") {
+    cookie += `; max-age=${maxAgeSeconds}`;
+  }
+  if (typeof window !== "undefined" && window.location?.protocol === "https:") {
+    cookie += "; Secure";
+  }
+  document.cookie = cookie;
+}
+
+function deleteCookie(name) {
+  if (typeof document === "undefined") return;
+  document.cookie = `${name}=; path=/; max-age=0; SameSite=Lax`;
+}
+
 function readSession() {
   try {
-    const session = JSON.parse(localStorage.getItem(SESSION_KEY) || "null");
+    const raw = getCookie(SESSION_COOKIE);
+    if (!raw) return null;
+    const session = JSON.parse(raw);
     if (
       !session?.accessToken ||
       typeof session.expiresAt !== "number" ||
@@ -27,13 +59,15 @@ function readSession() {
   }
 }
 
+// salva o token e dados da sessao no cookie e notifica o app
 export function writeSession(payload) {
+  const expiresInSeconds = Number(payload.expiresIn) || 3600;
   const session = {
     accessToken: payload.accessToken,
-    expiresAt: Date.now() + Number(payload.expiresIn) * 1000,
+    expiresAt: Date.now() + expiresInSeconds * 1000,
     user: payload.user,
   };
-  localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+  setCookie(SESSION_COOKIE, JSON.stringify(session), 60 * 60 * 24 * 7);
   window.dispatchEvent(
     new CustomEvent("sessionchange", { detail: session.user }),
   );
@@ -41,10 +75,11 @@ export function writeSession(payload) {
 }
 
 export function clearSession() {
-  localStorage.removeItem(SESSION_KEY);
+  deleteCookie(SESSION_COOKIE);
   window.dispatchEvent(new CustomEvent("sessionchange", { detail: null }));
 }
 
+// checa se o token ainda vale dando 5s de margem pra nao expirar no meio da requisicao
 export function getSession() {
   const session = readSession();
   return session && session.expiresAt > Date.now() + 5000 ? session : null;
@@ -54,7 +89,7 @@ export function updateSessionUser(user) {
   const session = readSession();
   if (!session) return null;
   session.user = user;
-  localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+  setCookie(SESSION_COOKIE, JSON.stringify(session), 60 * 60 * 24 * 7);
   window.dispatchEvent(new CustomEvent("sessionchange", { detail: user }));
   return session;
 }
@@ -114,11 +149,12 @@ async function send(path, options, accessToken) {
         : isFormData
           ? options.body
           : JSON.stringify(options.body),
-    credentials: "same-origin",
+    credentials: "include",
     signal: options.signal,
   });
 }
 
+// reaproveita a promise de refresh pra nao disparar varias vezes se vierem chamadas paralelas
 export async function refreshSession() {
   if (!refreshRequest) {
     refreshRequest = send("/auth/refresh", { method: "POST" })
@@ -135,6 +171,7 @@ export async function refreshSession() {
   return refreshRequest;
 }
 
+// controla auth automatica: renova antes se precisar, trata 401 e retenta uma vez
 export async function request(path, options = {}) {
   const requireAuth = options.auth !== false;
   let session = getSession();
@@ -143,6 +180,7 @@ export async function request(path, options = {}) {
     try {
       session = await refreshSession();
     } catch {
+      // se nao conseguir renovar joga pro login e trava a promise pra nao estourar erro em cascata
       window.location.href = "/pages/autenticacao/entrar/entrar-na-conta.html";
       return new Promise(() => {});
     }

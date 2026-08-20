@@ -22,6 +22,7 @@ export function icon(label) {
   });
 }
 
+// cria a regiao live dinamicamente pro leitor de tela narrar e destroi o toast depois de 4s
 export function announce(message) {
   let region = document.querySelector("[data-toast-region]");
 
@@ -39,5 +40,6 @@ export function announce(message) {
 
   const toast = element("div", { className: "toast", text: message });
   region.append(toast);
+  // remove da tela sozinho depois de 4 segundos
   window.setTimeout(() => toast.remove(), 4000);
 }
