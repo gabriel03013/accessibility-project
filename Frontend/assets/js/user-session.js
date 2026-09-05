@@ -77,6 +77,25 @@ function setFormLoading(form, loading) {
   }
 }
 
+function initPasswordToggles() {
+  document.querySelectorAll("[data-password-toggle]").forEach((button) => {
+    const inputId = button.getAttribute("aria-controls");
+    const input = inputId ? document.getElementById(inputId) : null;
+    if (!input) return;
+
+    button.addEventListener("click", () => {
+      const showingPassword = input.type === "password";
+      input.type = showingPassword ? "text" : "password";
+      button.textContent = showingPassword ? "Ocultar" : "Mostrar";
+      button.setAttribute("aria-pressed", String(showingPassword));
+      button.setAttribute(
+        "aria-label",
+        showingPassword ? "Ocultar senha" : "Mostrar senha",
+      );
+    });
+  });
+}
+
 function initLoginForm() {
   const form = document.getElementById("login-form");
   if (!form) return;
@@ -257,6 +276,7 @@ function initLogoutButtons() {
 }
 
 export function initializeUserAuthHandlers() {
+  initPasswordToggles();
   initLoginForm();
   initRegisterForm();
   initProfileForm();

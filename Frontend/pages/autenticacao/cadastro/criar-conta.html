@@ -67,24 +67,54 @@
               autocomplete="tel"
               inputmode="tel"
               required /></label
-          ><label
-            >Senha<input
-              name="senha"
-              type="password"
-              autocomplete="new-password"
-              minlength="12"
-              aria-describedby="senha-ajuda"
-              required
-            /><small id="senha-ajuda" class="help-text"
-              >Use pelo menos 12 caracteres.</small
-            ></label
-          ><label
-            >Confirme a senha<input
-              name="confirmacao"
-              type="password"
-              autocomplete="new-password"
-              minlength="12"
-              required /></label
+          ><div class="field-group">
+            <label for="cadastro-senha">Senha</label>
+            <div class="password-input">
+              <input
+                id="cadastro-senha"
+                name="senha"
+                type="password"
+                autocomplete="new-password"
+                minlength="12"
+                aria-describedby="senha-ajuda"
+                required
+              />
+              <button
+                class="password-toggle"
+                type="button"
+                data-password-toggle
+                aria-controls="cadastro-senha"
+                aria-pressed="false"
+                aria-label="Mostrar senha"
+              >
+                Mostrar
+              </button>
+            </div>
+            <small id="senha-ajuda" class="help-text">Use pelo menos 12 caracteres.</small>
+          </div>
+          <div class="field-group">
+            <label for="cadastro-confirmacao">Confirme a senha</label>
+            <div class="password-input">
+              <input
+                id="cadastro-confirmacao"
+                name="confirmacao"
+                type="password"
+                autocomplete="new-password"
+                minlength="12"
+                required
+              />
+              <button
+                class="password-toggle"
+                type="button"
+                data-password-toggle
+                aria-controls="cadastro-confirmacao"
+                aria-pressed="false"
+                aria-label="Mostrar senha"
+              >
+                Mostrar
+              </button>
+            </div>
+          </div>
           ><label class="toggle"
             ><input type="checkbox" required />
             <span
