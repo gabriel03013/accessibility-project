@@ -8,8 +8,8 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
     />
-    <link rel="stylesheet" href="/assets/css/main.css?v=20260804-1" />
-    <script src="/assets/js/theme-init.js?v=20260804-1"></script>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <script src="/assets/js/theme-init.js"></script>
   </head>
   <body data-section="account">
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -30,7 +30,8 @@
             ><a href="/pages/conta/dados-pessoais/dados-pessoais.html">Dados pessoais</a
             ><a href="/pages/conta/acessibilidade/preferencias-de-acessibilidade.html"
               >Acessibilidade</a
-            ><a href="/pages/conta/ajuda/central-de-ajuda.html">Ajuda</a>
+            ><a href="/pages/conta/ajuda/central-de-ajuda.html">Ajuda</a
+            ><a href="#" data-logout>Sair da conta</a>
           </nav>
         </aside>
         <section class="account-content" aria-labelledby="titulo">
@@ -41,82 +42,19 @@
           </header>
           <section aria-labelledby="pendente">
             <h2 id="pendente" class="text-2xl">Avaliação pendente</h2>
-            <form
-              class="panel form-panel"
-              data-demo-form
-              data-stay
-              data-success="Sua avaliação foi enviada. Obrigado por ajudar a comunidade!"
-            >
-              <div class="review-card p-0">
-                <img
-                  src="/assets/images/hero-court-real.jpg"
-                  alt="Ginásio Aurora onde ocorreu sua última reserva"
-                />
-                <div>
-                  <h3 class="mb-1">Ginásio Aurora</h3>
-                  <p class="mb-0">Basquete · 28 de julho</p>
-                </div>
-              </div>
-              <fieldset>
-                <legend>Qual foi sua nota?</legend>
-                <div class="form-grid">
-                  <label class="choice"
-                    ><input type="radio" name="nota" value="1" required /> 1
-                    estrela</label
-                  ><label class="choice"
-                    ><input type="radio" name="nota" value="2" /> 2
-                    estrelas</label
-                  ><label class="choice"
-                    ><input type="radio" name="nota" value="3" /> 3
-                    estrelas</label
-                  ><label class="choice"
-                    ><input type="radio" name="nota" value="4" /> 4
-                    estrelas</label
-                  ><label class="choice field-group-full"
-                    ><input type="radio" name="nota" value="5" /> 5
-                    estrelas</label
-                  >
-                </div>
-              </fieldset>
-              <label
-                >Conte como foi<textarea
-                  name="comentario"
-                  maxlength="800"
-                  placeholder="Fale sobre estrutura, atendimento e experiência"
-                  required
-                ></textarea>
-              </label>
-              <div class="form-actions">
-                <button class="btn btn-primary" type="submit">
-                  Enviar avaliação
-                </button>
-              </div>
-            </form>
+            <div class="panel text-center py-6 my-4">
+              <p class="lead mb-0 muted">Você não possui avaliações pendentes no momento.</p>
+            </div>
           </section>
           <section class="section" aria-labelledby="historico">
             <h2 id="historico" class="text-2xl">Seu histórico</h2>
-            <article class="card review-card">
-              <img
-                src="/assets/images/court-volleyball-real.jpg"
-                alt="Arena Vila Mariana avaliada anteriormente"
-              />
-              <div>
-                <span class="badge">5 de 5 estrelas</span>
-                <h3 class="mt-2 mb-1">Arena Vila Mariana</h3>
-                <blockquote class="mb-0">
-                  “Quadra bem cuidada e equipe muito atenciosa.”
-                </blockquote>
-              </div>
-              <a
-                class="btn btn-secondary"
-                href="../reservas/minhas-reservas.html"
-                >Ver reserva</a
-              >
-            </article>
+            <div class="panel text-center py-6 my-4">
+              <p class="lead mb-0 muted">Nenhuma avaliação enviada ainda.</p>
+            </div>
           </section>
         </section>
       </div>
     </main>
-    <script type="module" src="/assets/js/app.js?v=20260804-1"></script>
+    <script type="module" src="/assets/js/app.js"></script>
   </body>
 </html>

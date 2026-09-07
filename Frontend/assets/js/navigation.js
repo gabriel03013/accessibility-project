@@ -1,5 +1,6 @@
 import { createPreferencesControl } from "./preferences.js";
 import { element } from "./dom.js";
+import { getSession } from "./api/client.js";
 
 const links = [
   { key: "home", label: "Início", href: "/pages/inicio/pagina-inicial.html" },
@@ -31,9 +32,12 @@ function brand() {
       },
     },
     [
-      element("span", {
-        className: "brand-symbol",
-        attributes: { "aria-hidden": "true" },
+      element("img", {
+        className: "brand-logo",
+        attributes: {
+          src: "/assets/images/logo.png",
+          alt: "Logo Partiu Quadra",
+        },
       }),
       element("span", { className: "brand-text", text: "Partiu Quadra" }),
     ],
@@ -132,8 +136,17 @@ export function renderNavigation() {
     createPreferencesControl(),
   ]);
   const privateArea = ["account", "bookings", "owner"].includes(current);
+  const loggedIn = !!getSession();
 
-  if (privateArea) {
+  actions.append(
+    element("a", {
+      className: "account-link",
+      attributes: { href: "/pages/checkout/carrinho/carrinho-de-reservas.html" },
+      text: "Carrinho",
+    }),
+  );
+
+  if (privateArea || loggedIn) {
     if (current === "owner") {
       actions.append(
         element("a", {

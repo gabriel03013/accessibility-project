@@ -19,6 +19,7 @@ API REST do Partiu Quadra em Spring Boot, Spring Security, JPA e PostgreSQL.
 - cadastro com fotos e estrutura, busca e favoritos de quadras;
 - times, convites, desafios e contrapropostas;
 - solicitações de aluguel, resposta do proprietário e reservas;
+- carrinho persistente por conta, com validação do preço no checkout;
 - pagamento local totalmente simulado;
 - conversas de reservas e desafios.
 
@@ -32,6 +33,10 @@ API REST do Partiu Quadra em Spring Boot, Spring Security, JPA e PostgreSQL.
 | `POST` | `/api/v1/courts` | proprietário |
 | `POST` | `/api/v1/teams` | autenticado |
 | `POST` | `/api/v1/rental-requests` | autenticado |
+| `GET` | `/api/v1/cart` | autenticado |
+| `POST` | `/api/v1/cart/items` | autenticado |
+| `DELETE` | `/api/v1/cart/items/{id}` | autenticado |
+| `POST` | `/api/v1/cart/checkout` | autenticado |
 | `PATCH` | `/api/v1/rental-requests/{id}/accept` | proprietário |
 | `POST` | `/api/v1/payments` | autenticado |
 | `POST` | `/api/v1/conversations/{id}/messages` | participante |
@@ -42,7 +47,6 @@ Pix, cartão, token bancário ou cobrança real.
 
 ## Banco
 
-O Flyway executa uma única migration em
-`src/main/resources/db/migration/V1__schema.sql`. Como o histórico foi
-consolidado, um banco criado pelas migrations antigas deve ser recriado antes
-de usar esta versão.
+O Flyway aplica as migrations em `src/main/resources/db/migration/` em ordem.
+Em instalações já existentes, a migration `V4__add_cart_items.sql` cria a
+tabela de itens de carrinho sem apagar os dados atuais.

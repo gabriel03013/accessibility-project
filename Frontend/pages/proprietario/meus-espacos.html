@@ -16,8 +16,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
-    <link rel="stylesheet" href="/assets/css/main.css?v=20260804-1" />
-    <script src="/assets/js/theme-init.js?v=20260804-1"></script>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <script src="/assets/js/theme-init.js"></script>
   </head>
   <body data-section="owner">
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -34,49 +34,20 @@
           quadra</a
         >
       </header>
-      <div class="stat-grid mb-8">
-        <dl class="stat-card">
-          <dt>Espaços ativos</dt>
-          <dd>1</dd>
-        </dl>
-        <dl class="stat-card">
-          <dt>Reservas no mês</dt>
-          <dd>18</dd>
-        </dl>
-        <dl class="stat-card">
-          <dt>Receita estimada</dt>
-          <dd>R$ 1,7 mil</dd>
-        </dl>
-      </div>
       <section aria-labelledby="espacos">
         <div class="section-heading">
           <h2 id="espacos">Seus espaços</h2>
-          <span class="badge badge-success">Cadastro aprovado</span>
         </div>
-        <article class="card reservation-card">
-          <img
-            src="/assets/images/court-futsal-real.jpg"
-            alt="Quadra poliesportiva cadastrada da Arena Vila Mariana"
-          />
-          <div>
-            <h3 class="mb-1">Arena Vila Mariana</h3>
-            <p class="mb-1">Poliesportiva coberta · R$ 96/h</p>
-            <span class="muted">Próximo horário reservado: quinta, 19:30</span>
-          </div>
-          <div class="hero-actions">
-            <a
-              class="btn btn-secondary"
-              href="../detalhes/detalhes-da-quadra.html"
-              >Ver anúncio</a
-            ><button
-              class="btn btn-quiet"
-              type="button"
-              data-feedback="A edição do espaço será conectada ao cadastro."
-            >
-              Editar
-            </button>
-          </div>
-        </article>
+        <div class="panel text-center py-8">
+          <p class="lead mb-4">Você ainda não possui quadras cadastradas.</p>
+          <a class="btn btn-accent" href="cadastrar-quadra.html">Cadastrar minha primeira quadra</a>
+        </div>
+      </section>
+      <section class="section" aria-labelledby="solicitacoes">
+        <div class="section-heading">
+          <h2 id="solicitacoes">Solicitações para aprovação</h2>
+        </div>
+        <p class="muted">Carregando solicitações...</p>
       </section>
       <section class="section cta-panel">
         <div>
@@ -91,6 +62,6 @@
         >
       </section>
     </main>
-    <script type="module" src="/assets/js/app.js?v=20260804-1"></script>
+    <script type="module" src="/assets/js/app.js"></script>
   </body>
 </html>

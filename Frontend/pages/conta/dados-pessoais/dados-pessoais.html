@@ -8,8 +8,8 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
     />
-    <link rel="stylesheet" href="/assets/css/main.css?v=20260804-1" />
-    <script src="/assets/js/theme-init.js?v=20260804-1"></script>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <script src="/assets/js/theme-init.js"></script>
   </head>
   <body data-section="account">
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -30,7 +30,8 @@
             ><a href="/pages/conta/dados-pessoais/dados-pessoais.html" aria-current="page">Dados pessoais</a
             ><a href="/pages/conta/acessibilidade/preferencias-de-acessibilidade.html"
               >Acessibilidade</a
-            ><a href="/pages/conta/ajuda/central-de-ajuda.html">Ajuda</a>
+            ><a href="/pages/conta/ajuda/central-de-ajuda.html">Ajuda</a
+            ><a href="#" data-logout>Sair da conta</a>
           </nav>
         </aside>
         <section class="account-content" aria-labelledby="titulo">
@@ -39,35 +40,32 @@
             <h1 id="titulo">Dados pessoais</h1>
             <p>Mantenha seus dados e preferências de jogo atualizados.</p>
           </header>
-          <form class="panel form-panel" action="../painel-da-conta.html">
+          <form class="panel form-panel">
             <fieldset>
               <legend>Informações básicas</legend>
               <div class="form-grid">
                 <label
                   >Nome completo<input
                     name="nome"
-                    value="Usuário"
                     autocomplete="name"
                     required /></label
+                ><label
+                  >Nome de usuário<input
+                    name="username"
+                    autocomplete="username"
+                    pattern="^[a-zA-Z0-9._-]{3,32}$"
+                    title="Use de 3 a 32 letras, números, ponto, hífen ou sublinhado." /></label
                 ><label
                   >E-mail<input
                     name="email"
                     type="email"
-                    value="usuario@email.com"
                     autocomplete="email"
                     required /></label
                 ><label
                   >Telefone<input
                     name="telefone"
                     type="tel"
-                    value="(11) 99999-9999"
                     autocomplete="tel" /></label
-                ><label
-                  >Cidade<input
-                    name="cidade"
-                    value="São Paulo"
-                    autocomplete="address-level2"
-                /></label>
               </div>
             </fieldset>
             <fieldset>
@@ -75,15 +73,7 @@
               <div class="form-grid">
                 <label
                   >Esporte preferido<select name="esporte">
-                    <option>Vôlei</option>
-                    <option>Futsal</option>
-                    <option>Basquete</option>
-                  </select></label
-                ><label
-                  >Nível<select name="nivel">
-                    <option>Intermediário</option>
-                    <option>Iniciante</option>
-                    <option>Avançado</option>
+                    <option value="">Carregando...</option>
                   </select></label
                 >
               </div>
@@ -97,6 +87,6 @@
         </section>
       </div>
     </main>
-    <script type="module" src="/assets/js/app.js?v=20260804-1"></script>
+    <script type="module" src="/assets/js/app.js"></script>
   </body>
 </html>

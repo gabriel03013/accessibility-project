@@ -21,7 +21,7 @@ implementados e revisados no HTML, no CSS próprio e no JavaScript.
 2. Substitua os valores de exemplo por segredos fortes e locais.
 3. Execute `docker compose up --build`.
 4. Em outro terminal, execute `./scripts/load-test-data.sh` se quiser preencher o banco.
-5. Acesse `http://localhost:8088`.
+5. Acesse `http://localhost:${FRONTEND_PORT:-8088}` (com o `.env` atual, `http://localhost:8089`).
 
 ```bash
 cp .env.example .env

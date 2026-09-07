@@ -8,8 +8,8 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
     />
-    <link rel="stylesheet" href="/assets/css/main.css?v=20260804-1" />
-    <script src="/assets/js/theme-init.js?v=20260804-1"></script>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <script src="/assets/js/theme-init.js"></script>
   </head>
   <body data-shell="minimal">
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -27,10 +27,7 @@
         <p>Escolha como prefere confirmar sua reserva.</p>
       </header>
       <div class="checkout-layout">
-        <form
-          class="panel form-panel"
-          action="../confirmacao/reserva-confirmada.html"
-        >
+        <form id="payment-form" class="panel form-panel">
           <fieldset>
             <legend>Forma de pagamento</legend>
             <div class="form-grid">
@@ -84,7 +81,7 @@
           <div class="form-actions">
             <a
               class="btn btn-secondary"
-              href="../identificacao/identificacao-do-responsavel.html"
+              href="/pages/conta/reservas/minhas-reservas.html"
               >Voltar</a
             ><button class="btn btn-primary" type="submit">
               Confirmar pagamento
@@ -103,6 +100,6 @@
         </aside>
       </div>
     </main>
-    <script type="module" src="/assets/js/app.js?v=20260804-1"></script>
+    <script type="module" src="/assets/js/app.js"></script>
   </body>
 </html>

@@ -11,7 +11,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -57,22 +56,7 @@ public class CourtController {
         return courtService.search(location, sport, query, pageable);
     }
 
-    @GetMapping("/{slug}")
-    CourtDtos.Detail get(@PathVariable String slug) {
-        return courtService.getPublished(slug);
-    }
-
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    @PreAuthorize("hasRole('OWNER')")
-    CourtDtos.Detail create(
-            @AuthenticationPrincipal UUID userId,
-            @Valid @RequestBody CourtDtos.CreateRequest request) {
-        return courtService.create(userId, request);
-    }
-
     @GetMapping("/mine")
-    @PreAuthorize("hasRole('OWNER')")
     Page<CourtDtos.Summary> mine(
             @AuthenticationPrincipal UUID userId,
             @RequestParam(defaultValue = "0") int page,
@@ -80,6 +64,29 @@ public class CourtController {
         return courtService.mine(
                 userId,
                 PageRequest.of(Math.max(page, 0), Math.min(Math.max(size, 1), 50)));
+    }
+
+    @GetMapping("/saved")
+    Page<CourtDtos.Summary> saved(
+            @AuthenticationPrincipal UUID userId,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int size) {
+        return courtService.saved(
+                userId,
+                PageRequest.of(Math.max(page, 0), Math.min(Math.max(size, 1), 50)));
+    }
+
+    @GetMapping("/{slug}")
+    CourtDtos.Detail get(@PathVariable String slug) {
+        return courtService.getPublished(slug);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    CourtDtos.Detail create(
+            @AuthenticationPrincipal UUID userId,
+            @Valid @RequestBody CourtDtos.CreateRequest request) {
+        return courtService.create(userId, request);
     }
 
     @PostMapping("/{courtId}/saved")
@@ -92,15 +99,5 @@ public class CourtController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void unsave(@AuthenticationPrincipal UUID userId, @PathVariable UUID courtId) {
         courtService.unsave(userId, courtId);
-    }
-
-    @GetMapping("/saved")
-    Page<CourtDtos.Summary> saved(
-            @AuthenticationPrincipal UUID userId,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "20") int size) {
-        return courtService.saved(
-                userId,
-                PageRequest.of(Math.max(page, 0), Math.min(Math.max(size, 1), 50)));
     }
 }

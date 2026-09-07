@@ -19,6 +19,6 @@
     if (preferences.largeText) root.dataset.fontSize = "large";
     if (preferences.reduceMotion) root.dataset.motion = "reduce";
   } catch {
-    // Preferências inválidas não devem impedir o carregamento da página.
+    // roda antes de renderizar pra evitar flash de tema errado e se o json falhar so ignora
   }
 })();

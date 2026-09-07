@@ -4,8 +4,9 @@ const teamPath = (id, suffix = "") =>
   `/teams/${encodeURIComponent(id)}${suffix}`;
 
 export const teamsApi = {
-  search: (parameters = {}) => request(`/teams?${queryString(parameters)}`),
-  get: (id) => request(teamPath(id)),
+  search: (parameters = {}) =>
+    request(`/teams?${queryString(parameters)}`, { auth: false }),
+  get: (id) => request(teamPath(id), { auth: false }),
   mine: () => request("/teams/mine"),
   create: (payload) => request("/teams", { method: "POST", body: payload }),
   invitations: () => request("/teams/invitations/mine"),

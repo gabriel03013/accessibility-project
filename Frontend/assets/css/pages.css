@@ -321,6 +321,7 @@
 }
 
 .listing-layout {
+  align-items: start;
   display: grid;
   gap: 2rem;
   grid-template-columns: 16rem minmax(0, 1fr);
@@ -374,8 +375,9 @@
 }
 
 .results-grid {
+  align-items: start;
   display: grid;
-  gap: 1rem;
+  gap: 1.5rem;
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
@@ -503,6 +505,55 @@
   display: grid;
   gap: 1rem;
   margin-top: 1.5rem;
+}
+
+.password-input {
+  position: relative;
+}
+
+.password-input input {
+  padding-right: 5.8rem;
+}
+
+.password-toggle {
+  background: transparent;
+  border: 0;
+  border-radius: 0.4rem;
+  color: var(--brand-ink);
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 800;
+  min-height: 2.2rem;
+  padding: 0.35rem 0.55rem;
+  position: absolute;
+  right: 0.35rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.password-toggle:hover {
+  background: var(--brand-soft);
+}
+
+.password-toggle:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--brand-ink) 35%, transparent);
+  outline-offset: 1px;
+}
+
+.auth-error {
+  background: hsl(0 80% 95% / 1);
+  border: 1px solid hsl(0 60% 70% / 1);
+  border-radius: 0.5rem;
+  color: hsl(0 70% 35% / 1);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  padding: 0.75rem 1rem;
+}
+
+[data-theme="dark"] .auth-error {
+  background: hsl(0 40% 15% / 1);
+  border-color: hsl(0 50% 40% / 1);
+  color: hsl(0 80% 75% / 1);
 }
 
 .auth-row {

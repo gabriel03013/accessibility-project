@@ -1,5 +1,5 @@
 import { authApi, mediaApi, referenceApi } from "./api/auth.js";
-import { bookingsApi, paymentsApi } from "./api/bookings.js";
+import { bookingsApi, cartApi, paymentsApi } from "./api/bookings.js";
 import { teamsApi, messagesApi } from "./api/community.js";
 import { courtsApi } from "./api/courts.js";
 
@@ -15,6 +15,7 @@ export const api = {
   media: mediaApi,
   courts: courtsApi,
   bookings: bookingsApi,
+  cart: cartApi,
   payments: paymentsApi,
   teams: teamsApi,
   messages: messagesApi,

@@ -16,8 +16,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
-    <link rel="stylesheet" href="/assets/css/main.css?v=20260804-1" />
-    <script src="/assets/js/theme-init.js?v=20260804-1"></script>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <script src="/assets/js/theme-init.js"></script>
   </head>
   <body data-section="explore">
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -40,36 +40,29 @@
       <div class="listing-layout">
         <aside class="panel filter-panel" aria-labelledby="filtros">
           <h2 id="filtros" class="text-xl mb-5">Filtros</h2>
-          <form>
+          <form id="filter-form">
             <fieldset>
-              <legend>Tipo</legend>
-              <label class="choice"
-                ><input type="checkbox" checked /> Quadra inteira</label
-              ><label class="choice"
-                ><input type="checkbox" /> Partida aberta</label
-              >
+              <legend>Busca</legend>
+              <label>Nome ou termo<input type="search" name="q" placeholder="Ex.: Arena, cobertura..." /></label>
+              <label>Bairro ou cidade<input type="search" name="location" placeholder="Ex.: Vila Mariana, SP..." /></label>
             </fieldset>
             <fieldset>
               <legend>Esporte</legend>
               <label class="choice"
-                ><input type="checkbox" checked /> Poliesportiva</label
-              ><label class="choice"><input type="checkbox" /> Futsal</label
-              ><label class="choice"><input type="checkbox" /> Vôlei</label
-              ><label class="choice"><input type="checkbox" /> Basquete</label>
-            </fieldset>
-            <fieldset>
-              <legend>Data e horário</legend>
-              <label>Data<input type="date" /></label
-              ><label
-                >Horário<select>
-                  <option>Qualquer horário</option>
-                  <option>Manhã</option>
-                  <option>Tarde</option>
-                  <option>Noite</option>
-                </select></label
+                ><input type="radio" name="sport" value="" checked /> Todos os esportes</label
+              ><label class="choice"
+                ><input type="radio" name="sport" value="futsal" /> Futsal</label
+              ><label class="choice"
+                ><input type="radio" name="sport" value="volei" /> Vôlei</label
+              ><label class="choice"
+                ><input type="radio" name="sport" value="basquete" /> Basquete</label
+              ><label class="choice"
+                ><input type="radio" name="sport" value="futebol" /> Futebol</label
+              ><label class="choice"
+                ><input type="radio" name="sport" value="tenis" /> Tênis</label
               >
             </fieldset>
-            <button class="btn btn-secondary btn-block" type="reset">
+            <button class="btn btn-secondary btn-block" type="reset" id="reset-filters">
               Limpar filtros
             </button>
           </form>
@@ -83,98 +76,19 @@
           <div class="results-header">
             <div>
               <h2 id="resultados" class="text-2xl mb-1">Opções disponíveis</h2>
-              <p class="mb-0">18 resultados em São Paulo</p>
+              <p class="mb-0" id="results-count">Buscando quadras...</p>
             </div>
             <label class="field-group"
-              >Ordenar por<select>
-                <option>Mais relevantes</option>
-                <option>Menor preço</option>
-                <option>Melhor avaliação</option>
+              >Ordenar por<select id="sort-order" name="order">
+                <option value="RECENT">Mais recentes</option>
+                <option value="RATING">Melhor avaliação</option>
+                <option value="NAME">Nome (A-Z)</option>
               </select></label
             >
           </div>
-          <article class="card card-interactive">
-            <img
-              class="card-media"
-              src="/assets/images/court-futsal-real.jpg"
-              alt="Quadra poliesportiva coberta da Arena Vila Mariana"
-            />
-            <div class="card-body">
-              <div class="court-meta">
-                <span class="badge">Quadra inteira</span><span>★ 4,9</span>
-              </div>
-              <h3 class="mt-3">Arena Vila Mariana</h3>
-              <p>Poliesportiva coberta · Vila Mariana</p>
-              <p><strong>R$ 96</strong> por hora</p>
-              <a
-                class="btn btn-primary btn-block"
-                href="../detalhes/detalhes-da-quadra.html"
-                >Ver horários</a
-              >
-            </div>
-          </article>
-          <article class="card card-interactive">
-            <img
-              class="card-media"
-              src="/assets/images/court-volleyball-real.jpg"
-              alt="Quadra preparada para uma partida de futsal"
-            />
-            <div class="card-body">
-              <div class="court-meta">
-                <span class="badge badge-accent">Partida aberta</span
-                ><span>3 vagas</span>
-              </div>
-              <h3 class="mt-3">Futsal na Vila Mariana</h3>
-              <p>Hoje, 19:30 · Intermediário</p>
-              <p><strong>R$ 24</strong> por pessoa</p>
-              <a
-                class="btn btn-primary btn-block"
-                href="../detalhes/detalhes-da-quadra.html"
-                >Ver partida</a
-              >
-            </div>
-          </article>
-          <article class="card card-interactive">
-            <img
-              class="card-media"
-              src="/assets/images/hero-court-real.jpg"
-              alt="Quadra de basquete no bairro de Pinheiros"
-            />
-            <div class="card-body">
-              <div class="court-meta">
-                <span class="badge badge-accent">Partida aberta</span
-                ><span>4 vagas</span>
-              </div>
-              <h3 class="mt-3">Basquete 3x3 em Pinheiros</h3>
-              <p>Amanhã, 19:00 · Livre</p>
-              <p><strong>R$ 22</strong> por pessoa</p>
-              <a
-                class="btn btn-primary btn-block"
-                href="../detalhes/detalhes-da-quadra.html"
-                >Ver partida</a
-              >
-            </div>
-          </article>
-          <article class="card card-interactive">
-            <img
-              class="card-media"
-              src="/assets/images/court-beach-real.jpg"
-              alt="Ginásio coberto preparado para vôlei"
-            />
-            <div class="card-body">
-              <div class="court-meta">
-                <span class="badge">Quadra inteira</span><span>★ 4,7</span>
-              </div>
-              <h3 class="mt-3">Ginásio Aurora</h3>
-              <p>Vôlei e basquete · Moema</p>
-              <p><strong>R$ 110</strong> por hora</p>
-              <a
-                class="btn btn-primary btn-block"
-                href="../detalhes/detalhes-da-quadra.html"
-                >Ver horários</a
-              >
-            </div>
-          </article>
+          <div class="panel text-center py-10 w-full col-span-full">
+            <p class="lead mb-2 muted">Buscando quadras disponíveis...</p>
+          </div>
         </section>
       </div>
     </main>
@@ -194,6 +108,6 @@
         </nav>
       </div>
     </footer>
-    <script type="module" src="/assets/js/app.js?v=20260804-1"></script>
+    <script type="module" src="/assets/js/app.js"></script>
   </body>
 </html>

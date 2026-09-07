@@ -38,3 +38,10 @@ export const paymentsApi = {
   pay: (reservationId) =>
     request("/payments", { method: "POST", body: { reservationId } }),
 };
+
+export const cartApi = {
+  items: () => request("/cart"),
+  add: (payload) => request("/cart/items", { method: "POST", body: payload }),
+  remove: (itemId) => request(`/cart/items/${encodeURIComponent(itemId)}`, { method: "DELETE" }),
+  checkout: () => request("/cart/checkout", { method: "POST" }),
+};

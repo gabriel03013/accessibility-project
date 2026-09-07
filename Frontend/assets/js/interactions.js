@@ -17,6 +17,7 @@ function initializeRemovableCards() {
   }
 }
 
+// alterna visualizacao e obrigatoriedade dos campos entre cartao e pix
 function initializePaymentOptions() {
   const cardFields = document.querySelector("[data-card-fields]");
   const pixPanel = document.querySelector("[data-pix-panel]");

@@ -19,6 +19,7 @@ public interface TeamRepository extends JpaRepository<TeamEntity, UUID> {
     @EntityGraph(attributePaths = {"sports", "sports.sport", "members", "members.user"})
     Optional<TeamEntity> findWithMembersById(UUID id);
 
+    @EntityGraph(attributePaths = {"sports", "sports.sport", "members", "members.user"})
     @Query("""
             select distinct team
             from TeamEntity team
@@ -26,15 +27,16 @@ public interface TeamRepository extends JpaRepository<TeamEntity, UUID> {
             left join teamSport.sport sport
             where team.status = com.partiuquadra.api.model.TeamStatus.ACTIVE
               and team.publicProfile = true
-              and (:sport is null or sport.slug = :sport)
+              and (:sport = '' or sport.slug = :sport)
               and (:level is null or team.skillLevel = :level)
-              and (:query is null
-                   or lower(team.name) like lower(concat('%', :query, '%'))
-                   or lower(team.description) like lower(concat('%', :query, '%')))
+              and (:query = ''
+                   or lower(team.name) like :queryPattern
+                   or lower(coalesce(team.description, '')) like :queryPattern)
             """)
     Page<TeamEntity> searchPublic(
             @Param("sport") String sport,
             @Param("query") String query,
+            @Param("queryPattern") String queryPattern,
             @Param("level") SkillLevel level,
             Pageable pageable);
 }

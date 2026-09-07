@@ -346,7 +346,7 @@ public class BookingService {
                     "INVALID_BOOKING_PERIOD",
                     "O horário final deve ser posterior ao inicial.");
         }
-        if (Duration.between(startsAt, endsAt).toHours() > 12) {
+        if (Duration.between(startsAt, endsAt).compareTo(Duration.ofHours(12)) > 0) {
             throw new ApiException(
                     HttpStatus.BAD_REQUEST,
                     "BOOKING_PERIOD_TOO_LONG",

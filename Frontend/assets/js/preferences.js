@@ -21,18 +21,30 @@ function readPreferences() {
 
 function applyPreferences(preferences) {
   const root = document.documentElement;
-  const theme = preferences.theme === "system" ? null : preferences.theme;
 
-  if (theme) root.dataset.theme = theme;
-  else root.removeAttribute("data-theme");
+  if (preferences.theme && preferences.theme !== "system") {
+    root.dataset.theme = preferences.theme;
+  } else {
+    root.removeAttribute("data-theme");
+  }
 
-  root.toggleAttribute("data-contrast", preferences.contrast);
-  root.toggleAttribute("data-font-size", preferences.largeText);
-  root.toggleAttribute("data-motion", preferences.reduceMotion);
+  if (preferences.contrast) {
+    root.dataset.contrast = "more";
+  } else {
+    root.removeAttribute("data-contrast");
+  }
 
-  if (preferences.contrast) root.dataset.contrast = "more";
-  if (preferences.largeText) root.dataset.fontSize = "large";
-  if (preferences.reduceMotion) root.dataset.motion = "reduce";
+  if (preferences.largeText) {
+    root.dataset.fontSize = "large";
+  } else {
+    root.removeAttribute("data-font-size");
+  }
+
+  if (preferences.reduceMotion) {
+    root.dataset.motion = "reduce";
+  } else {
+    root.removeAttribute("data-motion");
+  }
 }
 
 function save(preferences) {
